@@ -1,0 +1,4 @@
+js/app.ts
+dist
+node_modules
+.cache

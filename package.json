@@ -4,8 +4,12 @@
   "description": "",
   "main": "Chatbot.ts",
   "scripts": {
+    "build": "node npm-build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "typescript": "^4.0.3"
+  }
 }
