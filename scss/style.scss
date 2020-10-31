@@ -1,0 +1,86 @@
+@import 'config';
+
+.navbar{
+  overflow: hidden;
+  height: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: $color-primary-2;
+  font-style: $fontFam;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  h1 {
+    color: #f1f1f1;
+    margin-top: 0.75rem;
+    margin-left: 2rem;
+    a {
+      color: #f1f1f1;
+      text-decoration: none;
+    }
+  }
+  ul {
+    justify-self: end;
+    li {
+      padding-right: 2rem;
+      list-style-type: none;
+      display: inline;
+      a {
+        color: #f1f1f1;
+        text-decoration: none;
+        font-size: 18px;
+        padding-right: 15px;
+      }
+    }
+  }
+
+}
+body {
+  background-color: #ccc;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  //Outer Container
+  .chatbox {
+    margin-top: 3rem;
+    background-color: #f1f1f1;
+    padding: 2rem;
+    border-radius: 1rem;
+    height: 30rem;
+    //Inner Container
+    .chatcontainer{
+      background-color: white;
+      height: 25rem;
+      padding: 1rem;
+      border-radius: 1rem;
+      /* Chat containers */
+      .container {
+        border: 2px solid #dedede;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+      }
+      /* Darker chat container */
+      .darker {
+        border-color: #ccc;
+        background-color: #ddd;
+      }
+    }
+    .chatterbox {
+      height: 2rem;
+      margin: 1rem 0;
+      width: 80%;
+    }
+    .chatbtn {
+      background-color: $color-primary-4;
+      text-decoration: none;
+      font-size: 15px;
+      color: #f1f1f1;
+      padding: 0.5em;
+      float: right;
+      margin: 1rem 0;
+      border-radius: .25rem;
+    }
+  }
+}

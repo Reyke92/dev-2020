@@ -1,0 +1,23 @@
+$color-primary-0: #27576B; /* Main Primary color */
+$color-primary-1: #6E91A1;
+$color-primary-2: #467386;
+$color-primary-3: #103D50;
+$color-primary-4: #022636;
+$fontFam: Arial;
+@mixin buttonsPhone {
+  background-color: $color-primary-4;
+  text-decoration: none;
+  color: #f1f1f1;
+  padding: 0.25em;
+  border: solid $color-primary-4;
+  border-radius: 1rem;
+}
+
+@mixin buttonsTablet {
+  background-color: $color-primary-4;
+  text-decoration: none;
+  color: #f1f1f1;
+  padding: 0.5em;
+  border: solid $color-primary-4;
+  border-radius: 1rem;
+}
