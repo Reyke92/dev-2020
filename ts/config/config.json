@@ -1,0 +1,222 @@
+{
+    "StumpedApologyMessage": "",
+    "SuccessMessage": "",
+    "WelcomeMessage": "",
+    "TeamEmailAddress": "",
+    "Topics":
+    [
+        {
+            "Name": "Dining",
+            "Resources":
+            [
+                {
+                    "Name": "on-campus meal plans",
+                    "Data": "https://www.wku.edu/wkurg/oncampus.php",
+                    "Keywords": ["on", "campus", "meal", "meals", "plan", "plans"]
+                },
+
+                {
+                    "Name": "off-campus meal plans",
+                    "Data": "https://www.wku.edu/wkurg/offcampus.php",
+                    "Keywords": ["off", "campus", "meal", "meals", "plan", "plans"]
+                },
+
+                {
+                    "Name": "flex meal plans",
+                    "Data": "https://www.wku.edu/wkurg/flexplan.php",
+                    "Keywords": ["meal", "meals", "plan", "plans"],
+                    "WeightedKeywords":
+                    [
+                        {
+                            "keyword": "flex",
+                            "weight": 2
+                        }
+                    ]
+                },
+
+                {
+                    "Name": "hours of operation",
+                    "Data": "https://www.wku.edu/wkurg/documents/fall2020hoursofoperation.pdf",
+                    "Keywords": ["eat", "hours", "times", "opening", "closing", "operation"]
+                },
+
+                {
+                    "Name": "campus restaurant map",
+                    "Data": "https://www.wku.edu/wkurg/images/2020-21campusrestaurantmap.jpg",
+                    "Keywords": ["campus", "restaurant", "map", "list"]
+                }
+            ]
+        },
+
+        {
+            "Name": "Name",
+            "Resources":
+            [
+                {
+                    "Name": "Name",
+                    "Data": "Either a URL or some text.",
+                    "Keywords": [],
+                    "WeightedKeywords":
+                    [
+                        {
+                            "keyword": "keyword",
+                            "weight": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        
+        {
+            "Name": "Name",
+            "Resources":
+            [
+                {
+                    "Name": "Name",
+                    "Data": "Either a URL or some text.",
+                    "Keywords": [],
+                    "WeightedKeywords":
+                    [
+                        {
+                            "keyword": "keyword",
+                            "weight": 1
+                        }
+                    ]
+                }
+            ]
+        },
+
+        {
+            "Name": "Name",
+            "Resources":
+            [
+                {
+                    "Name": "Name",
+                    "Data": "Either a URL or some text.",
+                    "Keywords": [],
+                    "WeightedKeywords":
+                    [
+                        {
+                            "keyword": "keyword",
+                            "weight": 1
+                        }
+                    ]
+                }
+            ]
+        },
+
+        {
+            "Name": "Name",
+            "Resources":
+            [
+                {
+                    "Name": "Name",
+                    "Data": "Either a URL or some text.",
+                    "Keywords": [],
+                    "WeightedKeywords":
+                    [
+                        {
+                            "keyword": "keyword",
+                            "weight": 1
+                        }
+                    ]
+                }
+            ]
+        },
+
+        {
+            "Name": "Name",
+            "Resources":
+            [
+                {
+                    "Name": "Name",
+                    "Data": "Either a URL or some text.",
+                    "Keywords": [],
+                    "WeightedKeywords":
+                    [
+                        {
+                            "keyword": "keyword",
+                            "weight": 1
+                        }
+                    ]
+                }
+            ]
+        },
+
+        {
+            "Name": "Name",
+            "Resources":
+            [
+                {
+                    "Name": "Name",
+                    "Data": "Either a URL or some text.",
+                    "Keywords": [],
+                    "WeightedKeywords":
+                    [
+                        {
+                            "keyword": "keyword",
+                            "weight": 1
+                        }
+                    ]
+                }
+            ]
+        },
+
+        {
+            "Name": "Name",
+            "Resources":
+            [
+                {
+                    "Name": "Name",
+                    "Data": "Either a URL or some text.",
+                    "Keywords": [],
+                    "WeightedKeywords":
+                    [
+                        {
+                            "keyword": "keyword",
+                            "weight": 1
+                        }
+                    ]
+                }
+            ]
+        },
+
+        {
+            "Name": "Name",
+            "Resources":
+            [
+                {
+                    "Name": "Name",
+                    "Data": "Either a URL or some text.",
+                    "Keywords": [],
+                    "WeightedKeywords":
+                    [
+                        {
+                            "keyword": "keyword",
+                            "weight": 1
+                        }
+                    ]
+                }
+            ]
+        },
+
+        {
+            "Name": "Name",
+            "Resources":
+            [
+                {
+                    "Name": "Name",
+                    "Data": "Either a URL or some text.",
+                    "Keywords": [],
+                    "WeightedKeywords":
+                    [
+                        {
+                            "keyword": "keyword",
+                            "weight": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
