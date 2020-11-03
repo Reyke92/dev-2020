@@ -117,7 +117,6 @@ class Chatbot
 
     private _ParseMessageForKeywords(message: string): HashMap<number>
     {
-        //var keywords: Array<{ keyword: string, times: number }> = new Array<{ keyword: string, times: number }>(0);
         var keywords: HashMap<number> = new HashMap<number>();
 
         // Make sure only one space character exists between each keyword.
