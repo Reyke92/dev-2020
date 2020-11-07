@@ -15,6 +15,7 @@ class Chatbot
     
     public static GetInstance(): Chatbot
     {
+        console.log("CHATBOT GETINSTANCE METHOD CALLED.");
         // If the Chatbot instance exists, just return it./
         if (!!this._Instance) return this._Instance;
 
@@ -22,22 +23,33 @@ class Chatbot
         this._Instance._NumIncorrectResponses = 0;
         UI.GetInstance(); // Cause the UI to initialize itself.
         this._Instance._LoadConfigFile(C.CONFIG_FILE_CONTENTS);
+        this._Instance._ChangeTopic("Dining");
         return this._Instance;
-    }
-
-    public ChangeTopic(topicName: string): void
-    {
-        this._CurrentTopic = this._GetTopic(topicName);
-        this._ResourceIterator = new ResourceCyclicIterator(this._CurrentTopic.Resources);
     }
 
     public DisplayTopics(): void
     {
+        // Get a list of the topic names.
+        var topicNames: Array<string> = new Array<string>();
+        this._TopicIterator.Reset();
+        do
+        {
+            var iteration: { topic: Topic, hasCycled: boolean } = this._TopicIterator.Next();
+            topicNames.push(iteration.topic.Name);
+        }
+        while (!iteration.hasCycled);
 
+        // Show the buttons.
+        UI.GetInstance().DisplayButtons(
+            topicNames,
+            "Please choose from these topics",
+            this._OnDisplayTopicsTopicSelected
+        );
     }
 
     public ReplyToMessage(userMessage: string): void
     {
+        console.log("ReplyToMessage(\"" + userMessage + "\");");
         // Figure out how to respond to user's message.
         var messageKeywords: HashMap<number> = this._ParseMessageForKeywords(userMessage);
         var resource: Resource = this._SearchForResource(messageKeywords);
@@ -45,6 +57,7 @@ class Chatbot
         // If the resource could not be found.
         if (resource == null)
         {
+            console.log("RESOURCE === null");
             this._NumIncorrectResponses++;
             this._SendMessage(
                 "I'm sorry, I wasn't able to find anything from what you typed. " +
@@ -91,6 +104,12 @@ class Chatbot
         }
     }
 
+    private _ChangeTopic(topicName: string): void
+    {
+        this._CurrentTopic = this._GetTopic(topicName);
+        this._ResourceIterator = new ResourceCyclicIterator(this._CurrentTopic.Resources);
+    }
+
     private _GetTopic(topicName: string): Topic
     {
         this._TopicIterator.Reset();
@@ -115,16 +134,25 @@ class Chatbot
         this._TopicIterator = new TopicCyclicIterator(config.Topics);
     }
 
+    private _OnDisplayTopicsTopicSelected(this: HTMLButtonElement, e: Event): void
+    {
+        Chatbot._Instance._ChangeTopic(this.value);
+        Chatbot._Instance._SendMessage("What would you like more information about?");
+    }
+
     private _ParseMessageForKeywords(message: string): HashMap<number>
     {
+        console.log("PARSE message: string = \"" + message + "\"");
         var keywords: HashMap<number> = new HashMap<number>();
 
         // Make sure only one space character exists between each keyword.
         message = message.toLowerCase();
         while (message.indexOf("  ") != -1) message = message.replace("  ", " ");
-        
+        console.log("PARSE message: string = \"" + message + "\"");
+
         message.split(new RegExp("[ -]")).forEach((word: string) =>
         {
+            console.log("PARSE FOR KEYWORDS: 'word'=" + word + " keywords.Get(word)=" + keywords.Get(word));
             // If there is already an entry for the 'word' in the HashMap,
             // add onto that existing value. Otherwise, add a new entry.
             var times: number = keywords.Get(word);
@@ -139,7 +167,8 @@ class Chatbot
     {
         var scores: Array<{ score: number, resName: string }> =
             new Array<{ score: number, resName: string }>();
-
+        console.log("SEARCHING FOR RESOURCE");
+        console.log(inputKeywords);
         this._ResourceIterator.Reset();
         do
         {
@@ -187,7 +216,7 @@ class Chatbot
         var highScore = scores[scores.length - 1];
 
         // If the highest score was less than or equal to 0.3, disregard it.
-        if (highScore.score <= 0.3) return null;
+        if (highScore.score <= 0.3) { console.log("highScore <= 0.3; returning null."); return null; }
 
         console.log(scores);
         console.log("Resource: \"" + highScore.resName + "\"\tScore: " + highScore.score);
@@ -197,20 +226,22 @@ class Chatbot
         {
             var resource: { resource: Resource, hasCycled: boolean } = this._ResourceIterator.Next();
 
-            if (resource.resource.Name === highScore.resName) return resource.resource;
+            if (resource.resource.Name === highScore.resName) { console.log("RESOURCE FOUND:"); console.log(resource.resource); return resource.resource; }
         }
         while (!resource.hasCycled) { }
-        
+        console.log("RESOURCE NOT FOUND");
         return null;
     }
 
-    private _SendMessage(message: string): void
+    private _SendMessage(message: string): number
     {
-        UI.GetInstance().DisplayMessage(MessageType.Chatbot, message);
+        console.log("SEND_MESSAGE: \"" + message + "\"");
+        return UI.GetInstance().DisplayMessage(MessageType.Chatbot, message);
     }
 
-    private _SendMessage(type: MessageType, message: string): void
+    private _SendMessageAsType(type: MessageType, message: string): number
     {
-        UI.GetInstance().DisplayMessage(type, message);
+        console.log("SEND_MESSAGE(" + type + "): \"" + message + "\"");
+        return UI.GetInstance().DisplayMessage(type, message);
     }
 }

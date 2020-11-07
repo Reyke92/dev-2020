@@ -124,7 +124,8 @@ function () {
   function Chatbot() {}
 
   Chatbot.GetInstance = function () {
-    // If the Chatbot instance exists, just return it./
+    console.log("CHATBOT GETINSTANCE METHOD CALLED."); // If the Chatbot instance exists, just return it./
+
     if (!!this._Instance) return this._Instance;
     this._Instance = new Chatbot();
     this._Instance._NumIncorrectResponses = 0;
@@ -132,19 +133,31 @@ function () {
 
     this._Instance._LoadConfigFile(C.CONFIG_FILE_CONTENTS);
 
+    this._Instance._ChangeTopic("Dining");
+
     return this._Instance;
   };
 
-  Chatbot.prototype.ChangeTopic = function (topicName) {
-    this._CurrentTopic = this._GetTopic(topicName);
-    this._ResourceIterator = new ResourceCyclicIterator(this._CurrentTopic.Resources);
+  Chatbot.prototype.DisplayTopics = function () {
+    // Get a list of the topic names.
+    var topicNames = new Array();
+
+    this._TopicIterator.Reset();
+
+    do {
+      var iteration = this._TopicIterator.Next();
+
+      topicNames.push(iteration.topic.Name);
+    } while (!iteration.hasCycled); // Show the buttons.
+
+
+    UI.GetInstance().DisplayButtons(topicNames, "Please choose from these topics", this._OnDisplayTopicsTopicSelected);
   };
 
-  Chatbot.prototype.DisplayTopics = function () {};
-
   Chatbot.prototype.ReplyToMessage = function (userMessage) {
-    var _this = this; // Figure out how to respond to user's message.
+    var _this = this;
 
+    console.log("ReplyToMessage(\"" + userMessage + "\");"); // Figure out how to respond to user's message.
 
     var messageKeywords = this._ParseMessageForKeywords(userMessage);
 
@@ -152,6 +165,7 @@ function () {
 
 
     if (resource == null) {
+      console.log("RESOURCE === null");
       this._NumIncorrectResponses++;
 
       this._SendMessage("I'm sorry, I wasn't able to find anything from what you typed. " + "How about we try again?");
@@ -188,6 +202,11 @@ function () {
       }
   };
 
+  Chatbot.prototype._ChangeTopic = function (topicName) {
+    this._CurrentTopic = this._GetTopic(topicName);
+    this._ResourceIterator = new ResourceCyclicIterator(this._CurrentTopic.Resources);
+  };
+
   Chatbot.prototype._GetTopic = function (topicName) {
     this._TopicIterator.Reset();
 
@@ -210,8 +229,14 @@ function () {
     this._TopicIterator = new TopicCyclicIterator(config.Topics);
   };
 
+  Chatbot.prototype._OnDisplayTopicsTopicSelected = function (e) {
+    Chatbot._Instance._ChangeTopic(this.value);
+
+    Chatbot._Instance._SendMessage("What would you like more information about?");
+  };
+
   Chatbot.prototype._ParseMessageForKeywords = function (message) {
-    //var keywords: Array<{ keyword: string, times: number }> = new Array<{ keyword: string, times: number }>(0);
+    console.log("PARSE message: string = \"" + message + "\"");
     var keywords = new HashMap(); // Make sure only one space character exists between each keyword.
 
     message = message.toLowerCase();
@@ -220,9 +245,11 @@ function () {
       message = message.replace("  ", " ");
     }
 
+    console.log("PARSE message: string = \"" + message + "\"");
     message.split(new RegExp("[ -]")).forEach(function (word) {
-      // If there is already an entry for the 'word' in the HashMap,
+      console.log("PARSE FOR KEYWORDS: 'word'=" + word + " keywords.Get(word)=" + keywords.Get(word)); // If there is already an entry for the 'word' in the HashMap,
       // add onto that existing value. Otherwise, add a new entry.
+
       var times = keywords.Get(word);
       if (times !== undefined) keywords.Set(word, times + 1);else keywords.Set(word, 1);
     });
@@ -231,6 +258,8 @@ function () {
 
   Chatbot.prototype._SearchForResource = function (inputKeywords) {
     var scores = new Array();
+    console.log("SEARCHING FOR RESOURCE");
+    console.log(inputKeywords);
 
     this._ResourceIterator.Reset();
 
@@ -276,7 +305,11 @@ function () {
     });
     var highScore = scores[scores.length - 1]; // If the highest score was less than or equal to 0.3, disregard it.
 
-    if (highScore.score <= 0.3) return null;
+    if (highScore.score <= 0.3) {
+      console.log("highScore <= 0.3; returning null.");
+      return null;
+    }
+
     console.log(scores);
     console.log("Resource: \"" + highScore.resName + "\"\tScore: " + highScore.score);
 
@@ -285,19 +318,26 @@ function () {
     do {
       var resource = this._ResourceIterator.Next();
 
-      if (resource.resource.Name === highScore.resName) return resource.resource;
+      if (resource.resource.Name === highScore.resName) {
+        console.log("RESOURCE FOUND:");
+        console.log(resource.resource);
+        return resource.resource;
+      }
     } while (!resource.hasCycled);
 
     {}
+    console.log("RESOURCE NOT FOUND");
     return null;
   };
 
   Chatbot.prototype._SendMessage = function (message) {
-    UI.GetInstance().DisplayMessage(MessageType.Chatbot, message);
+    console.log("SEND_MESSAGE: \"" + message + "\"");
+    return UI.GetInstance().DisplayMessage(MessageType.Chatbot, message);
   };
 
-  Chatbot.prototype._SendMessage = function (type, message) {
-    UI.GetInstance().DisplayMessage(type, message);
+  Chatbot.prototype._SendMessageAsType = function (type, message) {
+    console.log("SEND_MESSAGE(" + type + "): \"" + message + "\"");
+    return UI.GetInstance().DisplayMessage(type, message);
   };
 
   return Chatbot;
@@ -489,32 +529,78 @@ function () {
 var UI =
 /** @class */
 function () {
-  function UI() {}
+  function UI() {
+    window.addEventListener("load", this._OnPageLoaded);
+  }
 
   UI.GetInstance = function () {
-    if (!!this._Instance) return this._Instance;
-    this._Instance = new UI(); //this._Instance.ChangeTopicButton =
-    //  <HTMLButtonElement>document.getElementById(this._ID_CHANGE_TOPIC_BUTTON);
+    console.log("UI GETINSTANCE METHOD CALLED.");
 
-    this._Instance.MessageBox = document.getElementById(this._ID_MESSAGE_BOX);
-    this._Instance.SendButton = document.getElementById(this._ID_SEND_BUTTON);
+    if (!!this._Instance) {
+      return this._Instance;
+    }
+
+    this._Instance = new UI();
+    return this._Instance;
   };
-
-  UI.prototype.ChangeTopicButtonClicked = function () {};
 
   UI.prototype.DeleteMessage = function (messageID) {};
 
-  UI.prototype.DisplayButtonClicked = function (buttonName) {};
+  UI.prototype.DisplayButtons = function (buttonNames, message, callback) {// IMPORTANT: For each button created, make button.id = messageID.
+  };
 
-  UI.prototype.DisplayButtons = function (buttonNames, message, callback) {};
-
-  UI.prototype.DisplayMessage = function (message) {};
-
-  UI.prototype.SendMessageButtonClicked = function () {};
+  UI.prototype.DisplayMessage = function (type, message) {};
 
   UI.prototype._GetNewMessageID = function () {
     this._LastMessageID++;
     return this._LastMessageID;
+  };
+
+  UI.prototype._Init = function () {
+    //this._ChangeTopicButton = <HTMLButtonElement>document.getElementById(UI._ID_CHANGE_TOPIC_BUTTON);
+    this._MessageBox = document.getElementById(UI._ID_MESSAGE_BOX);
+    this._SendButton = document.getElementById(UI._ID_SEND_BUTTON); //this._ChangeTopicButton.addEventListener("click", this._OnChangeTopicButtonClicked)
+
+    this._MessageBox.addEventListener("change", this._OnMessageBoxTextChanged);
+
+    this._SendButton.addEventListener("click", this._OnSendButtonClicked);
+  };
+
+  UI.prototype._OnChangeTopicButtonClicked = function (e) {
+    Chatbot.GetInstance().DisplayTopics();
+  };
+
+  UI.prototype._OnDisplayButtonClicked = function (e) {
+    // Delete message because a topic was selected.
+    UI.GetInstance().DeleteMessage(Number(this.parentElement.id));
+  };
+
+  UI.prototype._OnMessageBoxTextChanged = function (e) {
+    // Condense the message's space character to one space max between each character (that isn't a space).
+    // Like so: "some    user      message  is   here" -> "some user message is here", and "    " -> "".
+    var message = UI._Instance._MessageBox.value;
+
+    if (!!message && message.length > 0) {
+      console.log("UI._OnMessageBoxTextChanged (message=\"" + message + "\")"); // If there is text in the message box, disable the send button. 
+
+      UI._Instance._SendButton.disabled = false;
+    } // Otherwise, enable the send button.
+    else UI._Instance._SendButton.disabled = true;
+  };
+
+  UI.prototype._OnPageLoaded = function (e) {
+    console.log("UI._OnPageLoaded"); // Initialize the UI.
+
+    UI._Instance._Init();
+  };
+
+  UI.prototype._OnSendButtonClicked = function (e) {
+    console.log("SEND BUTTON CLICKED."); // Send the message to the chatbot.
+
+    console.log(UI._Instance._MessageBox.value);
+    Chatbot.GetInstance().ReplyToMessage(UI._Instance._MessageBox.value); // Remove the text from the message box.
+
+    UI._Instance._MessageBox.value = "";
   };
 
   UI._ID_CHANGE_TOPIC_BUTTON = "";
@@ -561,7 +647,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57967" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60763" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

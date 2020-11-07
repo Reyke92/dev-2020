@@ -1,9 +1,10 @@
-$color-primary-0: #27576B; /* Main Primary color */
+$color-primary-0: #B01E24; /* Main Primary color */
 $color-primary-1: #6E91A1;
-$color-primary-2: #467386;
+$color-primary-2: #B01E24;
 $color-primary-3: #103D50;
-$color-primary-4: #022636;
-$fontFam: Arial;
+$color-primary-4: #333333;
+$fontFam: arial;
+
 @mixin buttonsPhone {
   background-color: $color-primary-4;
   text-decoration: none;

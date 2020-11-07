@@ -1,5 +1,5 @@
 class Topic
 {
-    public Name : string;
-    public Resources : Resource[];
+    public Name: string;
+    public Resources: Resource[];
 }

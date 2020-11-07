@@ -4,27 +4,41 @@
   <title>WKU Chatbot</title>
 
   <script src="ts/app.ts"></script>
-  <link href="./css/style.min.css" rel="stylesheet">
+  <link href="scss/_config.scss" rel="stylesheet"/>
+  <link href="scss/style.scss" rel="stylesheet"/>
 </head>
 
 <body>
   <nav class="navbar">
     <h1 class="mainHead"> <a href="#frame1" class="linker">WKU Information Chatbot</a></h1>
-    <ul class="navLinks">
-      <li><a href="#" class="navLink linker">RESET</a></li>
-    </ul>
   </nav>
   <br>
   <br>
 
-  <div class="chatbox container">
-    <div class="chatcontainer container">
-      <div class="container">
-        <p>Hello! Select a topic below to proceed!</p>
+  <div class="appWindow">
+    <div id="messageList">
+      <div class="chatbotMessage">
+        <p>Test chatbot message!</p>
+      </div>
+      <div>
+        <button class="choiceButton">Dining</button>
+        <button class="choiceButton">Registration</button>
+        <button class="choiceButton">Housing</button><br/>
+        <button class="choiceButton">Advising</button>
+        <button class="choiceButton">Topic</button>
+        <button class="choiceButton">Topic</button><br/>
+        <button class="choiceButton">Topic</button>
+        <button class="choiceButton">Topic</button>
+        <button class="choiceButton">Topic</button>
+      </div><br><br><br>
+      <div class="userMessage">
+        <p>Test user message!</p>
       </div>
     </div>
-    <input type="text" id="message-box" class="chatterbox" placeholder="Let's Chat!"></input>
-    <button type="submit" id="submit-button" value="Submit" class="chatbtn">Submit</button>
+
+    <input type="text" id="messageBox" style="width:89%;" placeholder="Let's Chat!" maxlength="120" disabled="disabled"></input>
+
+    <button type="submit" id="sendButton" style="width:10%;" disabled="disabled">Send</button>
   </div>
 
 </body>

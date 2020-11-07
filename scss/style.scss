@@ -40,47 +40,74 @@ body {
   background-color: #ccc;
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
-  //Outer Container
-  .chatbox {
+  height: 100%;
+
+  .appWindow {
     margin-top: 3rem;
     background-color: #f1f1f1;
     padding: 2rem;
     border-radius: 1rem;
     height: 30rem;
+    
     //Inner Container
-    .chatcontainer{
-      background-color: white;
-      height: 25rem;
+    #messageList{
       padding: 1rem;
       border-radius: 1rem;
-      /* Chat containers */
-      .container {
-        border: 2px solid #dedede;
-        background-color: #f1f1f1;
-        border-radius: 5px;
+      background-color: #f1f1f1;
+      height: 80%;
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      .chatbotMessage {
         padding: 10px;
-        margin: 10px 0;
+        margin-left: 10px;
+        margin-right: 35%;
+        margin-bottom:10px;
+        border: 2px solid #dedede;
+        background-color: #c91f26;
+        border-radius: 25px;
+        font-size: 110%;
+        font-family: sans-serif;
+        color: #f1f1f1
       }
-      /* Darker chat container */
-      .darker {
-        border-color: #ccc;
-        background-color: #ddd;
+
+      .choiceButton {
+        padding: .5rem;
+        margin-right: .25rem;
+        border-radius: .25rem;
+        background-color: $color-primary-2;
+        font-size: 15px;
+        color: #f1f1f1;
+      }
+
+      .userMessage {
+        padding: 10px;
+        margin-left: 35%;
+        margin-right: 10px;
+        border: 2px solid #dedede;
+        background-color: #ffffff;
+        border-radius: 25px;
+        font-size: 110%;
+        font-family: sans-serif;
+        color: black
       }
     }
-    .chatterbox {
-      height: 2rem;
+    #messageBox {
       margin: 1rem 0;
-      width: 80%;
+      height: 2rem;
+      width: 89%;
+      font-size: 110%;
     }
-    .chatbtn {
-      background-color: $color-primary-4;
+    #sendButton {
+      float: right;
+      padding: 0.5em;
+      margin: 1rem 0;
+      border-radius: .25rem;
+      background-color: $color-primary-2;
       text-decoration: none;
       font-size: 15px;
       color: #f1f1f1;
-      padding: 0.5em;
-      float: right;
-      margin: 1rem 0;
-      border-radius: .25rem;
+      font-size: 110%;
     }
   }
 }

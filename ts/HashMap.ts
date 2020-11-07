@@ -25,7 +25,7 @@ class HashMap<T>
 
     public Get(key: string): T
     {
-        var pair : { key: string, value: T } = this.Map[this._Hash(key)];
+        var pair: { key: string, value: T } = this.Map[this._Hash(key)];
         if (pair !== undefined) return pair.value;
         else return undefined;
     }
