@@ -118,14 +118,24 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"ts/app.ts":[function(require,module,exports) {
+var C =
+/** @class */
+function () {
+  function C() {}
+
+  C.CONFIG_FILE_CONTENTS = "{\n    \"StumpedApologyMessage\": \"I'm sorry, I'm having trouble finding what you're looking for. You may still try and keep searching for this however. Alternatively, please feel free to email us with further questions at:\",\n    \"SuccessMessage\": \"I'm glad I was able to be of help to you! May I help you with anything else?\",\n    \"WelcomeMessage\": \"Hey there! What topic may I help you with today?\",\n    \"TeamEmailAddress\": \"wkuchatbotteam@wku.com\",\n    \"Topics\":\n    [\n        {\n            \"Name\": \"Dining\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"on-campus meal plans\",\n                    \"Data\": \"https://www.wku.edu/wkurg/oncampus.php\",\n                    \"Keywords\": [\"on\", \"campus\", \"meal\", \"meals\", \"plan\", \"plans\"]\n                },\n\n                {\n                    \"Name\": \"off-campus meal plans\",\n                    \"Data\": \"https://www.wku.edu/wkurg/offcampus.php\",\n                    \"Keywords\": [\"off\", \"campus\", \"meal\", \"meals\", \"plan\", \"plans\"]\n                },\n\n                {\n                    \"Name\": \"flex meal plans\",\n                    \"Data\": \"https://www.wku.edu/wkurg/flexplan.php\",\n                    \"Keywords\": [\"meal\", \"meals\", \"plan\", \"plans\"],\n                    \"WeightedKeywords\":\n                    [\n                        {\n                            \"keyword\": \"flex\",\n                            \"weight\": 2\n                        }\n                    ]\n                },\n\n                {\n                    \"Name\": \"hours of operation\",\n                    \"Data\": \"https://www.wku.edu/wkurg/documents/fall2020hoursofoperation.pdf\",\n                    \"Keywords\": [\"eat\", \"hours\", \"times\", \"opening\", \"closing\", \"operation\"]\n                },\n\n                {\n                    \"Name\": \"campus restaurant map\",\n                    \"Data\": \"https://www.wku.edu/wkurg/images/2020-21campusrestaurantmap.jpg\",\n                    \"Keywords\": [\"campus\", \"restaurant\", \"restaurants\", \"map\", \"list\"]\n                }\n            ]\n        },\n        \n        {\n            \"Name\": \"Housing\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": [],\n                    \"WeightedKeywords\":\n                    [\n                        {\n                            \"keyword\": \"keyword\",\n                            \"weight\": 1\n                        }\n                    ]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Academics\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"2017-2018 academic calendar\",\n                    \"Data\": \"https://www.wku.edu/registrar/academic_calendars/acadcal2017_2018.pdf\",\n                    \"Keywords\": [\"2017\", \"2018\", \"academic\", \"calendar\", \"semester\", \"schedule\"]\n                },\n\n                {\n                    \"Name\": \"2018-2019 academic calendar\",\n                    \"Data\": \"https://www.wku.edu/registrar/academic_calendars/acadcal2018_2019.pdf\",\n                    \"Keywords\": [\"2018\", \"2019\", \"academic\", \"calendar\", \"semester\", \"schedule\"]\n                },\n\n                {\n                    \"Name\": \"2019-2020 academic calendar\",\n                    \"Data\": \"https://www.wku.edu/registrar/academic_calendars/acadcal2019_2020_update_covid19.pdf\",\n                    \"Keywords\": [\"2019\", \"2020\", \"academic\", \"calendar\", \"semester\", \"schedule\"]\n                },\n\n                {\n                    \"Name\": \"2020-2021 academic calendar\",\n                    \"Data\": \"https://www.wku.edu/registrar/academic_calendars/acad_calendar_sp21_revised.pdf\",\n                    \"Keywords\": [\"2020\", \"2021\", \"academic\", \"calendar\", \"semester\", \"schedule\"]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Advising\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": [],\n                    \"WeightedKeywords\":\n                    [\n                        {\n                            \"keyword\": \"keyword\",\n                            \"weight\": 1\n                        }\n                    ]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Name\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": [],\n                    \"WeightedKeywords\":\n                    [\n                        {\n                            \"keyword\": \"keyword\",\n                            \"weight\": 1\n                        }\n                    ]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Name\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": [],\n                    \"WeightedKeywords\":\n                    [\n                        {\n                            \"keyword\": \"keyword\",\n                            \"weight\": 1\n                        }\n                    ]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Name\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": [],\n                    \"WeightedKeywords\":\n                    [\n                        {\n                            \"keyword\": \"keyword\",\n                            \"weight\": 1\n                        }\n                    ]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Name\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": [],\n                    \"WeightedKeywords\":\n                    [\n                        {\n                            \"keyword\": \"keyword\",\n                            \"weight\": 1\n                        }\n                    ]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Name\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": [],\n                    \"WeightedKeywords\":\n                    [\n                        {\n                            \"keyword\": \"keyword\",\n                            \"weight\": 1\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}";
+  return C;
+}();
+
 var Chatbot =
 /** @class */
 function () {
-  function Chatbot() {}
+  function Chatbot() {
+    window.addEventListener("load", this._OnPageLoaded);
+  }
 
   Chatbot.GetInstance = function () {
-    console.log("CHATBOT GETINSTANCE METHOD CALLED."); // If the Chatbot instance exists, just return it./
-
+    // If the Chatbot instance exists, just return it./
     if (!!this._Instance) return this._Instance;
     this._Instance = new Chatbot();
     this._Instance._NumIncorrectResponses = 0;
@@ -133,39 +143,34 @@ function () {
 
     this._Instance._LoadConfigFile(C.CONFIG_FILE_CONTENTS);
 
-    this._Instance._ChangeTopic("Dining");
-
     return this._Instance;
   };
 
-  Chatbot.prototype.DisplayTopics = function () {
+  Chatbot.prototype.BeginChooseTopic = function (chatbotMessage) {
     // Get a list of the topic names.
     var topicNames = new Array();
 
     this._TopicIterator.Reset();
 
+    var iteration = this._TopicIterator.Next();
+
     do {
-      var iteration = this._TopicIterator.Next();
-
       topicNames.push(iteration.topic.Name);
-    } while (!iteration.hasCycled); // Show the buttons.
+      iteration = this._TopicIterator.Next();
+    } while (!iteration.hasCycled);
 
-
-    UI.GetInstance().DisplayButtons(topicNames, "Please choose from these topics", this._OnDisplayTopicsTopicSelected);
+    UI.GetInstance().EnableInput(false);
+    return UI.GetInstance().DisplayButtons(topicNames, chatbotMessage, this._OnChooseTopicTopicSelected);
   };
 
   Chatbot.prototype.ReplyToMessage = function (userMessage) {
-    var _this = this;
-
-    console.log("ReplyToMessage(\"" + userMessage + "\");"); // Figure out how to respond to user's message.
-
+    // Figure out how to respond to user's message.
     var messageKeywords = this._ParseMessageForKeywords(userMessage);
 
     var resource = this._SearchForResource(messageKeywords); // If the resource could not be found.
 
 
     if (resource == null) {
-      console.log("RESOURCE === null");
       this._NumIncorrectResponses++;
 
       this._SendMessage("I'm sorry, I wasn't able to find anything from what you typed. " + "How about we try again?");
@@ -181,24 +186,8 @@ function () {
       {
         this._SendMessage(resource.Data);
 
-        UI.GetInstance().DisplayButtons(["Yes!", "No"], "Was this what you were looking for?", function (buttonName) {
-          if (buttonName === "Yes!") {
-            _this._SendMessage(_this._SuccessMessage);
-
-            _this._NumIncorrectResponses = 0;
-          } else // buttonName === "No"
-            {
-              _this._NumIncorrectResponses++;
-
-              if (_this._NumIncorrectResponses >= 3) {
-                _this._SendMessage(_this._StumpedApologyMessage);
-
-                _this._SendMessage("Please feel free to email us at " + _this._TeamEmailAddress + " for any other questions you may have!");
-
-                _this._NumIncorrectResponses = 0;
-              }
-            }
-        });
+        UI.GetInstance().EnableInput(false);
+        UI.GetInstance().DisplayButtons(["Yes!", "No"], "Was this what you were looking for?", this._YesOrNoButtonsCallback);
       }
   };
 
@@ -210,14 +199,21 @@ function () {
   Chatbot.prototype._GetTopic = function (topicName) {
     this._TopicIterator.Reset();
 
-    do {
-      var topic = this._TopicIterator.Next();
+    var iteration = this._TopicIterator.Next();
 
-      if (topicName === topic.topic.Name) return topic.topic;
-    } while (!topic.hasCycled);
+    do {
+      if (topicName === iteration.topic.Name) return iteration.topic;
+      iteration = this._TopicIterator.Next();
+    } while (!iteration.hasCycled);
 
     {}
     return null;
+  };
+
+  Chatbot.prototype._Init = function () {
+    // Initialize the UI first.
+    UI.GetInstance().Init();
+    this.BeginChooseTopic(this._WelcomeMessage);
   };
 
   Chatbot.prototype._LoadConfigFile = function (configJson) {
@@ -229,14 +225,23 @@ function () {
     this._TopicIterator = new TopicCyclicIterator(config.Topics);
   };
 
-  Chatbot.prototype._OnDisplayTopicsTopicSelected = function (e) {
-    Chatbot._Instance._ChangeTopic(this.value);
+  Chatbot.prototype._OnChooseTopicTopicSelected = function (e) {
+    Chatbot._Instance._ChangeTopic(this.innerHTML);
+
+    UI.GetInstance().DeleteAllMessagesWithID(Number(this.parentElement.id));
+    UI.GetInstance().DisplayMessage(MessageType.System, "The topic was changed to: " + this.innerHTML);
 
     Chatbot._Instance._SendMessage("What would you like more information about?");
+
+    UI.GetInstance().EnableInput(true);
+  };
+
+  Chatbot.prototype._OnPageLoaded = function (e) {
+    // Initialize the Chatbot.
+    Chatbot._Instance._Init();
   };
 
   Chatbot.prototype._ParseMessageForKeywords = function (message) {
-    console.log("PARSE message: string = \"" + message + "\"");
     var keywords = new HashMap(); // Make sure only one space character exists between each keyword.
 
     message = message.toLowerCase();
@@ -245,11 +250,9 @@ function () {
       message = message.replace("  ", " ");
     }
 
-    console.log("PARSE message: string = \"" + message + "\"");
     message.split(new RegExp("[ -]")).forEach(function (word) {
-      console.log("PARSE FOR KEYWORDS: 'word'=" + word + " keywords.Get(word)=" + keywords.Get(word)); // If there is already an entry for the 'word' in the HashMap,
+      // If there is already an entry for the 'word' in the HashMap,
       // add onto that existing value. Otherwise, add a new entry.
-
       var times = keywords.Get(word);
       if (times !== undefined) keywords.Set(word, times + 1);else keywords.Set(word, 1);
     });
@@ -258,35 +261,33 @@ function () {
 
   Chatbot.prototype._SearchForResource = function (inputKeywords) {
     var scores = new Array();
-    console.log("SEARCHING FOR RESOURCE");
-    console.log(inputKeywords);
 
     this._ResourceIterator.Reset();
 
-    do {
-      var resource = this._ResourceIterator.Next();
+    var iteration = this._ResourceIterator.Next();
 
+    do {
       var goal = 0;
       var score = 0; // Calculate the score for the keywords.
 
-      resource.resource.Keywords.forEach(function (resourceKeyword, index, array) {
+      iteration.resource.Keywords.forEach(function (resourceKeyword, index, array) {
         if (inputKeywords.Contains(resourceKeyword)) score++;
         goal++;
       }); // Calculate the score for the weighted keywords.
 
-      if (resource.resource.WeightedKeywords !== undefined) {
+      if (iteration.resource.WeightedKeywords !== undefined) {
         /*
-        var hashMapKeys: string[] = Object.keys(resource.resource.WeightedKeywords.Map);
+        var hashMapKeys: string[] = Object.keys(iteration.resource.WeightedKeywords.Map);
         for (var i = 0; i < hashMapKeys.length; i++)
         {
         var hash = hashMapKeys[i];
         var weightedKeyword: { key: string, value: number } =
-        resource.resource.WeightedKeywords.Map[hash];
+        iteration.resource.WeightedKeywords.Map[hash];
         if (inputKeywords.Contains(weightedKeyword.key)) score += weightedKeyword.value;
         goal += weightedKeyword.value;
         }*/
-        for (var i = 0; i < resource.resource.WeightedKeywords.length; i++) {
-          var weightedKeyword = resource.resource.WeightedKeywords[i];
+        for (var i = 0; i < iteration.resource.WeightedKeywords.length; i++) {
+          var weightedKeyword = iteration.resource.WeightedKeywords[i];
           if (inputKeywords.Contains(weightedKeyword.keyword)) score += weightedKeyword.weight;
           goal += weightedKeyword.weight;
         }
@@ -294,9 +295,10 @@ function () {
 
       scores.push({
         score: score / goal,
-        resName: resource.resource.Name
+        resName: iteration.resource.Name
       });
-    } while (!resource.hasCycled);
+      iteration = this._ResourceIterator.Next();
+    } while (!iteration.hasCycled);
 
     {} // Sort the scores from highest to lowest.
 
@@ -315,29 +317,53 @@ function () {
 
     this._ResourceIterator.Reset();
 
-    do {
-      var resource = this._ResourceIterator.Next();
+    var iteration = this._ResourceIterator.Next();
 
-      if (resource.resource.Name === highScore.resName) {
-        console.log("RESOURCE FOUND:");
-        console.log(resource.resource);
-        return resource.resource;
-      }
-    } while (!resource.hasCycled);
+    do {
+      if (iteration.resource.Name === highScore.resName) return iteration.resource;
+      iteration = this._ResourceIterator.Next();
+    } while (!iteration.hasCycled);
 
     {}
-    console.log("RESOURCE NOT FOUND");
     return null;
   };
 
   Chatbot.prototype._SendMessage = function (message) {
-    console.log("SEND_MESSAGE: \"" + message + "\"");
     return UI.GetInstance().DisplayMessage(MessageType.Chatbot, message);
   };
 
   Chatbot.prototype._SendMessageAsType = function (type, message) {
-    console.log("SEND_MESSAGE(" + type + "): \"" + message + "\"");
     return UI.GetInstance().DisplayMessage(type, message);
+  };
+
+  Chatbot.prototype._YesOrNoButtonsCallback = function (e) {
+    // Button name === "Yes!".
+    var chooseDifferentTopic = false;
+
+    if (this.innerHTML === "Yes!") {
+      Chatbot._Instance._SendMessage(Chatbot._Instance._SuccessMessage);
+
+      Chatbot._Instance._NumIncorrectResponses = 0;
+      chooseDifferentTopic = true;
+    } else // Button name === "No".
+      {
+        Chatbot._Instance._NumIncorrectResponses++;
+
+        Chatbot._Instance._SendMessage("I'm sorry. How about we try again?");
+
+        if (Chatbot._Instance._NumIncorrectResponses >= 3) {
+          Chatbot._Instance._SendMessage(Chatbot._Instance._StumpedApologyMessage);
+
+          Chatbot._Instance._SendMessage(Chatbot._Instance._TeamEmailAddress);
+
+          Chatbot._Instance._NumIncorrectResponses = 0;
+        }
+      }
+
+    UI.GetInstance().DeleteAllMessagesWithID(Number(this.parentElement.id));
+    UI.GetInstance().DisplayMessage(MessageType.System, "Was this helpful? Selected: " + this.innerHTML);
+    UI.GetInstance().EnableInput(true);
+    if (chooseDifferentTopic) Chatbot._Instance.BeginChooseTopic(Chatbot._Instance._WelcomeMessage);
   };
 
   return Chatbot;
@@ -530,12 +556,11 @@ var UI =
 /** @class */
 function () {
   function UI() {
-    window.addEventListener("load", this._OnPageLoaded);
+    this._Inited = false;
+    this._LastMessageID = -1;
   }
 
   UI.GetInstance = function () {
-    console.log("UI GETINSTANCE METHOD CALLED.");
-
     if (!!this._Instance) {
       return this._Instance;
     }
@@ -544,35 +569,79 @@ function () {
     return this._Instance;
   };
 
-  UI.prototype.DeleteMessage = function (messageID) {};
+  UI.prototype.DeleteAllMessagesWithID = function (messageID) {
+    // Go through the whole list of messages and search for one with the ID specified.
+    for (var i = 0; i < this._MessageList.children.length; i++) {
+      if (Number(this._MessageList.children[i].id) === messageID) {
+        this._MessageList.children[i].remove();
 
-  UI.prototype.DisplayButtons = function (buttonNames, message, callback) {// IMPORTANT: For each button created, make button.id = messageID.
+        i--;
+      }
+    }
   };
 
-  UI.prototype.DisplayMessage = function (type, message) {};
+  UI.prototype.DisplayButtons = function (buttonNames, message, clickCallback) {
+    var messageID = this.DisplayMessage(MessageType.Chatbot, message);
+    var element = document.createElement("div");
+    element.classList.add("choicesContainer");
+    element.id = messageID.toString();
+
+    for (var i = 0; i < buttonNames.length; i++) {
+      var button = document.createElement("button");
+      button.classList.add("choiceButton");
+      button.innerHTML = buttonNames[i];
+      button.addEventListener("click", clickCallback);
+      element.appendChild(button);
+    }
+
+    this._MessageList.appendChild(element);
+
+    return messageID;
+  };
+
+  UI.prototype.DisplayMessage = function (type, message) {
+    var element = document.createElement("div");
+    if (type === MessageType.Chatbot) element.classList.add("chatbotMessage");else if (type === MessageType.User) element.classList.add("userMessage");else if (type === MessageType.System) element.classList.add("systemMessage");else throw new Error("UI.DisplayMessage: A valid MessageType must be supplied!"); // If the message is a URL, make it a hyperlink.
+
+    if (message.startsWith("http")) {
+      element.innerHTML = "<p><a href=\"" + message + "\">" + message + "</a></p>";
+    } else element.innerHTML = "<p>" + message + "</p>";
+
+    element.id = this._GetNewMessageID().toString();
+
+    this._MessageList.appendChild(element);
+
+    return this._LastMessageID;
+  };
+
+  UI.prototype.EnableInput = function (enabled) {
+    this._ChangeTopicButton.disabled = !enabled;
+    this._MessageBox.disabled = !enabled;
+  };
+
+  UI.prototype.Init = function () {
+    if (this._Inited) return;
+    this._ChangeTopicButton = document.getElementById(UI._ID_CHANGE_TOPIC_BUTTON);
+    this._MessageBox = document.getElementById(UI._ID_MESSAGE_BOX);
+    this._MessageList = document.getElementById(UI._ID_MESSAGE_LIST);
+    this._SendButton = document.getElementById(UI._ID_SEND_BUTTON);
+
+    this._ChangeTopicButton.addEventListener("click", this._OnChangeTopicButtonClicked);
+
+    this._MessageBox.addEventListener("input", this._OnMessageBoxTextChanged);
+
+    this._SendButton.addEventListener("click", this._OnSendButtonClicked);
+
+    this._Inited = true;
+  };
 
   UI.prototype._GetNewMessageID = function () {
     this._LastMessageID++;
     return this._LastMessageID;
   };
 
-  UI.prototype._Init = function () {
-    //this._ChangeTopicButton = <HTMLButtonElement>document.getElementById(UI._ID_CHANGE_TOPIC_BUTTON);
-    this._MessageBox = document.getElementById(UI._ID_MESSAGE_BOX);
-    this._SendButton = document.getElementById(UI._ID_SEND_BUTTON); //this._ChangeTopicButton.addEventListener("click", this._OnChangeTopicButtonClicked)
-
-    this._MessageBox.addEventListener("change", this._OnMessageBoxTextChanged);
-
-    this._SendButton.addEventListener("click", this._OnSendButtonClicked);
-  };
-
   UI.prototype._OnChangeTopicButtonClicked = function (e) {
-    Chatbot.GetInstance().DisplayTopics();
-  };
-
-  UI.prototype._OnDisplayButtonClicked = function (e) {
-    // Delete message because a topic was selected.
-    UI.GetInstance().DeleteMessage(Number(this.parentElement.id));
+    Chatbot.GetInstance().BeginChooseTopic("Please select a topic from the following:");
   };
 
   UI.prototype._OnMessageBoxTextChanged = function (e) {
@@ -581,41 +650,33 @@ function () {
     var message = UI._Instance._MessageBox.value;
 
     if (!!message && message.length > 0) {
-      console.log("UI._OnMessageBoxTextChanged (message=\"" + message + "\")"); // If there is text in the message box, disable the send button. 
-
+      // If there is text in the message box, disable the send button. 
       UI._Instance._SendButton.disabled = false;
     } // Otherwise, enable the send button.
     else UI._Instance._SendButton.disabled = true;
   };
 
   UI.prototype._OnPageLoaded = function (e) {
-    console.log("UI._OnPageLoaded"); // Initialize the UI.
-
+    // Initialize the UI.
     UI._Instance._Init();
   };
 
   UI.prototype._OnSendButtonClicked = function (e) {
-    console.log("SEND BUTTON CLICKED."); // Send the message to the chatbot.
+    // Send the message to the chatbot.
+    UI._Instance._SendButton.disabled = true;
 
-    console.log(UI._Instance._MessageBox.value);
+    UI._Instance.DisplayMessage(MessageType.User, UI._Instance._MessageBox.value);
+
     Chatbot.GetInstance().ReplyToMessage(UI._Instance._MessageBox.value); // Remove the text from the message box.
 
     UI._Instance._MessageBox.value = "";
   };
 
-  UI._ID_CHANGE_TOPIC_BUTTON = "";
-  UI._ID_MESSAGE_BOX = "message-box";
-  UI._ID_SEND_BUTTON = "send-button";
+  UI._ID_CHANGE_TOPIC_BUTTON = "changeTopicButton";
+  UI._ID_MESSAGE_BOX = "messageBox";
+  UI._ID_MESSAGE_LIST = "messageList";
+  UI._ID_SEND_BUTTON = "sendButton";
   return UI;
-}();
-
-var C =
-/** @class */
-function () {
-  function C() {}
-
-  C.CONFIG_FILE_CONTENTS = "{\n    \"StumpedApologyMessage\": \"\",\n    \"SuccessMessage\": \"\",\n    \"WelcomeMessage\": \"\",\n    \"TeamEmailAddress\": \"\",\n    \"Topics\":\n    [\n        {\n            \"Name\": \"Dining\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"on-campus meal plans\",\n                    \"Data\": \"https://www.wku.edu/wkurg/oncampus.php\",\n                    \"Keywords\": [\"on\", \"campus\", \"meal\", \"meals\", \"plan\", \"plans\"]\n                },\n\n                {\n                    \"Name\": \"off-campus meal plans\",\n                    \"Data\": \"https://www.wku.edu/wkurg/offcampus.php\",\n                    \"Keywords\": [\"off\", \"campus\", \"meal\", \"meals\", \"plan\", \"plans\"]\n                },\n\n                {\n                    \"Name\": \"flex meal plans\",\n                    \"Data\": \"https://www.wku.edu/wkurg/flexplan.php\",\n                    \"Keywords\": [\"meal\", \"meals\", \"plan\", \"plans\"],\n                    \"WeightedKeywords\":\n                    [\n                        {\n                            \"keyword\": \"flex\",\n                            \"weight\": 2\n                        }\n                    ]\n                },\n\n                {\n                    \"Name\": \"hours of operation\",\n                    \"Data\": \"https://www.wku.edu/wkurg/documents/fall2020hoursofoperation.pdf\",\n                    \"Keywords\": [\"eat\", \"hours\", \"times\", \"opening\", \"closing\", \"operation\"]\n                },\n\n                {\n                    \"Name\": \"campus restaurant map\",\n                    \"Data\": \"https://www.wku.edu/wkurg/images/2020-21campusrestaurantmap.jpg\",\n                    \"Keywords\": [\"campus\", \"restaurant\", \"map\", \"list\"]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Name\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": [],\n                    \"WeightedKeywords\":\n                    [\n                        {\n                            \"keyword\": \"keyword\",\n                            \"weight\": 1\n                        }\n                    ]\n                }\n            ]\n        },\n        \n        {\n            \"Name\": \"Name\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": [],\n                    \"WeightedKeywords\":\n                    [\n                        {\n                            \"keyword\": \"keyword\",\n                            \"weight\": 1\n                        }\n                    ]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Name\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": [],\n                    \"WeightedKeywords\":\n                    [\n                        {\n                            \"keyword\": \"keyword\",\n                            \"weight\": 1\n                        }\n                    ]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Name\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": [],\n                    \"WeightedKeywords\":\n                    [\n                        {\n                            \"keyword\": \"keyword\",\n                            \"weight\": 1\n                        }\n                    ]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Name\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": [],\n                    \"WeightedKeywords\":\n                    [\n                        {\n                            \"keyword\": \"keyword\",\n                            \"weight\": 1\n                        }\n                    ]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Name\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": [],\n                    \"WeightedKeywords\":\n                    [\n                        {\n                            \"keyword\": \"keyword\",\n                            \"weight\": 1\n                        }\n                    ]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Name\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": [],\n                    \"WeightedKeywords\":\n                    [\n                        {\n                            \"keyword\": \"keyword\",\n                            \"weight\": 1\n                        }\n                    ]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Name\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": [],\n                    \"WeightedKeywords\":\n                    [\n                        {\n                            \"keyword\": \"keyword\",\n                            \"weight\": 1\n                        }\n                    ]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Name\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": [],\n                    \"WeightedKeywords\":\n                    [\n                        {\n                            \"keyword\": \"keyword\",\n                            \"weight\": 1\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}";
-  return C;
 }();
 
 Chatbot.GetInstance(); // Start the Chatbot app!
@@ -647,7 +708,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61280" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62697" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

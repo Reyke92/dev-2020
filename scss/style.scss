@@ -11,31 +11,14 @@
   top: 0;
   left: 0;
   width: 100%;
+
   h1 {
     color: #f1f1f1;
     margin-top: 0.75rem;
     margin-left: 2rem;
-    a {
-      color: #f1f1f1;
-      text-decoration: none;
-    }
   }
-  ul {
-    justify-self: end;
-    li {
-      padding-right: 2rem;
-      list-style-type: none;
-      display: inline;
-      a {
-        color: #f1f1f1;
-        text-decoration: none;
-        font-size: 18px;
-        padding-right: 15px;
-      }
-    }
-  }
-
 }
+
 body {
   background-color: #ccc;
   display: grid;
@@ -43,26 +26,46 @@ body {
   height: 100%;
 
   .appWindow {
+    display: flex;
+    flex-direction: column;
+    height: 80%;
     margin-top: 3rem;
     background-color: #f1f1f1;
     padding: 2rem;
     border-radius: 1rem;
-    height: 30rem;
     
-    //Inner Container
+    #changeTopicButton {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 0.5em;
+      margin: 1rem 0;
+      width: 10%;
+      border-radius: .25rem;
+      text-decoration: none;
+      font-size: 15px;
+      background-color: #333333;
+      color: #f1f1f1;
+      font-size: 110%;
+    }
+
     #messageList{
+      display: inline-block;
+      align-self: stretch;
       padding: 1rem;
       border-radius: 1rem;
       background-color: #f1f1f1;
-      height: 80%;
+      height: 100%;
       overflow-y: auto;
       overflow-x: hidden;
+
+      .chatbotMessage, .choicesContainer {
+        margin-right: 35%;
+      }
 
       .chatbotMessage {
         padding: 10px;
         margin-left: 10px;
-        margin-right: 35%;
-        margin-bottom:10px;
+        margin-bottom: 10px;
         border: 2px solid #dedede;
         background-color: #c91f26;
         border-radius: 25px;
@@ -71,19 +74,38 @@ body {
         color: #f1f1f1
       }
 
+      /* Links given by the Chatbot. */
+      .chatbotMessage > p > a {
+        color: #f1f1f1
+      }
+
       .choiceButton {
         padding: .5rem;
         margin-right: .25rem;
+        margin-bottom: 10px;
         border-radius: .25rem;
         background-color: $color-primary-2;
         font-size: 15px;
         color: #f1f1f1;
       }
 
+      .systemMessage {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 2px solid #DFDFDF;
+        background-color: #cccccc;
+        font-size: 110%;
+        font-family: sans-serif;
+        font-style: italic;
+        text-align: center;
+        color: #555555;
+      }
+
       .userMessage {
         padding: 10px;
         margin-left: 35%;
         margin-right: 10px;
+        margin-bottom: 10px;
         border: 2px solid #dedede;
         background-color: #ffffff;
         border-radius: 25px;
@@ -92,16 +114,24 @@ body {
         color: black
       }
     }
+
+    .bottomBar {
+      display: inline-block;
+      align-self: stretch;
+    }
+
     #messageBox {
       margin: 1rem 0;
       height: 2rem;
       width: 89%;
       font-size: 110%;
     }
+
     #sendButton {
       float: right;
       padding: 0.5em;
       margin: 1rem 0;
+      width: 10%;
       border-radius: .25rem;
       background-color: $color-primary-2;
       text-decoration: none;

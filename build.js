@@ -20,23 +20,24 @@ function Build()
 
     writeStream.on("ready", () =>
     {
-        fs.readdirSync(tsDir).forEach(file =>
-        {
-            // Don't include these files.
-            if (file !== "app.ts" && file !== "config")
-            {
-                writeStream.write(
-                    fs.readFileSync(path.join(tsDir, file), "utf-8") + "\r\n\r\n",
-                    "utf-8"
-                );
-            }
-        });
-
         // Write the config.json file as a global constant.
         writeStream.write("class C { public static CONFIG_FILE_CONTENTS = `", "utf-8");
         writeStream.write(fs.readFileSync(configFile, "utf-8"), "utf-8");
         writeStream.write("`;}\r\n\r\n", "utf-8");
-        writeStream.write("Chatbot.GetInstance(); // Start the Chatbot app!", "utf-8");
+        
+        fs.readdirSync(tsDir).forEach(file =>
+            {
+                // Don't include these files.
+                if (file !== "app.ts" && file !== "config")
+                {
+                    writeStream.write(
+                        fs.readFileSync(path.join(tsDir, file), "utf-8") + "\r\n\r\n",
+                        "utf-8"
+                    );
+                }
+            });
+
+        writeStream.write("Chatbot.GetInstance(); // Start the Chatbot app!\r\n", "utf-8");
 
         writeStream.close();
     });

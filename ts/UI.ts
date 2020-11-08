@@ -1,43 +1,111 @@
 class UI
 {
-    private static _ID_CHANGE_TOPIC_BUTTON: string  = "";
+    private static _ID_CHANGE_TOPIC_BUTTON: string  = "changeTopicButton";
     private static _ID_MESSAGE_BOX: string          = "messageBox";
+    private static _ID_MESSAGE_LIST: string         = "messageList";
     private static _ID_SEND_BUTTON: string          = "sendButton";
 
     private static _Instance: UI;
 
     private _ChangeTopicButton: HTMLButtonElement;
+    private _Inited: boolean;
     private _MessageBox: HTMLInputElement;
+    private _MessageList: HTMLDivElement;
     private _SendButton: HTMLButtonElement;
     private _LastMessageID: number;
 
     private constructor()
     {
-        window.addEventListener("load", this._OnPageLoaded);
+        this._Inited = false;
+        this._LastMessageID = -1;
     }
 
     public static GetInstance(): UI
     {
-        console.log("UI GETINSTANCE METHOD CALLED.");
         if (!!this._Instance) { return this._Instance; }
 
         this._Instance = new UI();
         return this._Instance;
     }
 
-    public DeleteMessage(messageID: number): void
+    public DeleteAllMessagesWithID(messageID: number): void
     {
-
+        // Go through the whole list of messages and search for one with the ID specified.
+        for (var i = 0; i < this._MessageList.children.length; i++)
+        {
+            if (Number(this._MessageList.children[i].id) === messageID)
+            {
+                this._MessageList.children[i].remove();
+                i--;
+            }
+        }
     }
 
-    public DisplayButtons(buttonNames: string[], message: string, callback: Function): number
+    public DisplayButtons(
+        buttonNames: string[],
+        message: string,
+        clickCallback: (this: HTMLButtonElement, e: Event) => void
+    ): number
     {
-        // IMPORTANT: For each button created, make button.id = messageID.
+        var messageID: number = this.DisplayMessage(MessageType.Chatbot, message);
+
+        var element: HTMLDivElement = document.createElement("div");
+        element.classList.add("choicesContainer");
+        element.id = messageID.toString();
+        for (var i = 0; i < buttonNames.length; i++)
+        {
+            var button: HTMLButtonElement = document.createElement("button");
+            button.classList.add("choiceButton");
+            button.innerHTML = buttonNames[i];
+            button.addEventListener("click", clickCallback);
+            element.appendChild(button);
+        }
+        this._MessageList.appendChild(element);
+
+        return messageID;
     }
 
     public DisplayMessage(type: MessageType, message: string): number
     {
-        
+        var element: HTMLDivElement = document.createElement("div");
+        if (type === MessageType.Chatbot) element.classList.add("chatbotMessage");
+        else if (type === MessageType.User) element.classList.add("userMessage");
+        else if (type === MessageType.System) element.classList.add("systemMessage");
+        else throw(new Error("UI.DisplayMessage: A valid MessageType must be supplied!"));
+
+        // If the message is a URL, make it a hyperlink.
+        if (message.startsWith("http"))
+        {
+            element.innerHTML = "<p><a href=\"" + message + "\">" + message + "</a></p>";
+        }
+        else element.innerHTML = "<p>" + message + "</p>";
+
+        element.id = this._GetNewMessageID().toString();
+        this._MessageList.appendChild(element);
+
+        return this._LastMessageID;
+    }
+
+    public EnableInput(enabled: boolean): void
+    {
+        this._ChangeTopicButton.disabled = !enabled;
+        this._MessageBox.disabled = !enabled;
+    }
+
+    public Init(): void
+    {
+        if (this._Inited) return;
+
+        this._ChangeTopicButton = <HTMLButtonElement>document.getElementById(UI._ID_CHANGE_TOPIC_BUTTON);
+        this._MessageBox = <HTMLInputElement>document.getElementById(UI._ID_MESSAGE_BOX);
+        this._MessageList = <HTMLDivElement>document.getElementById(UI._ID_MESSAGE_LIST);
+        this._SendButton = <HTMLButtonElement>document.getElementById(UI._ID_SEND_BUTTON);
+
+        this._ChangeTopicButton.addEventListener("click", this._OnChangeTopicButtonClicked)
+        this._MessageBox.addEventListener("input", this._OnMessageBoxTextChanged);
+        this._SendButton.addEventListener("click", this._OnSendButtonClicked);
+
+        this._Inited = true;
     }
 
     private _GetNewMessageID(): number
@@ -46,26 +114,9 @@ class UI
         return this._LastMessageID;
     }
 
-    private _Init(): void
-    {
-        //this._ChangeTopicButton = <HTMLButtonElement>document.getElementById(UI._ID_CHANGE_TOPIC_BUTTON);
-        this._MessageBox = <HTMLInputElement>document.getElementById(UI._ID_MESSAGE_BOX);
-        this._SendButton = <HTMLButtonElement>document.getElementById(UI._ID_SEND_BUTTON);
-
-        //this._ChangeTopicButton.addEventListener("click", this._OnChangeTopicButtonClicked)
-        this._MessageBox.addEventListener("change", this._OnMessageBoxTextChanged);
-        this._SendButton.addEventListener("click", this._OnSendButtonClicked);
-    }
-
     private _OnChangeTopicButtonClicked(this: HTMLButtonElement, e: MouseEvent): void
     {
-        Chatbot.GetInstance().DisplayTopics();
-    }
-
-    private _OnDisplayButtonClicked(this: HTMLButtonElement, e: MouseEvent): void
-    {
-        // Delete message because a topic was selected.
-        UI.GetInstance().DeleteMessage(Number(this.parentElement.id));
+        Chatbot.GetInstance().BeginChooseTopic("Please select a topic from the following:");
     }
 
     private _OnMessageBoxTextChanged(this: HTMLInputElement, e: Event)
@@ -75,8 +126,6 @@ class UI
         var message = UI._Instance._MessageBox.value;
         if (!!message && message.length > 0)
         {
-            console.log("UI._OnMessageBoxTextChanged (message=\"" + message + "\")");
-
             // If there is text in the message box, disable the send button. 
             UI._Instance._SendButton.disabled = false;
         }
@@ -86,16 +135,15 @@ class UI
 
     private _OnPageLoaded(this: Document, e: Event): void
     {
-        console.log("UI._OnPageLoaded");
         // Initialize the UI.
         UI._Instance._Init();
     }
 
     private _OnSendButtonClicked(this: HTMLButtonElement, e: MouseEvent): void
     {
-        console.log("SEND BUTTON CLICKED.");
         // Send the message to the chatbot.
-        console.log(UI._Instance._MessageBox.value);
+        UI._Instance._SendButton.disabled = true;
+        UI._Instance.DisplayMessage(MessageType.User, UI._Instance._MessageBox.value);
         Chatbot.GetInstance().ReplyToMessage(UI._Instance._MessageBox.value);
 
         // Remove the text from the message box.

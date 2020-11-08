@@ -1,5 +1,4 @@
 <html>
-
 <head>
   <title>WKU Chatbot</title>
 
@@ -10,37 +9,20 @@
 
 <body>
   <nav class="navbar">
-    <h1 class="mainHead"> <a href="#frame1" class="linker">WKU Information Chatbot</a></h1>
+    <h1 class="mainHead">WKU Information Chatbot</h1>
   </nav>
   <br>
   <br>
 
   <div class="appWindow">
-    <div id="messageList">
-      <div class="chatbotMessage">
-        <p>Test chatbot message!</p>
-      </div>
-      <div>
-        <button class="choiceButton">Dining</button>
-        <button class="choiceButton">Registration</button>
-        <button class="choiceButton">Housing</button><br/>
-        <button class="choiceButton">Advising</button>
-        <button class="choiceButton">Topic</button>
-        <button class="choiceButton">Topic</button><br/>
-        <button class="choiceButton">Topic</button>
-        <button class="choiceButton">Topic</button>
-        <button class="choiceButton">Topic</button>
-      </div><br><br><br>
-      <div class="userMessage">
-        <p>Test user message!</p>
-      </div>
+    <button id="changeTopicButton" type="submit" disabled="disabled">Change Topic</button>
+    <hr style="display: inline-block;align-self: flex-start;width: 100%;">
+    <div id="messageList"></div>
+    <div class="bottomBar">
+      <input id="messageBox" type="text" placeholder="Let's Chat!" maxlength="120" disabled="disabled"></input>
+      <button id="sendButton" type="submit" disabled="disabled">Send</button>
     </div>
-
-    <input type="text" id="messageBox" style="width:89%;" placeholder="Let's Chat!" maxlength="120" disabled="disabled"></input>
-
-    <button type="submit" id="sendButton" style="width:10%;" disabled="disabled">Send</button>
   </div>
 
 </body>
-
 </html>

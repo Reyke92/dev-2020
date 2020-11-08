@@ -1,8 +1,8 @@
 {
-    "StumpedApologyMessage": "",
-    "SuccessMessage": "",
-    "WelcomeMessage": "",
-    "TeamEmailAddress": "",
+    "StumpedApologyMessage": "I'm sorry, I'm having trouble finding what you're looking for. You may still try and keep searching for this however. Alternatively, please feel free to email us with further questions at:",
+    "SuccessMessage": "I'm glad I was able to be of help to you! May I help you with anything else?",
+    "WelcomeMessage": "Hey there! What topic may I help you with today?",
+    "TeamEmailAddress": "wkuchatbotteam@wku.com",
     "Topics":
     [
         {
@@ -43,32 +43,13 @@
                 {
                     "Name": "campus restaurant map",
                     "Data": "https://www.wku.edu/wkurg/images/2020-21campusrestaurantmap.jpg",
-                    "Keywords": ["campus", "restaurant", "map", "list"]
-                }
-            ]
-        },
-
-        {
-            "Name": "Name",
-            "Resources":
-            [
-                {
-                    "Name": "Name",
-                    "Data": "Either a URL or some text.",
-                    "Keywords": [],
-                    "WeightedKeywords":
-                    [
-                        {
-                            "keyword": "keyword",
-                            "weight": 1
-                        }
-                    ]
+                    "Keywords": ["campus", "restaurant", "restaurants", "map", "list"]
                 }
             ]
         },
         
         {
-            "Name": "Name",
+            "Name": "Housing",
             "Resources":
             [
                 {
@@ -87,26 +68,37 @@
         },
 
         {
-            "Name": "Name",
+            "Name": "Academics",
             "Resources":
             [
                 {
-                    "Name": "Name",
-                    "Data": "Either a URL or some text.",
-                    "Keywords": [],
-                    "WeightedKeywords":
-                    [
-                        {
-                            "keyword": "keyword",
-                            "weight": 1
-                        }
-                    ]
+                    "Name": "2017-2018 academic calendar",
+                    "Data": "https://www.wku.edu/registrar/academic_calendars/acadcal2017_2018.pdf",
+                    "Keywords": ["2017", "2018", "academic", "calendar", "semester", "schedule"]
+                },
+
+                {
+                    "Name": "2018-2019 academic calendar",
+                    "Data": "https://www.wku.edu/registrar/academic_calendars/acadcal2018_2019.pdf",
+                    "Keywords": ["2018", "2019", "academic", "calendar", "semester", "schedule"]
+                },
+
+                {
+                    "Name": "2019-2020 academic calendar",
+                    "Data": "https://www.wku.edu/registrar/academic_calendars/acadcal2019_2020_update_covid19.pdf",
+                    "Keywords": ["2019", "2020", "academic", "calendar", "semester", "schedule"]
+                },
+
+                {
+                    "Name": "2020-2021 academic calendar",
+                    "Data": "https://www.wku.edu/registrar/academic_calendars/acad_calendar_sp21_revised.pdf",
+                    "Keywords": ["2020", "2021", "academic", "calendar", "semester", "schedule"]
                 }
             ]
         },
 
         {
-            "Name": "Name",
+            "Name": "Advising",
             "Resources":
             [
                 {
