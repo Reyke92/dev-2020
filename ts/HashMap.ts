@@ -1,6 +1,5 @@
 class HashMap<T>
 {
-    public length;
     public Map;
 
     constructor(obj = null)

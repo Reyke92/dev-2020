@@ -32,7 +32,6 @@ class TopicCyclicIterator
             this._Index++;
             return { topic: topic, hasCycled: false }
         }
-
         else
         {
             // Reset the index to 0, and start again from there.
