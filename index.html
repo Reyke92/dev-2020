@@ -1,26 +1,25 @@
 <html>
 <head>
-  <title>WKU Chatbot</title>
+  <title>WKU Information Chatbot</title>
 
   <script src="ts/app.ts"></script>
-  <link href="scss/_config.scss" rel="stylesheet"/>
   <link href="scss/style.scss" rel="stylesheet"/>
 </head>
 
 <body>
-  <nav class="navbar">
-    <h1 class="mainHead">WKU Information Chatbot</h1>
-  </nav>
-  <br>
-  <br>
+  <div class="fullscreen">
+    <div class="navbar">
+      WKU Information Chatbot
+    </div>
 
-  <div class="appWindow">
-    <button id="changeTopicButton" type="submit" disabled="disabled">Change Topic</button>
-    <hr style="display: inline-block;align-self: flex-start;width: 100%;">
-    <div id="messageList"></div>
-    <div class="bottomBar">
-      <input id="messageBox" type="text" placeholder="Let's Chat!" maxlength="120" disabled="disabled"></input>
-      <button id="sendButton" type="submit" disabled="disabled">Send</button>
+    <div class="appWindow">
+      <button id="changeTopicButton" type="submit" disabled="disabled">Change Topic</button>
+      <hr style="width: 100%;">
+      <div id="messageList"></div>
+      <div class="bottomBar">
+        <input id="messageBox" type="text" placeholder="Let's Chat!" maxlength="120" disabled="disabled"></input>
+        <button id="sendButton" type="submit" disabled="disabled">Send</button>
+      </div>
     </div>
   </div>
 

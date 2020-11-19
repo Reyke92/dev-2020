@@ -12,38 +12,45 @@
                 {
                     "Name": "on-campus meal plans",
                     "Data": "https://www.wku.edu/wkurg/oncampus.php",
-                    "Keywords": ["on", "campus", "meal", "meals", "plan", "plans"]
+                    "Keywords": ["on campus", "meal/meals", "plan/plans"]
                 },
 
                 {
                     "Name": "off-campus meal plans",
                     "Data": "https://www.wku.edu/wkurg/offcampus.php",
-                    "Keywords": ["off", "campus", "meal", "meals", "plan", "plans"]
+                    "Keywords": ["off campus", "meal/meals", "plan/plans"]
                 },
 
                 {
                     "Name": "flex meal plans",
                     "Data": "https://www.wku.edu/wkurg/flexplan.php",
-                    "Keywords": ["meal", "meals", "plan", "plans"],
+                    "Keywords": ["meal/meals", "plan/plans"],
                     "WeightedKeywords":
                     [
-                        {
-                            "keyword": "flex",
-                            "weight": 2
-                        }
+                        { "Keyword": "flex", "Weight": 2 }
                     ]
                 },
 
                 {
                     "Name": "hours of operation",
                     "Data": "https://www.wku.edu/wkurg/documents/fall2020hoursofoperation.pdf",
-                    "Keywords": ["eat", "hours", "times", "opening", "closing", "operation"]
+                    "Keywords":["open/opens/opening", "close/closes/closing", "hours", "time/times", "operation"]
                 },
 
                 {
                     "Name": "campus restaurant map",
                     "Data": "https://www.wku.edu/wkurg/images/2020-21campusrestaurantmap.jpg",
-                    "Keywords": ["campus", "restaurant", "restaurants", "map", "list"]
+                    "Keywords": ["campus", "restaurant/restaurants", "map", "list", "eat"]
+                },
+
+                {
+                    "Name": "add additional money",
+                    "Data": "https://www.wku.edu/wkurg/dbdollars.php",
+                    "Keywords": ["add", "money", "account"],
+                    "WeightedKeywords":
+                    [
+                        { "Keyword": "big red dollars / dining dollars / meal dollars / meal plan dollars / flex dollars / flex plan dollars", "Weight": 3 }
+                    ]
                 }
             ]
         },
@@ -55,14 +62,7 @@
                 {
                     "Name": "Name",
                     "Data": "Either a URL or some text.",
-                    "Keywords": [],
-                    "WeightedKeywords":
-                    [
-                        {
-                            "keyword": "keyword",
-                            "weight": 1
-                        }
-                    ]
+                    "Keywords": []
                 }
             ]
         },
@@ -72,27 +72,37 @@
             "Resources":
             [
                 {
+                    "Name": "information about the Colonnade program",
+                    "Data": "https://www.wku.edu/colonnade/index.php",
+                    "Keywords": ["program", "information", "requirements", "about/regarding"],
+                    "WeightedKeywords":
+                    [
+                        { "Keyword": "colonnade", "Weight": 3 }
+                    ]
+                },
+
+                {
                     "Name": "2017-2018 academic calendar",
                     "Data": "https://www.wku.edu/registrar/academic_calendars/acadcal2017_2018.pdf",
-                    "Keywords": ["2017", "2018", "academic", "calendar", "semester", "schedule"]
+                    "Keywords": ["17/2017", "18/2018", "academic", "calendar", "semester", "schedule"]
                 },
 
                 {
                     "Name": "2018-2019 academic calendar",
                     "Data": "https://www.wku.edu/registrar/academic_calendars/acadcal2018_2019.pdf",
-                    "Keywords": ["2018", "2019", "academic", "calendar", "semester", "schedule"]
+                    "Keywords": ["18/2018", "19/2019", "academic", "calendar", "semester", "schedule"]
                 },
 
                 {
                     "Name": "2019-2020 academic calendar",
                     "Data": "https://www.wku.edu/registrar/academic_calendars/acadcal2019_2020_update_covid19.pdf",
-                    "Keywords": ["2019", "2020", "academic", "calendar", "semester", "schedule"]
+                    "Keywords": ["19/2019", "20/2020", "academic", "calendar", "semester", "schedule"]
                 },
 
                 {
                     "Name": "2020-2021 academic calendar",
                     "Data": "https://www.wku.edu/registrar/academic_calendars/acad_calendar_sp21_revised.pdf",
-                    "Keywords": ["2020", "2021", "academic", "calendar", "semester", "schedule"]
+                    "Keywords": ["20/2020", "21/2021", "academic", "calendar", "semester", "schedule"]
                 }
             ]
         },
@@ -104,14 +114,7 @@
                 {
                     "Name": "Name",
                     "Data": "Either a URL or some text.",
-                    "Keywords": [],
-                    "WeightedKeywords":
-                    [
-                        {
-                            "keyword": "keyword",
-                            "weight": 1
-                        }
-                    ]
+                    "Keywords": []
                 }
             ]
         },
@@ -123,14 +126,7 @@
                 {
                     "Name": "Name",
                     "Data": "Either a URL or some text.",
-                    "Keywords": [],
-                    "WeightedKeywords":
-                    [
-                        {
-                            "keyword": "keyword",
-                            "weight": 1
-                        }
-                    ]
+                    "Keywords": []
                 }
             ]
         },
@@ -142,14 +138,7 @@
                 {
                     "Name": "Name",
                     "Data": "Either a URL or some text.",
-                    "Keywords": [],
-                    "WeightedKeywords":
-                    [
-                        {
-                            "keyword": "keyword",
-                            "weight": 1
-                        }
-                    ]
+                    "Keywords": []
                 }
             ]
         },
@@ -161,14 +150,7 @@
                 {
                     "Name": "Name",
                     "Data": "Either a URL or some text.",
-                    "Keywords": [],
-                    "WeightedKeywords":
-                    [
-                        {
-                            "keyword": "keyword",
-                            "weight": 1
-                        }
-                    ]
+                    "Keywords": []
                 }
             ]
         },
@@ -180,14 +162,7 @@
                 {
                     "Name": "Name",
                     "Data": "Either a URL or some text.",
-                    "Keywords": [],
-                    "WeightedKeywords":
-                    [
-                        {
-                            "keyword": "keyword",
-                            "weight": 1
-                        }
-                    ]
+                    "Keywords": []
                 }
             ]
         },
@@ -199,14 +174,7 @@
                 {
                     "Name": "Name",
                     "Data": "Either a URL or some text.",
-                    "Keywords": [],
-                    "WeightedKeywords":
-                    [
-                        {
-                            "keyword": "keyword",
-                            "weight": 1
-                        }
-                    ]
+                    "Keywords": []
                 }
             ]
         }

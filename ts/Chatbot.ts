@@ -54,22 +54,25 @@ class Chatbot
     {
         // Figure out how to respond to user's message.
         var messageKeywords: HashMap<number> = this._ParseMessageForKeywords(userMessage);
-        var resource: Resource = this._SearchForResource(messageKeywords);
+        var resource: Resource = this._SearchForResource(userMessage, messageKeywords);
 
         // If the resource could not be found.
         if (resource == null)
         {
             this._NumIncorrectResponses++;
-            this._SendMessage(
-                "I'm sorry, I wasn't able to find anything from what you typed. " +
-                "How about we try again?"
-            );
 
             if (this._NumIncorrectResponses >= 3)
             {
                 this._SendMessage(this._StumpedApologyMessage);
                 this._SendMessage(this._TeamEmailAddress);
                 this._NumIncorrectResponses = 0;
+            }
+            else
+            {
+                this._SendMessage(
+                    "I'm sorry, I wasn't able to find anything from what you typed. " +
+                    "How about we try again?"
+                );
             }
         }
         else // If the resource was found.
@@ -85,10 +88,48 @@ class Chatbot
         }
     }
 
+    private _CalculateNumCharsInString(text: string, searchChar: string): number
+    {
+        var numChars: number = 0;
+        for (var i = 0; i < text.length; i++)
+        {
+            if (text[i] === searchChar) numChars++;
+        }
+
+        return numChars;
+    }
+
     private _ChangeTopic(topicName: string): void
     {
         this._CurrentTopic = this._GetTopic(topicName);
         this._ResourceIterator = new ResourceCyclicIterator(this._CurrentTopic.Resources);
+    }
+
+    private _CleanUserMessage(message: string): string
+    {
+        var clean: string = "";
+        var lastChar: string = "";
+        for (var i = 0; i < message.length; i++)
+        {
+            // 1) Allow only one space at a time (no double spaces, i.e. "  ").
+            // 2) Do not keep "?" or "." characters.
+            // 3) Replace dashes with spaces (however, allow only one space at a time).
+            if (message[i] === "-" && lastChar !== " ")
+            {
+                clean += " ";
+                lastChar = " ";
+            }
+            else if (message[i] === " " && lastChar !== " " &&
+                     message[i] !== "?" &&
+                     message[i] !== ".")
+            {
+                clean += message[i];
+                lastChar = message[i];
+            }
+            else lastChar = message[i];
+        }
+        
+        return clean;
     }
 
     private _GetTopic(topicName: string): Topic
@@ -117,6 +158,33 @@ class Chatbot
     {
         var config: Config = JSON.parse(configJson);
 
+        // Make sure that all dashes within a resource's keyword (if any) are
+        // replaced by a space. This is done so that the _SearchForResource(...) method
+        // can save some processing time.
+        for (var topicIndex = 0; topicIndex < config.Topics.length; topicIndex++)
+        {
+            var topic: Topic = config.Topics[topicIndex];
+            for (var resIndex = 0; resIndex < topic.Resources.length; resIndex++)
+            {
+                var res: Resource = topic.Resources[resIndex];
+
+                // Default-weight keywords.
+                for (var kwIndex = 0; kwIndex < res.Keywords.length; kwIndex++)
+                {
+                    res.Keywords[kwIndex] = res.Keywords[kwIndex].replace("-", " ");
+                }
+
+                // Varying-weight keywords.
+                if (res.WeightedKeywords !== undefined)
+                {
+                    for (var kwIndex = 0; kwIndex < res.WeightedKeywords.length; kwIndex++)
+                    {
+                        res.WeightedKeywords[kwIndex].Keyword = res.WeightedKeywords[kwIndex].Keyword.replace("-", " ");
+                    }
+                }
+            }
+        }
+
         this._StumpedApologyMessage = config.StumpedApologyMessage;
         this._SuccessMessage = config.SuccessMessage;
         this._WelcomeMessage = config.WelcomeMessage;
@@ -143,11 +211,10 @@ class Chatbot
     {
         var keywords: HashMap<number> = new HashMap<number>();
 
-        // Make sure only one space character exists between each keyword.
-        message = message.toLowerCase();
-        while (message.indexOf("  ") != -1) message = message.replace("  ", " ");
+        // Clean the message (e.g. removing double spaces, replacing dashes with spaces, etc.).
+        message = this._CleanUserMessage(message.toLowerCase());
 
-        message.split(new RegExp("[ -]")).forEach((word: string) =>
+        message.split(" ").forEach((word: string) =>
         {
             // If there is already an entry for the 'word' in the HashMap,
             // add onto that existing value. Otherwise, add a new entry.
@@ -159,8 +226,11 @@ class Chatbot
         return keywords;
     }
 
-    private _SearchForResource(inputKeywords: HashMap<number>): Resource
+    private _SearchForResource(message: string, inputKeywords: HashMap<number>): Resource
     {
+        // Clean the message (e.g. removing double spaces, replacing dashes with spaces, etc.).
+        message = this._CleanUserMessage(message.toLowerCase());
+
         var scores: Array<{ score: number, resName: string }> =
             new Array<{ score: number, resName: string }>();
 
@@ -171,34 +241,101 @@ class Chatbot
             var goal = 0;
             var score = 0;
 
-            // Calculate the score for the keywords.
+            // Calculate the score for the default-weight keywords.
             iteration.resource.Keywords.forEach((resourceKeyword: string, index, array) =>
             {
-                if (inputKeywords.Contains(resourceKeyword)) score++;
+                // If the resource keyword has a space in it, treat the keyword as having
+                // multiple words (to be matched as one string).
+                if (resourceKeyword.indexOf(" ") !== -1)
+                {
+                    // If the original message contains the keyword phrase, increment the score.
+                    // We do this because the inputKeywords parameter is of the type HashMap<number>,
+                    // and since it's a hashmap, the words are not in order (and keyword phrases
+                    // need to be matched in the order that their words are specified).
+                    if (message.indexOf(resourceKeyword) !== -1) score++;
+                }
+                else if (resourceKeyword.indexOf(" / ") !== -1) // 'Or' operator, phrase sub-type.
+                {
+                    var split: string[] = resourceKeyword.split(" / ");
+                    
+                    for (var i = 0; i < split.length; i++)
+                    {
+                        // If it matches, increment the score.
+                        if (message.indexOf(split[i]) !== -1)
+                        {
+                            score++;
+                            break;
+                        }
+                    }
+                }
+                else if (resourceKeyword.indexOf("/") !== -1) // 'Or' operator, word sub-type.
+                {
+                    var split: string[] = resourceKeyword.split("/");
+
+                    for (var i = 0; i < split.length; i++)
+                    {
+                        // If it matches, increment the score.
+                        if (inputKeywords.Contains(split[i]))
+                        {
+                            score++;
+                            break;
+                        }
+                    }
+                }
+                else if (inputKeywords.Contains(resourceKeyword)) score++;
+
                 goal++;
             });
 
-            // Calculate the score for the weighted keywords.
+            // Calculate the score for the varying-weight keywords.
             if (iteration.resource.WeightedKeywords !== undefined)
-            {/*
-                var hashMapKeys: string[] = Object.keys(iteration.resource.WeightedKeywords.Map);
-                for (var i = 0; i < hashMapKeys.length; i++)
-                {
-                    var hash = hashMapKeys[i];
-                    var weightedKeyword: { key: string, value: number } =
-                        iteration.resource.WeightedKeywords.Map[hash];
-                    
-                    if (inputKeywords.Contains(weightedKeyword.key)) score += weightedKeyword.value;
-                    goal += weightedKeyword.value;
-                }*/
-
+            {
                 for (var i = 0; i < iteration.resource.WeightedKeywords.length; i++)
                 {
-                    var weightedKeyword: { keyword: string, weight: number } =
+                    var weightedKeyword: { Keyword: string, Weight: number } =
                         iteration.resource.WeightedKeywords[i];
                     
-                    if (inputKeywords.Contains(weightedKeyword.keyword)) score += weightedKeyword.weight;
-                    goal += weightedKeyword.weight;
+                    // If the resource keyword has a space in it, treat the keyword as having
+                    // multiple words (to be matched as one string).
+                    if (weightedKeyword.Keyword.indexOf(" ") !== -1)
+                    {
+                        // If the original message contains the keyword phrase, increment the score.
+                        if (message.indexOf(weightedKeyword.Keyword) !== -1)
+                        {
+                            score += weightedKeyword.Weight;
+                        }
+                    }
+                    else if (weightedKeyword.Keyword.indexOf(" / ")) // 'Or' operator, phrase sub-type.
+                    {
+                        var split: string[] = weightedKeyword.Keyword.split(" / ");
+                        
+                        for (var i = 0; i < split.length; i++)
+                        {
+                            // If it matches, increment the score.
+                            if (message.indexOf(split[i]) !== -1)
+                            {
+                                score += weightedKeyword.Weight;
+                                break;
+                            }
+                        }
+                    }
+                    else if (weightedKeyword.Keyword.indexOf("/")) // 'Or' operator, word sub-type.
+                    {
+                        var split: string[] = weightedKeyword.Keyword.split("/");
+                        
+                        for (var i = 0; i < split.length; i++)
+                        {
+                            // If it matches, increment the score.
+                            if (inputKeywords.Contains(split[i]))
+                            {
+                                score += weightedKeyword.Weight;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (inputKeywords.Contains(weightedKeyword.Keyword)) score += weightedKeyword.Weight;
+                    goal += weightedKeyword.Weight;
                 }
             }
 
@@ -240,6 +377,10 @@ class Chatbot
 
     private _YesOrNoButtonsCallback(this: HTMLButtonElement, e: Event): void
     {
+        UI.GetInstance().DeleteAllMessagesWithID(Number(this.parentElement.id));
+        UI.GetInstance().DisplayMessage(MessageType.System, "Was this helpful? Selected: " + this.innerHTML);
+        UI.GetInstance().EnableInput(true);
+
         // Button name === "Yes!".
         var chooseDifferentTopic = false;
         if (this.innerHTML === "Yes!")
@@ -251,7 +392,6 @@ class Chatbot
         else // Button name === "No".
         {
             Chatbot._Instance._NumIncorrectResponses++;
-            Chatbot._Instance._SendMessage("I'm sorry. How about we try again?");
 
             if (Chatbot._Instance._NumIncorrectResponses >= 3)
             {
@@ -259,12 +399,7 @@ class Chatbot
                 Chatbot._Instance._SendMessage(Chatbot._Instance._TeamEmailAddress)
                 Chatbot._Instance._NumIncorrectResponses = 0;
             }
+            else Chatbot._Instance._SendMessage("I'm sorry. How about we try again?");
         }
-
-        UI.GetInstance().DeleteAllMessagesWithID(Number(this.parentElement.id));
-        UI.GetInstance().DisplayMessage(MessageType.System, "Was this helpful? Selected: " + this.innerHTML);
-        UI.GetInstance().EnableInput(true);
-
-        if (chooseDifferentTopic) Chatbot._Instance.BeginChooseTopic(Chatbot._Instance._WelcomeMessage);
     }
 }

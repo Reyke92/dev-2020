@@ -1,143 +1,160 @@
-@import 'config';
+$color-primary-0: #B01E24; /* Main Primary color */
 
-.navbar{
-  overflow: hidden;
-  height: 3rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  background-color: $color-primary-0;
-  font-style: $fontFam;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+@mixin column {
+  flex-direction: column;
+}
 
-  h1 {
-    color: #f1f1f1;
-    margin-top: 0.75rem;
-    margin-left: 2rem;
+@mixin flex-container {
+  display: flex;
+
+  > * {
+    flex: 0 0 auto;
   }
 }
 
-body {
-  background-color: #ccc;
-  display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
+@mixin stretchy {
+  flex: 1 1 auto;
+}
+
+/* Support for fullscreen flexbox. */
+html, body, .fullscreen {
   height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
 
-  .appWindow {
-    display: flex;
-    flex-direction: column;
-    height: 80%;
-    margin-top: 3rem;
-    background-color: #f1f1f1;
-    padding: 2rem;
-    border-radius: 1rem;
-    
-    #changeTopicButton {
-      display: inline-block;
+body {
+  margin: 0;
+  background-color: #ccc;
+
+  .fullscreen {
+    @include flex-container;
+    @include column;
+  
+    > .navbar {
+      @include flex-container;
       align-self: flex-start;
-      padding: 0.5em;
-      margin: 1rem 0;
-      width: 10%;
-      border-radius: .25rem;
-      text-decoration: none;
-      font-size: 15px;
-      background-color: #333333;
-      color: #f1f1f1;
-      font-size: 110%;
-    }
-
-    #messageList{
-      display: inline-block;
-      align-self: stretch;
-      padding: 1rem;
-      border-radius: 1rem;
-      background-color: #f1f1f1;
-      height: 100%;
-      overflow-y: auto;
-      overflow-x: hidden;
-
-      .chatbotMessage, .choicesContainer {
-        margin-right: 35%;
-      }
-
-      .chatbotMessage {
-        padding: 10px;
-        margin-left: 10px;
-        margin-bottom: 10px;
-        border: 2px solid #dedede;
-        background-color: #c91f26;
-        border-radius: 25px;
-        font-size: 110%;
-        font-family: sans-serif;
-        color: #f1f1f1
-      }
-
-      /* Links given by the Chatbot. */
-      .chatbotMessage > p > a {
-        color: #f1f1f1
-      }
-
-      .choiceButton {
-        padding: .5rem;
-        margin-right: .25rem;
-        margin-bottom: 10px;
-        border-radius: .25rem;
-        background-color: $color-primary-0;
-        font-size: 15px;
-        color: #f1f1f1;
-      }
-
-      .systemMessage {
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 2px solid #DFDFDF;
-        background-color: #cccccc;
-        font-size: 110%;
-        font-family: sans-serif;
-        font-style: italic;
-        text-align: center;
-        color: #555555;
-      }
-
-      .userMessage {
-        padding: 10px;
-        margin-left: 35%;
-        margin-right: 10px;
-        margin-bottom: 10px;
-        border: 2px solid #dedede;
-        background-color: #ffffff;
-        border-radius: 25px;
-        font-size: 110%;
-        font-family: sans-serif;
-        color: black
-      }
-    }
-
-    .bottomBar {
-      display: inline-block;
-      align-self: stretch;
-    }
-
-    #messageBox {
-      margin: 1rem 0;
-      height: 2rem;
-      width: 89%;
-      font-size: 110%;
-    }
-
-    #sendButton {
-      float: right;
-      padding: 0.5em;
-      margin: 1rem 0;
-      width: 10%;
-      border-radius: .25rem;
+      padding: .5rem;
       background-color: $color-primary-0;
-      text-decoration: none;
-      font-size: 15px;
+      font-size: 180%;
+      width: 100%;
       color: #f1f1f1;
-      font-size: 110%;
+    }
+
+    > .appWindow {
+      @include flex-container;
+      @include column;
+      background-color: #f1f1f1;
+      margin: 2rem 4rem;
+      padding: 1rem 2rem;
+      border-radius: 1rem;
+      
+      > #changeTopicButton {
+        align-self: flex-start;
+        padding: 0.5em;
+        width: 10%;
+        border-radius: .25rem;
+        background-color: #333333;
+        color: #f1f1f1;
+        font-size: 110%;
+      }
+  
+      > #messageList {
+        @include flex-container;
+        @include column;
+        @include stretchy;
+        padding: 1rem;
+        border-radius: 1rem;
+        overflow: auto;
+  
+        > .choicesContainer {
+          @include flex-container;
+          margin-right: 35%;
+
+          > .choiceButton {
+            flex: 0 0 auto;
+            padding: .5rem;
+            margin-right: .25rem;
+            margin-bottom: 10px;
+            border-radius: .25rem;
+            background-color: $color-primary-0;
+            font-size: 110%;
+            color: #f1f1f1;
+          }
+        }
+  
+        > .chatbotMessage {
+          @include flex-container;
+          @include column;
+          padding: 10px;
+          margin-left: 10px;
+          margin-right: 35%;
+          margin-bottom: 10px;
+          border: 2px solid #dedede;
+          background-color: #c91f26;
+          border-radius: 25px;
+          font-size: 110%;
+          font-family: sans-serif;
+          color: #f1f1f1;
+
+          /* Links given by the Chatbot. */
+          > p > a {
+            color: #f1f1f1;
+          }
+        }
+
+        > .systemMessage {
+          @include flex-container;
+          @include column;
+          padding: 10px;
+          margin-bottom: 10px;
+          border: 2px solid #DFDFDF;
+          background-color: #cccccc;
+          font-size: 110%;
+          font-family: sans-serif;
+          font-style: italic;
+          text-align: center;
+          color: #555555;
+        }
+  
+        > .userMessage {
+          @include flex-container;
+          @include column;
+          padding: 10px;
+          margin-left: 35%;
+          margin-right: 10px;
+          margin-bottom: 10px;
+          border: 2px solid #dedede;
+          background-color: #ffffff;
+          border-radius: 25px;
+          font-size: 110%;
+          font-family: sans-serif;
+          color: black
+        }
+      }
+  
+      > .bottomBar {
+        @include flex-container;
+        
+        > #messageBox {
+          margin: 1rem 0;
+          height: 2rem;
+          width: 89%;
+          font-size: 110%;
+        }
+    
+        > #sendButton {
+          float: right;
+          padding: 0.5em;
+          margin: 1rem 0;
+          width: 10%;
+          border-radius: .25rem;
+          background-color: $color-primary-0;
+          text-decoration: none;
+          color: #f1f1f1;
+          font-size: 110%;
+        }
+      }
     }
   }
 }

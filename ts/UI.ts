@@ -136,7 +136,7 @@ class UI
     private _OnPageLoaded(this: Document, e: Event): void
     {
         // Initialize the UI.
-        UI._Instance._Init();
+        UI._Instance.Init();
     }
 
     private _OnSendButtonClicked(this: HTMLButtonElement, e: MouseEvent): void

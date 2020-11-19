@@ -1,67 +1,88 @@
 /* Main Primary color */
-.navbar {
-  overflow: hidden;
-  height: 3rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  background-color: #B01E24;
-  font-style: arial;
-  position: fixed;
-  top: 0;
-  left: 0;
+/* Support for fullscreen flexbox. */
+html, body, .fullscreen {
+  height: 100%;
   width: 100%;
-}
-.navbar h1 {
-  color: #f1f1f1;
-  margin-top: 0.75rem;
-  margin-left: 2rem;
+  overflow: hidden;
 }
 
 body {
+  margin: 0;
   background-color: #ccc;
-  display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
-  height: 100%;
 }
-body .appWindow {
+body .fullscreen {
   display: flex;
   flex-direction: column;
-  height: 80%;
-  margin-top: 3rem;
+}
+body .fullscreen > * {
+  flex: 0 0 auto;
+}
+body .fullscreen > .navbar {
+  display: flex;
+  align-self: flex-start;
+  padding: 0.5rem;
+  background-color: #B01E24;
+  font-size: 180%;
+  width: 100%;
+  color: #f1f1f1;
+}
+body .fullscreen > .navbar > * {
+  flex: 0 0 auto;
+}
+body .fullscreen > .appWindow {
+  display: flex;
+  flex-direction: column;
   background-color: #f1f1f1;
-  padding: 2rem;
+  margin: 2rem 4rem;
+  padding: 1rem 2rem;
   border-radius: 1rem;
 }
-body .appWindow #changeTopicButton {
-  display: inline-block;
+body .fullscreen > .appWindow > * {
+  flex: 0 0 auto;
+}
+body .fullscreen > .appWindow > #changeTopicButton {
   align-self: flex-start;
   padding: 0.5em;
-  margin: 1rem 0;
   width: 10%;
   border-radius: 0.25rem;
-  text-decoration: none;
-  font-size: 15px;
   background-color: #333333;
   color: #f1f1f1;
   font-size: 110%;
 }
-body .appWindow #messageList {
-  display: inline-block;
-  align-self: stretch;
+body .fullscreen > .appWindow > #messageList {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
   padding: 1rem;
   border-radius: 1rem;
-  background-color: #f1f1f1;
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  /* Links given by the Chatbot. */
+  overflow: auto;
 }
-body .appWindow #messageList .chatbotMessage, body .appWindow #messageList .choicesContainer {
+body .fullscreen > .appWindow > #messageList > * {
+  flex: 0 0 auto;
+}
+body .fullscreen > .appWindow > #messageList > .choicesContainer {
+  display: flex;
   margin-right: 35%;
 }
-body .appWindow #messageList .chatbotMessage {
+body .fullscreen > .appWindow > #messageList > .choicesContainer > * {
+  flex: 0 0 auto;
+}
+body .fullscreen > .appWindow > #messageList > .choicesContainer > .choiceButton {
+  flex: 0 0 auto;
+  padding: 0.5rem;
+  margin-right: 0.25rem;
+  margin-bottom: 10px;
+  border-radius: 0.25rem;
+  background-color: #B01E24;
+  font-size: 110%;
+  color: #f1f1f1;
+}
+body .fullscreen > .appWindow > #messageList > .chatbotMessage {
+  display: flex;
+  flex-direction: column;
   padding: 10px;
   margin-left: 10px;
+  margin-right: 35%;
   margin-bottom: 10px;
   border: 2px solid #dedede;
   background-color: #c91f26;
@@ -69,20 +90,17 @@ body .appWindow #messageList .chatbotMessage {
   font-size: 110%;
   font-family: sans-serif;
   color: #f1f1f1;
+  /* Links given by the Chatbot. */
 }
-body .appWindow #messageList .chatbotMessage > p > a {
+body .fullscreen > .appWindow > #messageList > .chatbotMessage > * {
+  flex: 0 0 auto;
+}
+body .fullscreen > .appWindow > #messageList > .chatbotMessage > p > a {
   color: #f1f1f1;
 }
-body .appWindow #messageList .choiceButton {
-  padding: 0.5rem;
-  margin-right: 0.25rem;
-  margin-bottom: 10px;
-  border-radius: 0.25rem;
-  background-color: #B01E24;
-  font-size: 15px;
-  color: #f1f1f1;
-}
-body .appWindow #messageList .systemMessage {
+body .fullscreen > .appWindow > #messageList > .systemMessage {
+  display: flex;
+  flex-direction: column;
   padding: 10px;
   margin-bottom: 10px;
   border: 2px solid #DFDFDF;
@@ -93,7 +111,12 @@ body .appWindow #messageList .systemMessage {
   text-align: center;
   color: #555555;
 }
-body .appWindow #messageList .userMessage {
+body .fullscreen > .appWindow > #messageList > .systemMessage > * {
+  flex: 0 0 auto;
+}
+body .fullscreen > .appWindow > #messageList > .userMessage {
+  display: flex;
+  flex-direction: column;
   padding: 10px;
   margin-left: 35%;
   margin-right: 10px;
@@ -105,17 +128,22 @@ body .appWindow #messageList .userMessage {
   font-family: sans-serif;
   color: black;
 }
-body .appWindow .bottomBar {
-  display: inline-block;
-  align-self: stretch;
+body .fullscreen > .appWindow > #messageList > .userMessage > * {
+  flex: 0 0 auto;
 }
-body .appWindow #messageBox {
+body .fullscreen > .appWindow > .bottomBar {
+  display: flex;
+}
+body .fullscreen > .appWindow > .bottomBar > * {
+  flex: 0 0 auto;
+}
+body .fullscreen > .appWindow > .bottomBar > #messageBox {
   margin: 1rem 0;
   height: 2rem;
   width: 89%;
   font-size: 110%;
 }
-body .appWindow #sendButton {
+body .fullscreen > .appWindow > .bottomBar > #sendButton {
   float: right;
   padding: 0.5em;
   margin: 1rem 0;
@@ -123,7 +151,6 @@ body .appWindow #sendButton {
   border-radius: 0.25rem;
   background-color: #B01E24;
   text-decoration: none;
-  font-size: 15px;
   color: #f1f1f1;
   font-size: 110%;
 }

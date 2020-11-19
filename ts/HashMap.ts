@@ -1,10 +1,10 @@
 class HashMap<T>
 {
-    public Map;
+    public InnerMap;
 
     constructor(obj = null)
     {
-        if (obj === null) this.Map = { };
+        if (obj === null) this.InnerMap = { };
         else
         {
             console.log("obj !== null");
@@ -19,24 +19,29 @@ class HashMap<T>
 
     public Contains(key: string): boolean
     {
-        return this.Map[this._Hash(key)] !== undefined;
+        return this.InnerMap[this._Hash(key)] !== undefined;
     }
 
     public Get(key: string): T
     {
-        var pair: { key: string, value: T } = this.Map[this._Hash(key)];
+        var pair: { key: string, value: T } = this.InnerMap[this._Hash(key)];
         if (pair !== undefined) return pair.value;
         else return undefined;
     }
 
+    public GetKeys(): string[]
+    {
+        return Object.keys(this.InnerMap);
+    }
+
     public GetLength(): number
     {
-        return Object.keys(this.Map).length;
+        return Object.keys(this.InnerMap).length;
     }
 
     public Set(key: string, value: T)
     {
-        this.Map[this._Hash(key)] = { key: key, value: value };
+        this.InnerMap[this._Hash(key)] = { key: key, value: value };
     }
 
     private _Hash(key: string): string
