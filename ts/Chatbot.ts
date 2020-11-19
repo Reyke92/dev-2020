@@ -119,9 +119,8 @@ class Chatbot
                 clean += " ";
                 lastChar = " ";
             }
-            else if (message[i] === " " && lastChar !== " " &&
-                     message[i] !== "?" &&
-                     message[i] !== ".")
+            else if (message[i] === " " && lastChar !== " " ||
+                     message[i] !== "?" && message[i] !== ".")
             {
                 clean += message[i];
                 lastChar = message[i];
