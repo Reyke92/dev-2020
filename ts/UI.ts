@@ -61,6 +61,7 @@ class UI
             element.appendChild(button);
         }
         this._MessageList.appendChild(element);
+        this.ScrollToBottomOfMessageList();
 
         return messageID;
     }
@@ -82,6 +83,7 @@ class UI
 
         element.id = this._GetNewMessageID().toString();
         this._MessageList.appendChild(element);
+        this.ScrollToBottomOfMessageList();
 
         return this._LastMessageID;
     }
@@ -106,6 +108,11 @@ class UI
         this._SendButton.addEventListener("click", this._OnSendButtonClicked);
 
         this._Inited = true;
+    }
+
+    public ScrollToBottomOfMessageList(): void
+    {
+        this._MessageList.scrollTop = this._MessageList.scrollHeight;
     }
 
     private _GetNewMessageID(): number

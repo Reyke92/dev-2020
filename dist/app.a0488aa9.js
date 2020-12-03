@@ -217,7 +217,7 @@ function () {
       if (message[i] === "-" && lastChar !== " ") {
         clean += " ";
         lastChar = " ";
-      } else if (message[i] === " " && lastChar !== " " && message[i] !== "?" && message[i] !== ".") {
+      } else if (message[i] === " " && lastChar !== " " || message[i] !== "?" && message[i] !== ".") {
         clean += message[i];
         lastChar = message[i];
       } else lastChar = message[i];
@@ -411,7 +411,11 @@ function () {
     if (highScore.score <= 0.3) {
       console.log("highScore <= 0.3; returning null.");
       return null;
-    }
+    } // If the highest score is NaN, this is likely due to an error in the config file; return null.
+    else if (Number.isNaN(highScore.score)) {
+        console.log("highScore === NaN; returning null.");
+        return null;
+      }
 
     console.log(scores);
     console.log("Resource: \"" + highScore.resName + "\"\tScore: " + highScore.score);
@@ -692,6 +696,7 @@ function () {
 
     this._MessageList.appendChild(element);
 
+    this.ScrollToBottomOfMessageList();
     return messageID;
   };
 
@@ -707,6 +712,7 @@ function () {
 
     this._MessageList.appendChild(element);
 
+    this.ScrollToBottomOfMessageList();
     return this._LastMessageID;
   };
 
@@ -729,6 +735,10 @@ function () {
     this._SendButton.addEventListener("click", this._OnSendButtonClicked);
 
     this._Inited = true;
+  };
+
+  UI.prototype.ScrollToBottomOfMessageList = function () {
+    this._MessageList.scrollTop = this._MessageList.scrollHeight;
   };
 
   UI.prototype._GetNewMessageID = function () {
@@ -804,7 +814,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52805" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55223" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

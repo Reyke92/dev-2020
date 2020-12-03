@@ -1,74 +1,59 @@
 /* Main Primary color */
-/* Support for fullscreen flexbox. */
 html, body, .fullscreen {
-  height: 100%;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
   overflow: hidden;
 }
 
-body {
-  margin: 0;
+body .fullscreen {
+  display: grid;
+  grid-template-columns: 1fr 65% 1fr;
+  grid-template-rows: min-content minmax(0, 1fr) min-content;
   background-color: #ccc;
 }
-body .fullscreen {
-  display: flex;
-  flex-direction: column;
-}
-body .fullscreen > * {
-  flex: 0 0 auto;
-}
 body .fullscreen > .navbar {
-  display: flex;
-  align-self: flex-start;
+  grid-column: 1/4;
+  grid-row: 1/2;
   padding: 0.5rem;
   background-color: #B01E24;
   font-size: 180%;
   width: 100%;
   color: #f1f1f1;
 }
-body .fullscreen > .navbar > * {
-  flex: 0 0 auto;
-}
 body .fullscreen > .appWindow {
-  display: flex;
-  flex-direction: column;
+  grid-column: 2/3;
+  grid-row: 2/3;
+  display: grid;
+  grid-template-columns: 20fr 70fr 10fr;
+  grid-template-rows: 5fr 90fr 5fr;
+  row-gap: 10px;
   background-color: #f1f1f1;
   margin: 2rem 4rem;
   padding: 1rem 2rem;
   border-radius: 1rem;
 }
-body .fullscreen > .appWindow > * {
-  flex: 0 0 auto;
-}
 body .fullscreen > .appWindow > #changeTopicButton {
-  align-self: flex-start;
+  grid-column: 1/2;
+  grid-row: 1/2;
   padding: 0.5em;
-  width: 10%;
   border-radius: 0.25rem;
   background-color: #333333;
   color: #f1f1f1;
   font-size: 110%;
 }
 body .fullscreen > .appWindow > #messageList {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
+  grid-column: 1/4;
+  grid-row: 2/3;
+  width: 100%;
   padding: 1rem;
   border-radius: 1rem;
   overflow: auto;
 }
-body .fullscreen > .appWindow > #messageList > * {
-  flex: 0 0 auto;
-}
 body .fullscreen > .appWindow > #messageList > .choicesContainer {
-  display: flex;
   margin-right: 35%;
 }
-body .fullscreen > .appWindow > #messageList > .choicesContainer > * {
-  flex: 0 0 auto;
-}
 body .fullscreen > .appWindow > #messageList > .choicesContainer > .choiceButton {
-  flex: 0 0 auto;
   padding: 0.5rem;
   margin-right: 0.25rem;
   margin-bottom: 10px;
@@ -78,8 +63,6 @@ body .fullscreen > .appWindow > #messageList > .choicesContainer > .choiceButton
   color: #f1f1f1;
 }
 body .fullscreen > .appWindow > #messageList > .chatbotMessage {
-  display: flex;
-  flex-direction: column;
   padding: 10px;
   margin-left: 10px;
   margin-right: 35%;
@@ -92,15 +75,10 @@ body .fullscreen > .appWindow > #messageList > .chatbotMessage {
   color: #f1f1f1;
   /* Links given by the Chatbot. */
 }
-body .fullscreen > .appWindow > #messageList > .chatbotMessage > * {
-  flex: 0 0 auto;
-}
 body .fullscreen > .appWindow > #messageList > .chatbotMessage > p > a {
   color: #f1f1f1;
 }
 body .fullscreen > .appWindow > #messageList > .systemMessage {
-  display: flex;
-  flex-direction: column;
   padding: 10px;
   margin-bottom: 10px;
   border: 2px solid #DFDFDF;
@@ -111,12 +89,7 @@ body .fullscreen > .appWindow > #messageList > .systemMessage {
   text-align: center;
   color: #555555;
 }
-body .fullscreen > .appWindow > #messageList > .systemMessage > * {
-  flex: 0 0 auto;
-}
 body .fullscreen > .appWindow > #messageList > .userMessage {
-  display: flex;
-  flex-direction: column;
   padding: 10px;
   margin-left: 35%;
   margin-right: 10px;
@@ -128,31 +101,24 @@ body .fullscreen > .appWindow > #messageList > .userMessage {
   font-family: sans-serif;
   color: black;
 }
-body .fullscreen > .appWindow > #messageList > .userMessage > * {
-  flex: 0 0 auto;
-}
-body .fullscreen > .appWindow > .bottomBar {
-  display: flex;
-}
-body .fullscreen > .appWindow > .bottomBar > * {
-  flex: 0 0 auto;
-}
-body .fullscreen > .appWindow > .bottomBar > #messageBox {
-  margin: 1rem 0;
-  height: 2rem;
-  width: 89%;
+body .fullscreen > .appWindow > #messageBox {
+  grid-column: 1/3;
+  grid-row: 3/4;
   font-size: 110%;
 }
-body .fullscreen > .appWindow > .bottomBar > #sendButton {
-  float: right;
+body .fullscreen > .appWindow > #sendButton {
+  grid-column: 3/4;
+  grid-row: 3/4;
   padding: 0.5em;
-  margin: 1rem 0;
-  width: 10%;
   border-radius: 0.25rem;
   background-color: #B01E24;
   text-decoration: none;
   color: #f1f1f1;
   font-size: 110%;
+}
+body .fullscreen > .footer {
+  grid-column: 1/4;
+  grid-row: 3/4;
 }
 
 /*# sourceMappingURL=/style.a6dae8f7.css.map */

@@ -350,6 +350,9 @@ class Chatbot
         // If the highest score was less than or equal to 0.3, disregard it.
         if (highScore.score <= 0.3) { console.log("highScore <= 0.3; returning null."); return null; }
 
+        // If the highest score is NaN, this is likely due to an error in the config file; return null.
+        else if (Number.isNaN(highScore.score)) { console.log("highScore === NaN; returning null."); return null; }
+        
         console.log(scores);
         console.log("Resource: \"" + highScore.resName + "\"\tScore: " + highScore.score);
         
