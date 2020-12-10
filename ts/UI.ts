@@ -74,18 +74,48 @@ class UI
         else if (type === MessageType.System) element.classList.add("systemMessage");
         else throw(new Error("UI.DisplayMessage: A valid MessageType must be supplied!"));
 
-        // If the message is a URL, make it a hyperlink.
-        if (message.startsWith("http"))
+        // If the message contains any URls or email addresses, make them hyperlinks.
+        if (message.indexOf("http") !== -1 || message.indexOf("@") !== -1)
         {
-            element.innerHTML = "<p><a href=\"" + message + "\">" + message + "</a></p>";
+            var parts = message.split(" ");
+
+            for (var i = 0; i < parts.length; i++)
+            {
+                if (parts[i].startsWith("http"))
+                {
+                    element.innerHTML += "<a href=\"" + parts[i] + "\" target=\"_blank\">" + parts[i] + "</a> ";
+                }
+                else if (parts[i].indexOf("@") !== -1 && parts[i].length > 1)
+                {
+                    element.innerHTML += "<a href=\"mailto:" + parts[i] + "\">" + parts[i] + "</a> ";
+                }
+                else element.innerHTML += parts[i] + " ";
+            }
+
+            // Remove the trailing space at the end of the element's innerHTML field.
+            element.innerHTML = "<p>" +
+                                element.innerHTML.substring(0, element.innerHTML.length - 1) +
+                                "</p>";
         }
+        // Or, if no URLs were found in the message, just use the message as-is.
         else element.innerHTML = "<p>" + message + "</p>";
+        element.id = this._GetNewMessageID().toString();
+        this._MessageList.appendChild(element);
+        this.ScrollToBottomOfMessageList();
+        return this._LastMessageID; // Return the current element ID.
+    }
+
+    public DisplayChatbotMessageUsingResource(resource: Resource): number
+    {
+        var element: HTMLDivElement = document.createElement("div");
+        element.classList.add("chatbotMessage");
+
+        element.innerHTML = "<p><a href=\"" + resource.Data + "\" target=\"_blank\">" + resource.Name + "</a></p>";
 
         element.id = this._GetNewMessageID().toString();
         this._MessageList.appendChild(element);
         this.ScrollToBottomOfMessageList();
-
-        return this._LastMessageID;
+        return this._LastMessageID; // Return the current element ID.
     }
 
     public EnableInput(enabled: boolean): void

@@ -1,8 +1,9 @@
 class Config
 {
+    public ApologyMessage: string;
+    public IncorrectResponseApologyMessage: string;
     public SuccessMessage: string;
     public StumpedApologyMessage: string;
-    public WelcomeMessage: string;
-    public TeamEmailAddress: string;
     public Topics: Topic[];
+    public WelcomeMessage: string;
 }

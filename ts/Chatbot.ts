@@ -2,14 +2,12 @@ class Chatbot
 {
     private static _Instance: Chatbot;
 
+    private _Config: Config;
+    private _ConfigLoaded: boolean = false;
     private _CurrentTopic: Topic;
     private _NumIncorrectResponses: number;
     private _ResourceIterator: ResourceCyclicIterator;
-    private _StumpedApologyMessage: string;
-    private _SuccessMessage: string;
-    private _TeamEmailAddress: string;
     private _TopicIterator: TopicCyclicIterator;
-    private _WelcomeMessage: string;
 
     private constructor()
     {
@@ -22,6 +20,7 @@ class Chatbot
         if (!!this._Instance) return this._Instance;
 
         this._Instance = new Chatbot();
+        this._Instance._ConfigLoaded = false;
         this._Instance._NumIncorrectResponses = 0;
         UI.GetInstance(); // Cause the UI to initialize itself.
         this._Instance._LoadConfigFile(C.CONFIG_FILE_CONTENTS);
@@ -57,27 +56,24 @@ class Chatbot
         var resource: Resource = this._SearchForResource(userMessage, messageKeywords);
 
         // If the resource could not be found.
-        if (resource == null)
+        if (resource === null)
         {
             this._NumIncorrectResponses++;
 
             if (this._NumIncorrectResponses >= 3)
             {
-                this._SendMessage(this._StumpedApologyMessage);
-                this._SendMessage(this._TeamEmailAddress);
+                this._SendMessage(this._Config.StumpedApologyMessage);
                 this._NumIncorrectResponses = 0;
             }
-            else
-            {
-                this._SendMessage(
-                    "I'm sorry, I wasn't able to find anything from what you typed. " +
-                    "How about we try again?"
-                );
-            }
+            else this._SendMessage(this._Config.ApologyMessage);
         }
         else // If the resource was found.
         {
-            this._SendMessage(resource.Data);
+            if (Resource.IsDataJustURL(resource))
+            {
+                UI.GetInstance().DisplayChatbotMessageUsingResource(resource);
+            }
+            else this._SendMessage(resource.Data);
 
             UI.GetInstance().EnableInput(false);
             UI.GetInstance().DisplayButtons(
@@ -147,22 +143,23 @@ class Chatbot
 
     private _Init(): void
     {
-        // Initialize the UI first.
+        // Initialize the UI.
         UI.GetInstance().Init();
-
-        this.BeginChooseTopic(this._WelcomeMessage);
+        
+        this.BeginChooseTopic(this._Config.WelcomeMessage);
     }
 
     private _LoadConfigFile(configJson: string): void
     {
-        var config: Config = JSON.parse(configJson);
+        this._ConfigLoaded = false;
+        this._Config = JSON.parse(configJson);
 
         // Make sure that all dashes within a resource's keyword (if any) are
         // replaced by a space. This is done so that the _SearchForResource(...) method
         // can save some processing time.
-        for (var topicIndex = 0; topicIndex < config.Topics.length; topicIndex++)
+        for (var topicIndex = 0; topicIndex < this._Config.Topics.length; topicIndex++)
         {
-            var topic: Topic = config.Topics[topicIndex];
+            var topic: Topic = this._Config.Topics[topicIndex];
             for (var resIndex = 0; resIndex < topic.Resources.length; resIndex++)
             {
                 var res: Resource = topic.Resources[resIndex];
@@ -184,11 +181,9 @@ class Chatbot
             }
         }
 
-        this._StumpedApologyMessage = config.StumpedApologyMessage;
-        this._SuccessMessage = config.SuccessMessage;
-        this._WelcomeMessage = config.WelcomeMessage;
-        this._TeamEmailAddress = config.TeamEmailAddress;
-        this._TopicIterator = new TopicCyclicIterator(config.Topics);
+        // Load the topics into a new TopicCyclicIterator.
+        this._TopicIterator = new TopicCyclicIterator(this._Config.Topics);
+        this._ConfigLoaded = true;
     }
 
     private _OnChooseTopicTopicSelected(this: HTMLButtonElement, e: Event): void
@@ -202,6 +197,16 @@ class Chatbot
 
     private _OnPageLoaded(this: Document, e: Event): void
     {
+        // Make sure that the config has been fully loaded into memory before contiuing.
+        // This can be done by waiting for the Chatbot instance to be instantiated
+        // (if it hasn't been already), and then waiting for the configuration file to
+        // be loaded.
+        while (!!!Chatbot._Instance || !Chatbot._Instance._ConfigLoaded)
+        {
+            // Wait 300ms and try again.
+            setTimeout(() => {}, 300);
+        }
+
         // Initialize the Chatbot.
         Chatbot._Instance._Init();
     }
@@ -243,17 +248,7 @@ class Chatbot
             // Calculate the score for the default-weight keywords.
             iteration.resource.Keywords.forEach((resourceKeyword: string, index, array) =>
             {
-                // If the resource keyword has a space in it, treat the keyword as having
-                // multiple words (to be matched as one string).
-                if (resourceKeyword.indexOf(" ") !== -1)
-                {
-                    // If the original message contains the keyword phrase, increment the score.
-                    // We do this because the inputKeywords parameter is of the type HashMap<number>,
-                    // and since it's a hashmap, the words are not in order (and keyword phrases
-                    // need to be matched in the order that their words are specified).
-                    if (message.indexOf(resourceKeyword) !== -1) score++;
-                }
-                else if (resourceKeyword.indexOf(" / ") !== -1) // 'Or' operator, phrase sub-type.
+                if (resourceKeyword.indexOf(" / ") !== -1) // 'Or' operator, phrase sub-type.
                 {
                     var split: string[] = resourceKeyword.split(" / ");
                     
@@ -266,6 +261,16 @@ class Chatbot
                             break;
                         }
                     }
+                }
+                else if (resourceKeyword.indexOf(" ") !== -1)
+                {
+                    // If the resource keyword has a space in it, treat the keyword as having
+                    // multiple words (to be matched as one string).
+                    // Also, if the original message contains the keyword phrase, increment the score.
+                    // We do this because the inputKeywords parameter is of the type HashMap<number>,
+                    // and since it's a hashmap, the words are not in order (and keyword phrases
+                    // need to be matched in the order that their words are specified).
+                    if (message.indexOf(resourceKeyword) !== -1) score++;
                 }
                 else if (resourceKeyword.indexOf("/") !== -1) // 'Or' operator, word sub-type.
                 {
@@ -294,17 +299,7 @@ class Chatbot
                     var weightedKeyword: { Keyword: string, Weight: number } =
                         iteration.resource.WeightedKeywords[i];
                     
-                    // If the resource keyword has a space in it, treat the keyword as having
-                    // multiple words (to be matched as one string).
-                    if (weightedKeyword.Keyword.indexOf(" ") !== -1)
-                    {
-                        // If the original message contains the keyword phrase, increment the score.
-                        if (message.indexOf(weightedKeyword.Keyword) !== -1)
-                        {
-                            score += weightedKeyword.Weight;
-                        }
-                    }
-                    else if (weightedKeyword.Keyword.indexOf(" / ")) // 'Or' operator, phrase sub-type.
+                    if (weightedKeyword.Keyword.indexOf(" / ")) // 'Or' operator, phrase sub-type.
                     {
                         var split: string[] = weightedKeyword.Keyword.split(" / ");
                         
@@ -316,6 +311,16 @@ class Chatbot
                                 score += weightedKeyword.Weight;
                                 break;
                             }
+                        }
+                    }
+                    else if (weightedKeyword.Keyword.indexOf(" ") !== -1)
+                    {
+                        // If the resource keyword has a space in it, treat the keyword as having
+                        // multiple words (to be matched as one string).
+                        // Also, if the original message contains the keyword phrase, increment the score.
+                        if (message.indexOf(weightedKeyword.Keyword) !== -1)
+                        {
+                            score += weightedKeyword.Weight;
                         }
                     }
                     else if (weightedKeyword.Keyword.indexOf("/")) // 'Or' operator, word sub-type.
@@ -332,12 +337,12 @@ class Chatbot
                             }
                         }
                     }
-
-                    if (inputKeywords.Contains(weightedKeyword.Keyword)) score += weightedKeyword.Weight;
+                    else if (inputKeywords.Contains(weightedKeyword.Keyword)) score += weightedKeyword.Weight;
+                    
                     goal += weightedKeyword.Weight;
                 }
             }
-
+            
             scores.push({ score: score / goal, resName: iteration.resource.Name });
             iteration = this._ResourceIterator.Next();
         }
@@ -352,7 +357,7 @@ class Chatbot
 
         // If the highest score is NaN, this is likely due to an error in the config file; return null.
         else if (Number.isNaN(highScore.score)) { console.log("highScore === NaN; returning null."); return null; }
-        
+
         console.log(scores);
         console.log("Resource: \"" + highScore.resName + "\"\tScore: " + highScore.score);
         
@@ -387,9 +392,8 @@ class Chatbot
         var chooseDifferentTopic = false;
         if (this.innerHTML === "Yes!")
         {
-            Chatbot._Instance._SendMessage(Chatbot._Instance._SuccessMessage);
+            Chatbot._Instance._SendMessage(Chatbot._Instance._Config.SuccessMessage);
             Chatbot._Instance._NumIncorrectResponses = 0;
-            chooseDifferentTopic = true;
         }
         else // Button name === "No".
         {
@@ -397,11 +401,10 @@ class Chatbot
 
             if (Chatbot._Instance._NumIncorrectResponses >= 3)
             {
-                Chatbot._Instance._SendMessage(Chatbot._Instance._StumpedApologyMessage);
-                Chatbot._Instance._SendMessage(Chatbot._Instance._TeamEmailAddress)
+                Chatbot._Instance._SendMessage(Chatbot._Instance._Config.StumpedApologyMessage);
                 Chatbot._Instance._NumIncorrectResponses = 0;
             }
-            else Chatbot._Instance._SendMessage("I'm sorry. How about we try again?");
+            else Chatbot._Instance._SendMessage(Chatbot._Instance._Config.IncorrectResponseApologyMessage);
         }
     }
 }

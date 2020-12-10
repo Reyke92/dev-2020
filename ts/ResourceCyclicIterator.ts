@@ -32,7 +32,6 @@ class ResourceCyclicIterator
             this._Index++;
             return { resource: resource, hasCycled: false }
         }
-
         else
         {
             // Reset the index to 0, and start again from there.

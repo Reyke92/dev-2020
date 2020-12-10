@@ -1,8 +1,9 @@
 {
-    "StumpedApologyMessage": "I'm sorry, I'm having trouble finding what you're looking for. You may still try and keep searching for this however. Alternatively, please feel free to email us with further questions at:",
+    "ApologyMessage": "I'm sorry, I wasn't able to find anything from what you typed. How about we try again?",
+    "IncorrectResponseApologyMessage": "I'm sorry about that. How about we try again?",
+    "StumpedApologyMessage": "I'm sorry, I'm having trouble finding what you're looking for. You may still try and keep searching for this however. Alternatively, please feel free to email us with further questions at: wkuchatbotteam@wku.edu",
     "SuccessMessage": "I'm glad I was able to be of help to you! May I help you with anything else?",
     "WelcomeMessage": "Hey there! What topic may I help you with today?",
-    "TeamEmailAddress": "wkuchatbotteam@wku.com",
     "Topics":
     [
         {
@@ -10,19 +11,19 @@
             "Resources":
             [
                 {
-                    "Name": "on-campus meal plans",
+                    "Name": "On-campus meal plans",
                     "Data": "https://www.wku.edu/wkurg/oncampus.php",
                     "Keywords": ["on campus", "meal/meals", "plan/plans"]
                 },
 
                 {
-                    "Name": "off-campus meal plans",
+                    "Name": "Off-campus meal plans",
                     "Data": "https://www.wku.edu/wkurg/offcampus.php",
                     "Keywords": ["off campus", "meal/meals", "plan/plans"]
                 },
 
                 {
-                    "Name": "flex meal plans",
+                    "Name": "Flex meal plans",
                     "Data": "https://www.wku.edu/wkurg/flexplan.php",
                     "Keywords": ["meal/meals", "plan/plans"],
                     "WeightedKeywords":
@@ -32,21 +33,48 @@
                 },
 
                 {
-                    "Name": "hours of operation",
+                    "Name": "WKU restaurants hours of operation",
                     "Data": "https://www.wku.edu/wkurg/documents/fall2020hoursofoperation.pdf",
-                    "Keywords":["open/opens/opening", "close/closes/closing", "hours", "time/times", "operation"]
+                    "Keywords":
+                    [
+                        "restaurant/restaurants/dining",
+                        "open/opens/opening/close/closes/closing",
+                        "hours",
+                        "time/times",
+                        "operation"
+                    ]
                 },
 
                 {
-                    "Name": "campus restaurant map",
+                    "Name": "Map of campus restaurants",
                     "Data": "https://www.wku.edu/wkurg/images/2020-21campusrestaurantmap.jpg",
-                    "Keywords": ["campus", "restaurant/restaurants", "map", "list", "eat"]
+                    "Keywords": ["campus", "restaurant/restaurants/dining", "map", "list", "eat"]
                 },
 
                 {
-                    "Name": "add additional money",
+                    "Name": "Hilltopper Hub restaurant menu",
+                    "Data": "https://wku.campusdish.com/en/LocationsAndMenus/Hilltopper-Hub",
+                    "Keywords": ["restaurant/restaurants/dining", "menu/menus/food"],
+                    "WeightedKeywords":
+                    [
+                        { "Keyword": "hilltopper hub", "Weight": 2 }
+                    ]
+                },
+
+                {
+                    "Name": "Fresh Food Company restaurant menu",
+                    "Data": "https://wku.campusdish.com/en/LocationsAndMenus/FreshFoodCompany",
+                    "Keywords": ["restaurant/restaurants/dining", "menu/menus/food"],
+                    "WeightedKeywords":
+                    [
+                        { "Keyword": "fresh", "Weight": 2 }
+                    ]
+                },
+
+                {
+                    "Name": "Add additional dining money to WKU student account",
                     "Data": "https://www.wku.edu/wkurg/dbdollars.php",
-                    "Keywords": ["add", "money", "account"],
+                    "Keywords": ["add/added/adding", "money/dollars/bucks", "account/bill"],
                     "WeightedKeywords":
                     [
                         { "Keyword": "big red dollars / dining dollars / meal dollars / meal plan dollars / flex dollars / flex plan dollars", "Weight": 3 }
@@ -72,35 +100,65 @@
             "Resources":
             [
                 {
-                    "Name": "information about the Colonnade program",
+                    "Name": "Information about the Colonnade program",
                     "Data": "https://www.wku.edu/colonnade/index.php",
-                    "Keywords": ["program", "information", "requirements", "about/regarding"],
+                    "Keywords": ["program", "info/information", "requirements/require/requires", "about/regarding"],
                     "WeightedKeywords":
                     [
-                        { "Keyword": "colonnade", "Weight": 3 }
+                        { "Keyword": "colonnade/colonade", "Weight": 3 }
                     ]
                 },
 
                 {
-                    "Name": "2017-2018 academic calendar",
+                    "Name": "List of majors and minors offered",
+                    "Data": "https://www.wku.edu/majors/index.php",
+                    "Keywords": ["all/list", "available/offer/offers/offered/offering"],
+                    "WeightedKeywords":
+                    [
+                        { "Keyword": "major/majors/minor/minors", "Weight": 3 }
+                    ]
+                },
+
+                {
+                    "Name": "WKU Undergraduate academic catalog",
+                    "Data": "http://catalog.wku.edu/undergraduate/",
+                    "Keywords": ["undergraduate", "course/courses/class/classes", "program/programs/degree/degrees"],
+                    "WeightedKeywords":
+                    [
+                        { "Keyword": "catalog / course list / courses list / class list / classes list", "Weight": 3 }
+                    ]
+                },
+
+                {
+                    "Name": "WKU Graduate academic catalog",
+                    "Data": "http://catalog.wku.edu/graduate/",
+                    "Keywords": ["graduate", "course/courses/class/classes", "program/programs/degree/degrees"],
+                    "WeightedKeywords":
+                    [
+                        { "Keyword": "catalog / course list / courses list / class list / classes list", "Weight": 3 }
+                    ]
+                },
+
+                {
+                    "Name": "2017-2018 Academic calendar",
                     "Data": "https://www.wku.edu/registrar/academic_calendars/acadcal2017_2018.pdf",
                     "Keywords": ["17/2017", "18/2018", "academic", "calendar", "semester", "schedule"]
                 },
 
                 {
-                    "Name": "2018-2019 academic calendar",
+                    "Name": "2018-2019 Academic calendar",
                     "Data": "https://www.wku.edu/registrar/academic_calendars/acadcal2018_2019.pdf",
                     "Keywords": ["18/2018", "19/2019", "academic", "calendar", "semester", "schedule"]
                 },
 
                 {
-                    "Name": "2019-2020 academic calendar",
+                    "Name": "2019-2020 Academic calendar",
                     "Data": "https://www.wku.edu/registrar/academic_calendars/acadcal2019_2020_update_covid19.pdf",
                     "Keywords": ["19/2019", "20/2020", "academic", "calendar", "semester", "schedule"]
                 },
 
                 {
-                    "Name": "2020-2021 academic calendar",
+                    "Name": "2020-2021 Academic calendar",
                     "Data": "https://www.wku.edu/registrar/academic_calendars/final_fall20_spring21_updated11-20.pdf",
                     "Keywords": ["20/2020", "21/2021", "academic", "calendar", "semester", "schedule"]
                 }
@@ -120,55 +178,49 @@
         },
 
         {
-            "Name": "Name",
+            "Name": "Financial Aid",
             "Resources":
             [
                 {
-                    "Name": "Name",
-                    "Data": "Either a URL or some text.",
-                    "Keywords": []
+                    "Name": "Cost of attending information",
+                    "Data": "https://www.wku.edu/financialaid/costinfo/",
+                    "Keywords": ["cost/price/money/tuition", "info/information", "how much"]
+                },
+
+                {
+                    "Name": "Financial aid timelines/deadlines",
+                    "Data": "https://www.wku.edu/financialaid/basics/timeline.php",
+                    "Keywords": ["apply/aid", "FAFSA/grant/grants/scholarship/scholarships/KHEAA/TOPDollar"],
+                    "WeightedKeywords":
+                    [
+                        { "Keyword": "when/timeline/timelines", "Weight": 2 }
+                    ]
+                },
+
+                {
+                    "Name": "How to apply for financial aid",
+                    "Data": "https://www.wku.edu/financialaid/applying/how-to-apply.php",
+                    "Keywords": ["how to / how do", "aid", "FAFSA/scholarship/scholarships/grant/grants/TOPDollar"],
+                    "WeightedKeywords":
+                    [
+                        { "Keyword": "apply/applying", "Weight": 2 }
+                    ]
+                },
+
+                {
+                    "Name": "Financial aid options (scholarships, grants, waivers, ...)",
+                    "Data": "https://www.wku.edu/financialaid/scholarships/index.php",
+                    "Keywords": ["aid", "FAFSA/scholarship/scholarships/grant/grants/TOPDollar/waiver/waivers"],
+                    "WeightedKeywords":
+                    [
+                        { "Keyword": "options / types / what kind / resources / source", "Weight": 2 }
+                    ]
                 }
             ]
         },
 
         {
-            "Name": "Name",
-            "Resources":
-            [
-                {
-                    "Name": "Name",
-                    "Data": "Either a URL or some text.",
-                    "Keywords": []
-                }
-            ]
-        },
-
-        {
-            "Name": "Name",
-            "Resources":
-            [
-                {
-                    "Name": "Name",
-                    "Data": "Either a URL or some text.",
-                    "Keywords": []
-                }
-            ]
-        },
-
-        {
-            "Name": "Name",
-            "Resources":
-            [
-                {
-                    "Name": "Name",
-                    "Data": "Either a URL or some text.",
-                    "Keywords": []
-                }
-            ]
-        },
-
-        {
-            "Name": "Name",
+            "Name": "WKU Online",
             "Resources":
             [
                 {

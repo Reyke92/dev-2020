@@ -123,7 +123,7 @@ var C =
 function () {
   function C() {}
 
-  C.CONFIG_FILE_CONTENTS = "{\n    \"StumpedApologyMessage\": \"I'm sorry, I'm having trouble finding what you're looking for. You may still try and keep searching for this however. Alternatively, please feel free to email us with further questions at:\",\n    \"SuccessMessage\": \"I'm glad I was able to be of help to you! May I help you with anything else?\",\n    \"WelcomeMessage\": \"Hey there! What topic may I help you with today?\",\n    \"TeamEmailAddress\": \"wkuchatbotteam@wku.com\",\n    \"Topics\":\n    [\n        {\n            \"Name\": \"Dining\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"on-campus meal plans\",\n                    \"Data\": \"https://www.wku.edu/wkurg/oncampus.php\",\n                    \"Keywords\": [\"on campus\", \"meal/meals\", \"plan/plans\"]\n                },\n\n                {\n                    \"Name\": \"off-campus meal plans\",\n                    \"Data\": \"https://www.wku.edu/wkurg/offcampus.php\",\n                    \"Keywords\": [\"off campus\", \"meal/meals\", \"plan/plans\"]\n                },\n\n                {\n                    \"Name\": \"flex meal plans\",\n                    \"Data\": \"https://www.wku.edu/wkurg/flexplan.php\",\n                    \"Keywords\": [\"meal/meals\", \"plan/plans\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"flex\", \"Weight\": 2 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"hours of operation\",\n                    \"Data\": \"https://www.wku.edu/wkurg/documents/fall2020hoursofoperation.pdf\",\n                    \"Keywords\":[\"open/opens/opening\", \"close/closes/closing\", \"hours\", \"time/times\", \"operation\"]\n                },\n\n                {\n                    \"Name\": \"campus restaurant map\",\n                    \"Data\": \"https://www.wku.edu/wkurg/images/2020-21campusrestaurantmap.jpg\",\n                    \"Keywords\": [\"campus\", \"restaurant/restaurants\", \"map\", \"list\", \"eat\"]\n                },\n\n                {\n                    \"Name\": \"add additional money\",\n                    \"Data\": \"https://www.wku.edu/wkurg/dbdollars.php\",\n                    \"Keywords\": [\"add\", \"money\", \"account\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"big red dollars / dining dollars / meal dollars / meal plan dollars / flex dollars / flex plan dollars\", \"Weight\": 3 }\n                    ]\n                }\n            ]\n        },\n        \n        {\n            \"Name\": \"Housing\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": []\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Academics\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"information about the Colonnade program\",\n                    \"Data\": \"https://www.wku.edu/colonnade/index.php\",\n                    \"Keywords\": [\"program\", \"information\", \"requirements\", \"about/regarding\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"colonnade\", \"Weight\": 3 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"2017-2018 academic calendar\",\n                    \"Data\": \"https://www.wku.edu/registrar/academic_calendars/acadcal2017_2018.pdf\",\n                    \"Keywords\": [\"17/2017\", \"18/2018\", \"academic\", \"calendar\", \"semester\", \"schedule\"]\n                },\n\n                {\n                    \"Name\": \"2018-2019 academic calendar\",\n                    \"Data\": \"https://www.wku.edu/registrar/academic_calendars/acadcal2018_2019.pdf\",\n                    \"Keywords\": [\"18/2018\", \"19/2019\", \"academic\", \"calendar\", \"semester\", \"schedule\"]\n                },\n\n                {\n                    \"Name\": \"2019-2020 academic calendar\",\n                    \"Data\": \"https://www.wku.edu/registrar/academic_calendars/acadcal2019_2020_update_covid19.pdf\",\n                    \"Keywords\": [\"19/2019\", \"20/2020\", \"academic\", \"calendar\", \"semester\", \"schedule\"]\n                },\n\n                {\n                    \"Name\": \"2020-2021 academic calendar\",\n                    \"Data\": \"https://www.wku.edu/registrar/academic_calendars/final_fall20_spring21_updated11-20.pdf\",\n                    \"Keywords\": [\"20/2020\", \"21/2021\", \"academic\", \"calendar\", \"semester\", \"schedule\"]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Advising\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": []\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Name\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": []\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Name\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": []\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Name\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": []\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Name\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": []\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Name\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": []\n                }\n            ]\n        }\n    ]\n}";
+  C.CONFIG_FILE_CONTENTS = "{\n    \"ApologyMessage\": \"I'm sorry, I wasn't able to find anything from what you typed. How about we try again?\",\n    \"IncorrectResponseApologyMessage\": \"I'm sorry about that. How about we try again?\",\n    \"StumpedApologyMessage\": \"I'm sorry, I'm having trouble finding what you're looking for. You may still try and keep searching for this however. Alternatively, please feel free to email us with further questions at: wkuchatbotteam@wku.edu\",\n    \"SuccessMessage\": \"I'm glad I was able to be of help to you! May I help you with anything else?\",\n    \"WelcomeMessage\": \"Hey there! What topic may I help you with today?\",\n    \"Topics\":\n    [\n        {\n            \"Name\": \"Dining\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"On-campus meal plans\",\n                    \"Data\": \"https://www.wku.edu/wkurg/oncampus.php\",\n                    \"Keywords\": [\"on campus\", \"meal/meals\", \"plan/plans\"]\n                },\n\n                {\n                    \"Name\": \"Off-campus meal plans\",\n                    \"Data\": \"https://www.wku.edu/wkurg/offcampus.php\",\n                    \"Keywords\": [\"off campus\", \"meal/meals\", \"plan/plans\"]\n                },\n\n                {\n                    \"Name\": \"Flex meal plans\",\n                    \"Data\": \"https://www.wku.edu/wkurg/flexplan.php\",\n                    \"Keywords\": [\"meal/meals\", \"plan/plans\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"flex\", \"Weight\": 2 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"WKU restaurants hours of operation\",\n                    \"Data\": \"https://www.wku.edu/wkurg/documents/fall2020hoursofoperation.pdf\",\n                    \"Keywords\":\n                    [\n                        \"restaurant/restaurants/dining\",\n                        \"open/opens/opening/close/closes/closing\",\n                        \"hours\",\n                        \"time/times\",\n                        \"operation\"\n                    ]\n                },\n\n                {\n                    \"Name\": \"Map of campus restaurants\",\n                    \"Data\": \"https://www.wku.edu/wkurg/images/2020-21campusrestaurantmap.jpg\",\n                    \"Keywords\": [\"campus\", \"restaurant/restaurants/dining\", \"map\", \"list\", \"eat\"]\n                },\n\n                {\n                    \"Name\": \"Hilltopper Hub restaurant menu\",\n                    \"Data\": \"https://wku.campusdish.com/en/LocationsAndMenus/Hilltopper-Hub\",\n                    \"Keywords\": [\"restaurant/restaurants/dining\", \"menu/menus/food\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"hilltopper hub\", \"Weight\": 2 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"Fresh Food Company restaurant menu\",\n                    \"Data\": \"https://wku.campusdish.com/en/LocationsAndMenus/FreshFoodCompany\",\n                    \"Keywords\": [\"restaurant/restaurants/dining\", \"menu/menus/food\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"fresh\", \"Weight\": 2 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"Add additional dining money to WKU student account\",\n                    \"Data\": \"https://www.wku.edu/wkurg/dbdollars.php\",\n                    \"Keywords\": [\"add/added/adding\", \"money/dollars/bucks\", \"account/bill\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"big red dollars / dining dollars / meal dollars / meal plan dollars / flex dollars / flex plan dollars\", \"Weight\": 3 }\n                    ]\n                }\n            ]\n        },\n        \n        {\n            \"Name\": \"Housing\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": []\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Academics\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Information about the Colonnade program\",\n                    \"Data\": \"https://www.wku.edu/colonnade/index.php\",\n                    \"Keywords\": [\"program\", \"info/information\", \"requirements/require/requires\", \"about/regarding\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"colonnade/colonade\", \"Weight\": 3 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"List of majors and minors offered\",\n                    \"Data\": \"https://www.wku.edu/majors/index.php\",\n                    \"Keywords\": [\"all/list\", \"available/offer/offers/offered/offering\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"major/majors/minor/minors\", \"Weight\": 3 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"WKU Undergraduate academic catalog\",\n                    \"Data\": \"http://catalog.wku.edu/undergraduate/\",\n                    \"Keywords\": [\"undergraduate\", \"course/courses/class/classes\", \"program/programs/degree/degrees\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"catalog / course list / courses list / class list / classes list\", \"Weight\": 3 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"WKU Graduate academic catalog\",\n                    \"Data\": \"http://catalog.wku.edu/graduate/\",\n                    \"Keywords\": [\"graduate\", \"course/courses/class/classes\", \"program/programs/degree/degrees\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"catalog / course list / courses list / class list / classes list\", \"Weight\": 3 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"2017-2018 Academic calendar\",\n                    \"Data\": \"https://www.wku.edu/registrar/academic_calendars/acadcal2017_2018.pdf\",\n                    \"Keywords\": [\"17/2017\", \"18/2018\", \"academic\", \"calendar\", \"semester\", \"schedule\"]\n                },\n\n                {\n                    \"Name\": \"2018-2019 Academic calendar\",\n                    \"Data\": \"https://www.wku.edu/registrar/academic_calendars/acadcal2018_2019.pdf\",\n                    \"Keywords\": [\"18/2018\", \"19/2019\", \"academic\", \"calendar\", \"semester\", \"schedule\"]\n                },\n\n                {\n                    \"Name\": \"2019-2020 Academic calendar\",\n                    \"Data\": \"https://www.wku.edu/registrar/academic_calendars/acadcal2019_2020_update_covid19.pdf\",\n                    \"Keywords\": [\"19/2019\", \"20/2020\", \"academic\", \"calendar\", \"semester\", \"schedule\"]\n                },\n\n                {\n                    \"Name\": \"2020-2021 Academic calendar\",\n                    \"Data\": \"https://www.wku.edu/registrar/academic_calendars/final_fall20_spring21_updated11-20.pdf\",\n                    \"Keywords\": [\"20/2020\", \"21/2021\", \"academic\", \"calendar\", \"semester\", \"schedule\"]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Advising\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": []\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Financial Aid\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Cost of attending information\",\n                    \"Data\": \"https://www.wku.edu/financialaid/costinfo/\",\n                    \"Keywords\": [\"cost/price/money/tuition\", \"info/information\", \"how much\"]\n                },\n\n                {\n                    \"Name\": \"Financial aid timelines/deadlines\",\n                    \"Data\": \"https://www.wku.edu/financialaid/basics/timeline.php\",\n                    \"Keywords\": [\"apply/aid\", \"FAFSA/grant/grants/scholarship/scholarships/KHEAA/TOPDollar\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"when/timeline/timelines\", \"Weight\": 2 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"How to apply for financial aid\",\n                    \"Data\": \"https://www.wku.edu/financialaid/applying/how-to-apply.php\",\n                    \"Keywords\": [\"how to / how do\", \"aid\", \"FAFSA/scholarship/scholarships/grant/grants/TOPDollar\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"apply/applying\", \"Weight\": 2 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"Financial aid options (scholarships, grants, waivers, ...)\",\n                    \"Data\": \"https://www.wku.edu/financialaid/scholarships/index.php\",\n                    \"Keywords\": [\"aid\", \"FAFSA/scholarship/scholarships/grant/grants/TOPDollar/waiver/waivers\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"options / types / what kind / resources / source\", \"Weight\": 2 }\n                    ]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"WKU Online\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": []\n                }\n            ]\n        }\n    ]\n}";
   return C;
 }();
 
@@ -131,6 +131,7 @@ var Chatbot =
 /** @class */
 function () {
   function Chatbot() {
+    this._ConfigLoaded = false;
     window.addEventListener("load", this._OnPageLoaded);
   }
 
@@ -138,6 +139,7 @@ function () {
     // If the Chatbot instance exists, just return it./
     if (!!this._Instance) return this._Instance;
     this._Instance = new Chatbot();
+    this._Instance._ConfigLoaded = false;
     this._Instance._NumIncorrectResponses = 0;
     UI.GetInstance(); // Cause the UI to initialize itself.
 
@@ -170,21 +172,19 @@ function () {
     var resource = this._SearchForResource(userMessage, messageKeywords); // If the resource could not be found.
 
 
-    if (resource == null) {
+    if (resource === null) {
       this._NumIncorrectResponses++;
 
       if (this._NumIncorrectResponses >= 3) {
-        this._SendMessage(this._StumpedApologyMessage);
-
-        this._SendMessage(this._TeamEmailAddress);
+        this._SendMessage(this._Config.StumpedApologyMessage);
 
         this._NumIncorrectResponses = 0;
-      } else {
-        this._SendMessage("I'm sorry, I wasn't able to find anything from what you typed. " + "How about we try again?");
-      }
+      } else this._SendMessage(this._Config.ApologyMessage);
     } else // If the resource was found.
       {
-        this._SendMessage(resource.Data);
+        if (Resource.IsDataJustURL(resource)) {
+          UI.GetInstance().DisplayChatbotMessageUsingResource(resource);
+        } else this._SendMessage(resource.Data);
 
         UI.GetInstance().EnableInput(false);
         UI.GetInstance().DisplayButtons(["Yes!", "No"], "Was this what you were looking for?", this._YesOrNoButtonsCallback);
@@ -241,18 +241,19 @@ function () {
   };
 
   Chatbot.prototype._Init = function () {
-    // Initialize the UI first.
+    // Initialize the UI.
     UI.GetInstance().Init();
-    this.BeginChooseTopic(this._WelcomeMessage);
+    this.BeginChooseTopic(this._Config.WelcomeMessage);
   };
 
   Chatbot.prototype._LoadConfigFile = function (configJson) {
-    var config = JSON.parse(configJson); // Make sure that all dashes within a resource's keyword (if any) are
+    this._ConfigLoaded = false;
+    this._Config = JSON.parse(configJson); // Make sure that all dashes within a resource's keyword (if any) are
     // replaced by a space. This is done so that the _SearchForResource(...) method
     // can save some processing time.
 
-    for (var topicIndex = 0; topicIndex < config.Topics.length; topicIndex++) {
-      var topic = config.Topics[topicIndex];
+    for (var topicIndex = 0; topicIndex < this._Config.Topics.length; topicIndex++) {
+      var topic = this._Config.Topics[topicIndex];
 
       for (var resIndex = 0; resIndex < topic.Resources.length; resIndex++) {
         var res = topic.Resources[resIndex]; // Default-weight keywords.
@@ -268,13 +269,11 @@ function () {
           }
         }
       }
-    }
+    } // Load the topics into a new TopicCyclicIterator.
 
-    this._StumpedApologyMessage = config.StumpedApologyMessage;
-    this._SuccessMessage = config.SuccessMessage;
-    this._WelcomeMessage = config.WelcomeMessage;
-    this._TeamEmailAddress = config.TeamEmailAddress;
-    this._TopicIterator = new TopicCyclicIterator(config.Topics);
+
+    this._TopicIterator = new TopicCyclicIterator(this._Config.Topics);
+    this._ConfigLoaded = true;
   };
 
   Chatbot.prototype._OnChooseTopicTopicSelected = function (e) {
@@ -289,7 +288,16 @@ function () {
   };
 
   Chatbot.prototype._OnPageLoaded = function (e) {
-    // Initialize the Chatbot.
+    // Make sure that the config has been fully loaded into memory before contiuing.
+    // This can be done by waiting for the Chatbot instance to be instantiated
+    // (if it hasn't been already), and then waiting for the configuration file to
+    // be loaded.
+    while (!!!Chatbot._Instance || !Chatbot._Instance._ConfigLoaded) {
+      // Wait 300ms and try again.
+      setTimeout(function () {}, 300);
+    } // Initialize the Chatbot.
+
+
     Chatbot._Instance._Init();
   };
 
@@ -320,15 +328,7 @@ function () {
       var score = 0; // Calculate the score for the default-weight keywords.
 
       iteration.resource.Keywords.forEach(function (resourceKeyword, index, array) {
-        // If the resource keyword has a space in it, treat the keyword as having
-        // multiple words (to be matched as one string).
-        if (resourceKeyword.indexOf(" ") !== -1) {
-          // If the original message contains the keyword phrase, increment the score.
-          // We do this because the inputKeywords parameter is of the type HashMap<number>,
-          // and since it's a hashmap, the words are not in order (and keyword phrases
-          // need to be matched in the order that their words are specified).
-          if (message.indexOf(resourceKeyword) !== -1) score++;
-        } else if (resourceKeyword.indexOf(" / ") !== -1) // 'Or' operator, phrase sub-type.
+        if (resourceKeyword.indexOf(" / ") !== -1) // 'Or' operator, phrase sub-type.
           {
             var split = resourceKeyword.split(" / ");
 
@@ -339,7 +339,15 @@ function () {
                 break;
               }
             }
-          } else if (resourceKeyword.indexOf("/") !== -1) // 'Or' operator, word sub-type.
+          } else if (resourceKeyword.indexOf(" ") !== -1) {
+          // If the resource keyword has a space in it, treat the keyword as having
+          // multiple words (to be matched as one string).
+          // Also, if the original message contains the keyword phrase, increment the score.
+          // We do this because the inputKeywords parameter is of the type HashMap<number>,
+          // and since it's a hashmap, the words are not in order (and keyword phrases
+          // need to be matched in the order that their words are specified).
+          if (message.indexOf(resourceKeyword) !== -1) score++;
+        } else if (resourceKeyword.indexOf("/") !== -1) // 'Or' operator, word sub-type.
           {
             var split = resourceKeyword.split("/");
 
@@ -357,15 +365,9 @@ function () {
 
       if (iteration.resource.WeightedKeywords !== undefined) {
         for (var i = 0; i < iteration.resource.WeightedKeywords.length; i++) {
-          var weightedKeyword = iteration.resource.WeightedKeywords[i]; // If the resource keyword has a space in it, treat the keyword as having
-          // multiple words (to be matched as one string).
+          var weightedKeyword = iteration.resource.WeightedKeywords[i];
 
-          if (weightedKeyword.Keyword.indexOf(" ") !== -1) {
-            // If the original message contains the keyword phrase, increment the score.
-            if (message.indexOf(weightedKeyword.Keyword) !== -1) {
-              score += weightedKeyword.Weight;
-            }
-          } else if (weightedKeyword.Keyword.indexOf(" / ")) // 'Or' operator, phrase sub-type.
+          if (weightedKeyword.Keyword.indexOf(" / ")) // 'Or' operator, phrase sub-type.
             {
               var split = weightedKeyword.Keyword.split(" / ");
 
@@ -376,7 +378,14 @@ function () {
                   break;
                 }
               }
-            } else if (weightedKeyword.Keyword.indexOf("/")) // 'Or' operator, word sub-type.
+            } else if (weightedKeyword.Keyword.indexOf(" ") !== -1) {
+            // If the resource keyword has a space in it, treat the keyword as having
+            // multiple words (to be matched as one string).
+            // Also, if the original message contains the keyword phrase, increment the score.
+            if (message.indexOf(weightedKeyword.Keyword) !== -1) {
+              score += weightedKeyword.Weight;
+            }
+          } else if (weightedKeyword.Keyword.indexOf("/")) // 'Or' operator, word sub-type.
             {
               var split = weightedKeyword.Keyword.split("/");
 
@@ -387,9 +396,8 @@ function () {
                   break;
                 }
               }
-            }
+            } else if (inputKeywords.Contains(weightedKeyword.Keyword)) score += weightedKeyword.Weight;
 
-          if (inputKeywords.Contains(weightedKeyword.Keyword)) score += weightedKeyword.Weight;
           goal += weightedKeyword.Weight;
         }
       }
@@ -449,21 +457,18 @@ function () {
     var chooseDifferentTopic = false;
 
     if (this.innerHTML === "Yes!") {
-      Chatbot._Instance._SendMessage(Chatbot._Instance._SuccessMessage);
+      Chatbot._Instance._SendMessage(Chatbot._Instance._Config.SuccessMessage);
 
       Chatbot._Instance._NumIncorrectResponses = 0;
-      chooseDifferentTopic = true;
     } else // Button name === "No".
       {
         Chatbot._Instance._NumIncorrectResponses++;
 
         if (Chatbot._Instance._NumIncorrectResponses >= 3) {
-          Chatbot._Instance._SendMessage(Chatbot._Instance._StumpedApologyMessage);
-
-          Chatbot._Instance._SendMessage(Chatbot._Instance._TeamEmailAddress);
+          Chatbot._Instance._SendMessage(Chatbot._Instance._Config.StumpedApologyMessage);
 
           Chatbot._Instance._NumIncorrectResponses = 0;
-        } else Chatbot._Instance._SendMessage("I'm sorry. How about we try again?");
+        } else Chatbot._Instance._SendMessage(Chatbot._Instance._Config.IncorrectResponseApologyMessage);
       }
   };
 
@@ -546,6 +551,12 @@ var Resource =
 /** @class */
 function () {
   function Resource() {}
+
+  Resource.IsDataJustURL = function (res) {
+    // If the Data starts with "http" and only a URL exists (no other words/URLs/etc.),
+    // return true. Otherwise, return false.
+    return res.Data.startsWith("http") && res.Data.split(" ").length == 1;
+  };
 
   return Resource;
 }();
@@ -702,18 +713,42 @@ function () {
 
   UI.prototype.DisplayMessage = function (type, message) {
     var element = document.createElement("div");
-    if (type === MessageType.Chatbot) element.classList.add("chatbotMessage");else if (type === MessageType.User) element.classList.add("userMessage");else if (type === MessageType.System) element.classList.add("systemMessage");else throw new Error("UI.DisplayMessage: A valid MessageType must be supplied!"); // If the message is a URL, make it a hyperlink.
+    if (type === MessageType.Chatbot) element.classList.add("chatbotMessage");else if (type === MessageType.User) element.classList.add("userMessage");else if (type === MessageType.System) element.classList.add("systemMessage");else throw new Error("UI.DisplayMessage: A valid MessageType must be supplied!"); // If the message contains any URls or email addresses, make them hyperlinks.
 
-    if (message.startsWith("http")) {
-      element.innerHTML = "<p><a href=\"" + message + "\">" + message + "</a></p>";
-    } else element.innerHTML = "<p>" + message + "</p>";
+    if (message.indexOf("http") !== -1 || message.indexOf("@") !== -1) {
+      var parts = message.split(" ");
+
+      for (var i = 0; i < parts.length; i++) {
+        if (parts[i].startsWith("http")) {
+          element.innerHTML += "<a href=\"" + parts[i] + "\" target=\"_blank\">" + parts[i] + "</a> ";
+        } else if (parts[i].indexOf("@") !== -1 && parts[i].length > 1) {
+          element.innerHTML += "<a href=\"mailto:" + parts[i] + "\">" + parts[i] + "</a> ";
+        } else element.innerHTML += parts[i] + " ";
+      } // Remove the trailing space at the end of the element's innerHTML field.
+
+
+      element.innerHTML = "<p>" + element.innerHTML.substring(0, element.innerHTML.length - 1) + "</p>";
+    } // Or, if no URLs were found in the message, just use the message as-is.
+    else element.innerHTML = "<p>" + message + "</p>";
 
     element.id = this._GetNewMessageID().toString();
 
     this._MessageList.appendChild(element);
 
     this.ScrollToBottomOfMessageList();
-    return this._LastMessageID;
+    return this._LastMessageID; // Return the current element ID.
+  };
+
+  UI.prototype.DisplayChatbotMessageUsingResource = function (resource) {
+    var element = document.createElement("div");
+    element.classList.add("chatbotMessage");
+    element.innerHTML = "<p><a href=\"" + resource.Data + "\" target=\"_blank\">" + resource.Name + "</a></p>";
+    element.id = this._GetNewMessageID().toString();
+
+    this._MessageList.appendChild(element);
+
+    this.ScrollToBottomOfMessageList();
+    return this._LastMessageID; // Return the current element ID.
   };
 
   UI.prototype.EnableInput = function (enabled) {
@@ -814,7 +849,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55223" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52088" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

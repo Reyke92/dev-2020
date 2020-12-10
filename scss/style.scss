@@ -81,7 +81,7 @@ body {
           color: #f1f1f1;
 
           /* Links given by the Chatbot. */
-          > p > a {
+          > p > a, > p > a:hover, > p > a:active, > p > a:visited {
             color: #f1f1f1;
           }
         }

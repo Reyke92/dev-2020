@@ -75,7 +75,7 @@ body .fullscreen > .appWindow > #messageList > .chatbotMessage {
   color: #f1f1f1;
   /* Links given by the Chatbot. */
 }
-body .fullscreen > .appWindow > #messageList > .chatbotMessage > p > a {
+body .fullscreen > .appWindow > #messageList > .chatbotMessage > p > a, body .fullscreen > .appWindow > #messageList > .chatbotMessage > p > a:hover, body .fullscreen > .appWindow > #messageList > .chatbotMessage > p > a:active, body .fullscreen > .appWindow > #messageList > .chatbotMessage > p > a:visited {
   color: #f1f1f1;
 }
 body .fullscreen > .appWindow > #messageList > .systemMessage {
