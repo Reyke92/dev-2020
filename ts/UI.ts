@@ -28,6 +28,12 @@ class UI
         return this._Instance;
     }
 
+    public DeleteAllMessages(): void
+    {
+        this._MessageList.textContent = "";
+        this._LastMessageID = -1;
+    }
+
     public DeleteAllMessagesWithID(messageID: number): void
     {
         // Go through the whole list of messages and search for one with the ID specified.
@@ -122,6 +128,10 @@ class UI
     {
         this._ChangeTopicButton.disabled = !enabled;
         this._MessageBox.disabled = !enabled;
+
+        // The MessageBox is in charge of enabling the Send button, so
+        // only allow disabling of the Send button through this method.
+        if (!enabled) this._SendButton.disabled = true;
     }
 
     public Init(): void

@@ -123,7 +123,7 @@ var C =
 function () {
   function C() {}
 
-  C.CONFIG_FILE_CONTENTS = "{\n    \"ApologyMessage\": \"I'm sorry, I wasn't able to find anything from what you typed. How about we try again?\",\n    \"IncorrectResponseApologyMessage\": \"I'm sorry about that. How about we try again?\",\n    \"StumpedApologyMessage\": \"I'm sorry, I'm having trouble finding what you're looking for. You may still try and keep searching for this however. Alternatively, please feel free to email us with further questions at: wkuchatbotteam@wku.edu\",\n    \"SuccessMessage\": \"I'm glad I was able to be of help to you! May I help you with anything else?\",\n    \"WelcomeMessage\": \"Hey there! What topic may I help you with today?\",\n    \"Topics\":\n    [\n        {\n            \"Name\": \"Dining\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"On-campus meal plans\",\n                    \"Data\": \"https://www.wku.edu/wkurg/oncampus.php\",\n                    \"Keywords\": [\"on campus\", \"meal/meals\", \"plan/plans\"]\n                },\n\n                {\n                    \"Name\": \"Off-campus meal plans\",\n                    \"Data\": \"https://www.wku.edu/wkurg/offcampus.php\",\n                    \"Keywords\": [\"off campus\", \"meal/meals\", \"plan/plans\"]\n                },\n\n                {\n                    \"Name\": \"Flex meal plans\",\n                    \"Data\": \"https://www.wku.edu/wkurg/flexplan.php\",\n                    \"Keywords\": [\"meal/meals\", \"plan/plans\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"flex\", \"Weight\": 2 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"WKU restaurants hours of operation\",\n                    \"Data\": \"https://www.wku.edu/wkurg/documents/fall2020hoursofoperation.pdf\",\n                    \"Keywords\":\n                    [\n                        \"restaurant/restaurants/dining\",\n                        \"open/opens/opening/close/closes/closing\",\n                        \"hours\",\n                        \"time/times\",\n                        \"operation\"\n                    ]\n                },\n\n                {\n                    \"Name\": \"Map of campus restaurants\",\n                    \"Data\": \"https://www.wku.edu/wkurg/images/2020-21campusrestaurantmap.jpg\",\n                    \"Keywords\": [\"campus\", \"restaurant/restaurants/dining\", \"map\", \"list\", \"eat\"]\n                },\n\n                {\n                    \"Name\": \"Hilltopper Hub restaurant menu\",\n                    \"Data\": \"https://wku.campusdish.com/en/LocationsAndMenus/Hilltopper-Hub\",\n                    \"Keywords\": [\"restaurant/restaurants/dining\", \"menu/menus/food\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"hilltopper hub\", \"Weight\": 2 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"Fresh Food Company restaurant menu\",\n                    \"Data\": \"https://wku.campusdish.com/en/LocationsAndMenus/FreshFoodCompany\",\n                    \"Keywords\": [\"restaurant/restaurants/dining\", \"menu/menus/food\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"fresh\", \"Weight\": 2 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"Add additional dining money to WKU student account\",\n                    \"Data\": \"https://www.wku.edu/wkurg/dbdollars.php\",\n                    \"Keywords\": [\"add/added/adding\", \"money/dollars/bucks\", \"account/bill\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"big red dollars / dining dollars / meal dollars / meal plan dollars / flex dollars / flex plan dollars\", \"Weight\": 3 }\n                    ]\n                }\n            ]\n        },\n        \n        {\n            \"Name\": \"Housing\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": []\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Academics\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Information about the Colonnade program\",\n                    \"Data\": \"https://www.wku.edu/colonnade/index.php\",\n                    \"Keywords\": [\"program\", \"info/information\", \"requirements/require/requires\", \"about/regarding\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"colonnade/colonade\", \"Weight\": 3 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"List of majors and minors offered\",\n                    \"Data\": \"https://www.wku.edu/majors/index.php\",\n                    \"Keywords\": [\"all/list\", \"available/offer/offers/offered/offering\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"major/majors/minor/minors\", \"Weight\": 3 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"WKU Undergraduate academic catalog\",\n                    \"Data\": \"http://catalog.wku.edu/undergraduate/\",\n                    \"Keywords\": [\"undergraduate\", \"course/courses/class/classes\", \"program/programs/degree/degrees\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"catalog / course list / courses list / class list / classes list\", \"Weight\": 3 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"WKU Graduate academic catalog\",\n                    \"Data\": \"http://catalog.wku.edu/graduate/\",\n                    \"Keywords\": [\"graduate\", \"course/courses/class/classes\", \"program/programs/degree/degrees\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"catalog / course list / courses list / class list / classes list\", \"Weight\": 3 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"2017-2018 Academic calendar\",\n                    \"Data\": \"https://www.wku.edu/registrar/academic_calendars/acadcal2017_2018.pdf\",\n                    \"Keywords\": [\"17/2017\", \"18/2018\", \"academic\", \"calendar\", \"semester\", \"schedule\"]\n                },\n\n                {\n                    \"Name\": \"2018-2019 Academic calendar\",\n                    \"Data\": \"https://www.wku.edu/registrar/academic_calendars/acadcal2018_2019.pdf\",\n                    \"Keywords\": [\"18/2018\", \"19/2019\", \"academic\", \"calendar\", \"semester\", \"schedule\"]\n                },\n\n                {\n                    \"Name\": \"2019-2020 Academic calendar\",\n                    \"Data\": \"https://www.wku.edu/registrar/academic_calendars/acadcal2019_2020_update_covid19.pdf\",\n                    \"Keywords\": [\"19/2019\", \"20/2020\", \"academic\", \"calendar\", \"semester\", \"schedule\"]\n                },\n\n                {\n                    \"Name\": \"2020-2021 Academic calendar\",\n                    \"Data\": \"https://www.wku.edu/registrar/academic_calendars/final_fall20_spring21_updated11-20.pdf\",\n                    \"Keywords\": [\"20/2020\", \"21/2021\", \"academic\", \"calendar\", \"semester\", \"schedule\"]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Advising\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": []\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Financial Aid\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Cost of attending information\",\n                    \"Data\": \"https://www.wku.edu/financialaid/costinfo/\",\n                    \"Keywords\": [\"cost/price/money/tuition\", \"info/information\", \"how much\"]\n                },\n\n                {\n                    \"Name\": \"Financial aid timelines/deadlines\",\n                    \"Data\": \"https://www.wku.edu/financialaid/basics/timeline.php\",\n                    \"Keywords\": [\"apply/aid\", \"FAFSA/grant/grants/scholarship/scholarships/KHEAA/TOPDollar\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"when/timeline/timelines\", \"Weight\": 2 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"How to apply for financial aid\",\n                    \"Data\": \"https://www.wku.edu/financialaid/applying/how-to-apply.php\",\n                    \"Keywords\": [\"how to / how do\", \"aid\", \"FAFSA/scholarship/scholarships/grant/grants/TOPDollar\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"apply/applying\", \"Weight\": 2 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"Financial aid options (scholarships, grants, waivers, ...)\",\n                    \"Data\": \"https://www.wku.edu/financialaid/scholarships/index.php\",\n                    \"Keywords\": [\"aid\", \"FAFSA/scholarship/scholarships/grant/grants/TOPDollar/waiver/waivers\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"options / types / what kind / resources / source\", \"Weight\": 2 }\n                    ]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"WKU Online\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Name\",\n                    \"Data\": \"Either a URL or some text.\",\n                    \"Keywords\": []\n                }\n            ]\n        }\n    ]\n}";
+  C.CONFIG_FILE_CONTENTS = "{\n    \"ApologyMessage\": \"I'm sorry, I wasn't able to find anything from what you typed. How about we try again?\",\n    \"IncorrectResponseApologyMessage\": \"I'm sorry about that. How about we try again?\",\n    \"StumpedApologyMessage\": \"I'm sorry, I'm having trouble finding what you're looking for; it is possible that I may not yet be able to help with finding this. You may still try and keep searching for this, however. Alternatively, please feel free to email us with further questions at: wkuchatbotteam@wku.edu\",\n    \"SuccessMessage\": \"I'm glad I was able to be of help to you! May I help you with anything else?\",\n    \"WelcomeMessage\": \"Hey there! What topic may I help you with today?\",\n    \"TipsFrequency\": 2,\n    \"Topics\":\n    [\n        {\n            \"Name\": \"Dining\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"On-campus meal plans\",\n                    \"Data\": \"https://www.wku.edu/wkurg/oncampus.php\",\n                    \"Keywords\": [\"on campus\", \"meal/meals\", \"plan/plans\"]\n                },\n\n                {\n                    \"Name\": \"Off-campus meal plans\",\n                    \"Data\": \"https://www.wku.edu/wkurg/offcampus.php\",\n                    \"Keywords\": [\"off campus\", \"meal/meals\", \"plan/plans\"]\n                },\n\n                {\n                    \"Name\": \"Flex meal plans\",\n                    \"Data\": \"https://www.wku.edu/wkurg/flexplan.php\",\n                    \"Keywords\": [\"meal/meals\", \"plan/plans\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"flex\", \"Weight\": 2 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"WKU restaurants hours of operation\",\n                    \"Data\": \"https://www.wku.edu/wkurg/documents/fall2020hoursofoperation.pdf\",\n                    \"Keywords\":\n                    [\n                        \"restaurant/restaurants/dining\",\n                        \"open/opens/opening/close/closes/closing\",\n                        \"hours\",\n                        \"time/times\",\n                        \"operation\"\n                    ]\n                },\n\n                {\n                    \"Name\": \"Map of campus restaurants\",\n                    \"Data\": \"https://www.wku.edu/wkurg/images/2020-21campusrestaurantmap.jpg\",\n                    \"Keywords\": [\"campus\", \"restaurant/restaurants/dining\", \"map\", \"list\", \"eat\"]\n                },\n\n                {\n                    \"Name\": \"Hilltopper Hub restaurant menu\",\n                    \"Data\": \"https://wku.campusdish.com/en/LocationsAndMenus/Hilltopper-Hub\",\n                    \"Keywords\": [\"restaurant/restaurants/dining\", \"menu/menus/food\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"hilltopper hub\", \"Weight\": 2 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"Fresh Food Company restaurant menu\",\n                    \"Data\": \"https://wku.campusdish.com/en/LocationsAndMenus/FreshFoodCompany\",\n                    \"Keywords\": [\"restaurant/restaurants/dining\", \"menu/menus/food\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"fresh\", \"Weight\": 2 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"Add additional dining money to WKU student account\",\n                    \"Data\": \"https://www.wku.edu/wkurg/dbdollars.php\",\n                    \"Keywords\": [\"add/added/adding\", \"money/dollars/bucks\", \"account/bill\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"big red dollars / dining dollars / meal dollars / meal plan dollars / flex dollars / flex plan dollars\", \"Weight\": 3 }\n                    ]\n                }\n            ]\n        },\n        \n        {\n            \"Name\": \"Housing\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"How to apply for WKU housing\",\n                    \"Data\": \"https://wku.edu/housing/apply/index.php\",\n                    \"Keywords\": [\"information/info\", \"about/regarding\", \"how to\", \"apply/applying\", \"housing/room/rooms/hall/halls\"]\n                },\n\n                {\n                    \"Name\": \"How to apply for a private room\",\n                    \"Data\": \"A private room may be requested either through the Housing Portal (after a designated amount of time after the start of the semester) or - in the case that the requesting student has a documented disability - through working with the SARC (Student Accessibility Resource Center) office. If space is available, requests for private rooms will be approved on a first-come, first-serve basis, with one exception: a student with a documented disability may request housing accommodations (among other accommodations) from the WKU SARC (Student Accessbility Resource Center) office, and the SARC staff will work with WKU HRL (Housing and Residence Life) to try and secure a private room for the student, with that of a higher priority than of other students' requests for a private room. The resident of a private room agrees to pay the additional charges either before the semester begins or before the move is complete, unless the resident obtained the room through the SARC office, in which case there will be no extra charge for the resident. If you would like more information about the SARC office, please visit https://www.wku.edu/sarc/\",\n                    \"Keywords\": [\"how to\", \"apply/applying\", \"room/rooms/housing/hall/halls\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"private/solo\", \"Weight\": 3 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"Residence hall rates\",\n                    \"Data\": \"https://wku.edu/housing/halls/rates.php\",\n                    \"Keywords\": [\"hall/halls/room/rooms/housing\", \"community/pod/suite/hotel\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"rates / rate / prices / price / cost / costs / charge / charges / how much\", \"Weight\": 3 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"How much does a private room cost?\",\n                    \"Data\": \"A private room costs 1.25x the double-rate listed at https://wku.edu/housing/halls/rates.php , unless the student has a documented disability and would like the SARC (Student Accessibility Resource Center) to intervene on their behalf to try and secure the student a private room at no additional cost. If you would like more information about the SARC office, and how to request housing accommodations (among other accommodations) through them, please visit https://www.wku.edu/sarc/\",\n                    \"Keywords\": [\"hall/halls/room/rooms/housing\", \"community/pod/suite/hotel\", \"private\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"rates / rate / prices / price / cost / costs / charge / charges / how much\", \"Weight\": 3 }\n                    ]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Academics\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Information about the Colonnade program\",\n                    \"Data\": \"https://www.wku.edu/colonnade/index.php\",\n                    \"Keywords\": [\"program\", \"info/information\", \"requirements/require/requires\", \"about/regarding\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"colonnade/colonade\", \"Weight\": 3 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"List of majors and minors offered\",\n                    \"Data\": \"https://www.wku.edu/majors/index.php\",\n                    \"Keywords\": [\"all/list\", \"available/offer/offers/offered/offering\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"major/majors/minor/minors\", \"Weight\": 3 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"WKU Undergraduate academic catalog\",\n                    \"Data\": \"http://catalog.wku.edu/undergraduate/\",\n                    \"Keywords\": [\"undergraduate\", \"course/courses/class/classes\", \"program/programs/degree/degrees\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"catalog / course list / courses list / class list / classes list\", \"Weight\": 3 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"WKU Graduate academic catalog\",\n                    \"Data\": \"http://catalog.wku.edu/graduate/\",\n                    \"Keywords\": [\"graduate\", \"course/courses/class/classes\", \"program/programs/degree/degrees\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"catalog / course list / courses list / class list / classes list\", \"Weight\": 3 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"2017-2018 Academic calendar\",\n                    \"Data\": \"https://www.wku.edu/registrar/academic_calendars/acadcal2017_2018.pdf\",\n                    \"Keywords\": [\"17/2017\", \"18/2018\", \"academic\", \"calendar\", \"semester\", \"schedule\"]\n                },\n\n                {\n                    \"Name\": \"2018-2019 Academic calendar\",\n                    \"Data\": \"https://www.wku.edu/registrar/academic_calendars/acadcal2018_2019.pdf\",\n                    \"Keywords\": [\"18/2018\", \"19/2019\", \"academic\", \"calendar\", \"semester\", \"schedule\"]\n                },\n\n                {\n                    \"Name\": \"2019-2020 Academic calendar\",\n                    \"Data\": \"https://www.wku.edu/registrar/academic_calendars/acadcal2019_2020_update_covid19.pdf\",\n                    \"Keywords\": [\"19/2019\", \"20/2020\", \"academic\", \"calendar\", \"semester\", \"schedule\"]\n                },\n\n                {\n                    \"Name\": \"2020-2021 Academic calendar\",\n                    \"Data\": \"https://www.wku.edu/registrar/academic_calendars/final_fall20_spring21_updated11-20.pdf\",\n                    \"Keywords\": [\"20/2020\", \"21/2021\", \"academic\", \"calendar\", \"semester\", \"schedule\"]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Advising\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"How to schedule or cancel an advising appointment\",\n                    \"Data\": \"https://wku.edu/advising/advisingcalendar.php\",\n                    \"Keywords\": [\"schedule/scheduling/make/making/cancel/cancelling/reschedule/rescheduling/meet\", \"appointment/meeting\", \"advisor/advising\"]\n                },\n\n                {\n                    \"Name\": \"How to change my major/minor/concentration\",\n                    \"Data\": \"https://wku.edu/advising/change-of-major.php\",\n                    \"Keywords\": [\"change/changing/switch/switching/edit/editing/new/modify/modifying\", \"major/majors/minor/minors/concentration/concentrations\", \"form/document/request\"]\n                },\n\n                {\n                    \"Name\": \"Four-year degree paths\",\n                    \"Data\": \"To view potential four-year degree paths for your degree, please visit http://catalog.wku.edu/undergraduate/programs/ and select your major from the list shown on the website; then, click the 'Finish in Four' tab (it can be found beside the 'Overview' and 'Program Requirements' tabs)\",\n                    \"Keywords\": [\"path/paths/pathway/pathways/plan/plans\", \"degree/degrees\", \"4/four\"]\n                },\n\n                {\n                    \"Name\": \"What is 'Academic Standing'? (includes further information)\",\n                    \"Data\": \"https://wku.edu/advising/academicstanding.php\",\n                    \"Keywords\": [\"info/information\", \"what is / what's / work / works\", \"about/regarding\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"standing/warning/probation/dismissal\", \"Weight\": 3 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"Information about repeating courses\",\n                    \"Data\": \"For more information about repeating courses (such as how many courses a student can repeat, and more), please visit https://wku.edu/advising/academicstanding.php and press the 'Repeating Courses' tab\",\n                    \"Keywords\": [\"info/information\", \"about/regarding\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"repeat/repeating/repeated/repeats\", \"Weight\": 3 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"Information about the WKU grading and quality point system\",\n                    \"Data\": \"For more information about the WKU grading and quality point system, please visit https://wku.edu/advising/academicstanding.php and press the 'Grading and Quality Point System' tab\",\n                    \"Keywords\": [\"info/information\", \"what is / what's / work / works / gpa / grade point average\", \"about/regarding\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"grading / quality point / quality points / system / fn / au / nr / er / ng / ip\", \"Weight\": 3 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"Information about academic renewal\",\n                    \"Data\": \"For more information about academic renewal (also known as academic bankruptcy), please visit https://wku.edu/advising/academicstanding.php and press the 'Academic Renewal' tab\",\n                    \"Keywords\": [\"info/information\", \"what is / what's / work / works / gpa / grade point average / transfer / petition\", \"about/regarding\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"renewal/bankruptcy/bankrupt\", \"Weight\": 3 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"Information about the Colonnade program\",\n                    \"Data\": \"https://www.wku.edu/colonnade/index.php\",\n                    \"Keywords\": [\"info/information\", \"requirements/require/requires\", \"about/regarding\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"colonnade/colonade\", \"Weight\": 3 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"WKU Undergraduate academic catalog\",\n                    \"Data\": \"http://catalog.wku.edu/undergraduate/\",\n                    \"Keywords\": [\"undergraduate\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"catalog / course list / courses list / class list / classes list\", \"Weight\": 3 }\n                    ]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"Financial Aid\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"Cost of attending information\",\n                    \"Data\": \"https://www.wku.edu/financialaid/costinfo/\",\n                    \"Keywords\": [\"cost/price/money/tuition\", \"info/information\", \"how much\"]\n                },\n\n                {\n                    \"Name\": \"Financial aid timelines/deadlines\",\n                    \"Data\": \"https://www.wku.edu/financialaid/basics/timeline.php\",\n                    \"Keywords\": [\"apply/aid\", \"FAFSA/grant/grants/scholarship/scholarships/KHEAA/TOPDollar\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"when/timeline/timelines\", \"Weight\": 2 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"How to apply for financial aid\",\n                    \"Data\": \"https://www.wku.edu/financialaid/applying/how-to-apply.php\",\n                    \"Keywords\": [\"how to / how do\", \"aid\", \"FAFSA/scholarship/scholarships/grant/grants/TOPDollar\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"apply/applying\", \"Weight\": 2 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"Financial aid options (scholarships, grants, waivers, ...)\",\n                    \"Data\": \"https://www.wku.edu/financialaid/scholarships/index.php\",\n                    \"Keywords\": [\"aid\", \"FAFSA/scholarship/scholarships/grant/grants/TOPDollar/waiver/waivers\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"options / types / what kind / resources / source\", \"Weight\": 2 }\n                    ]\n                }\n            ]\n        },\n\n        {\n            \"Name\": \"WKU Online\",\n            \"Resources\":\n            [\n                {\n                    \"Name\": \"What are web classes?\",\n                    \"Data\": \"Web classes are semester-based, online classes that follow the same schedule as face-to-face courses - they have specific start and end dates with terms beginning in the fall, winter, spring, and summer. The campus location is listed as 'web' in TopNet. Most web classes do not require any face-to-face meetings. However, the professor may require as many as two and still list the class as a web class. If any meetings are required, they will be listed on TopNet in the 'blue notes' just below the class section on the 'Schedule of Classes' page. If this is a concern for you, please contact WKU Online prior to registration at learn.online@wku.edu or 888-4WKUWEB. For more information, please visit https://www.wku.edu/online/classes/index.php\",\n                    \"Keywords\": [\"web / web based\", \"what are / information / info\", \"about/regarding\"]\n                },\n\n                {\n                    \"Name\": \"What are WKU On-Demand classes?\",\n                    \"Data\": \"On demand classes provide students the opportunity to earn college credit when and where it is convenient for them.  The campus location is listed as 'On Demand' in TopNet. There are more than 100 undergraduate and graduate flex-paced courses available completely online. Students have the option to accelerate course completion by finishing in as little as 7 weeks or take advantage of an extended time frame. For more information, please visit https://www.wku.edu/ondemand/index.php\",\n                    \"Keywords\": [\"demand\", \"what are / information / info\", \"about/regarding\"]\n                },\n\n                {\n                    \"Name\": \"How to apply to WKU\",\n                    \"Data\": \"Please visit https://www.wku.edu/admissions/ to learn how to apply (or you may use this link if you would like to go directly to the admissions application page: https://www.wku.edu/apply). Once your enrollment application is accepted, you will be able to register for classes! If you have any questions, please feel free to call us at 270-745-2551 (WKU Office of Admissions), or you may visit https://www.wku.edu/admissions/ask/index.php to send us an email\",\n                    \"Keywords\": [\"how/where\", \"apply/applying\"]\n                },\n\n                {\n                    \"Name\": \"How to register for web classes at WKU\",\n                    \"Data\": \"We think it's awesome that you're interested in our web classes! First, you will need to apply to WKU, if you haven't already done so: please visit https://www.wku.edu/admissions/ to learn how to apply (or you may use this link if you would like to go directly to the admissions application page: https://www.wku.edu/apply). Once your enrollment application is accepted (or if you have already been accepted to enroll at WKU), please visit https://www.wku.edu/online/registration.php to learn how to register for your classes. If you have any questions, please feel free to call us at 270-745-2551 (WKU Office of Admissions), or you may visit https://www.wku.edu/admissions/ask/index.php to send us an email or https://www.wku.edu/online/contact.php\",\n                    \"Keywords\": [\"web / web based\", \"register / registering / registration / sign up / signing up / enroll / enrolling\"]\n                },\n\n                {\n                    \"Name\": \"How to register for WKU On-Demand classes\",\n                    \"Data\": \"We think it's awesome that you're interested in our On-Demand classes! First, you will need to apply to WKU, if you haven't already done so: please visit https://www.wku.edu/admissions/ to learn how to apply (or you may use this link if you would like to go directly to the admissions application page: https://www.wku.edu/apply). Once your enrollment application is accepted (or if you have already been accepted to enroll at WKU), please visit https://www.wku.edu/ondemand/register.php to learn how to register for your On-Demand classes. If you have any questions, please feel free to call us at 270-745-2551 (WKU Office of Admissions) or 270-745-4158 (for help with or questions pertaining to WKU On-Demand), or you may visit https://www.wku.edu/admissions/ask/index.php to send us an email or https://www.wku.edu/ondemand/contact.php\",\n                    \"Keywords\": [\"demand\", \"register / registering / registration / sign up / signing up / enroll / enrolling\"]\n                },\n                {\n                    \"Name\": \"How to register for WKU On-Demand classes\",\n                    \"Data\": \"https://www.wku.edu/ondemand/register.php\",\n                    \"Keywords\": [\"demand\", \"register / registering / registration / sign up / signing up\", \"\"]\n                },\n\n                {\n                    \"Name\": \"List of online degrees offered at WKU\",\n                    \"Data\": \"https://www.wku.edu/online/degrees/index.php\",\n                    \"Keywords\": [\"list/all/total\", \"degree/degrees/program/programs\", \"offered/offers/offer/offering/available\", \"online\"]\n                },\n\n                {\n                    \"Name\": \"100% Online Undergraduate degrees offered at WKU\",\n                    \"Data\": \"https://www.wku.edu/online/degrees/undergrad.php\",\n                    \"Keywords\": [\"degree/degrees/program/programs\", \"offered/offers/offer/offering/available\", \"online\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"undergraduate / undergaduates / ugrad / ugrads / undergrad / undergrads / freshman / freshmen / sophomore / sophomores / junior / juniors / senior/ seniors / ug / ugs / first year / 1st year / second year / 2nd year / third year / 3rd year / fourth year / 4th year\", \"Weight\": 2 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"Online Graduate (Master's/Doctorate's/etc.) programs offered at WKU\",\n                    \"Data\": \"https://www.wku.edu/online/degrees/grad.php\",\n                    \"Keywords\": [\"degree/degrees/program/programs\", \"offered/offers/offer/offering/available\", \"online\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"graduate / gaduates / grad / grads / upper level / master / masters / master's / doctorate / doctorates / doctorate's / doctoral\", \"Weight\": 2 }\n                    ]\n                },\n\n                {\n                    \"Name\": \"100% Online certificate programs offered at WKU\",\n                    \"Data\": \"https://www.wku.edu/online/degrees/certificates.php\",\n                    \"Keywords\": [\"degree/degrees/program/programs\", \"offered/offers/offer/offering/available\", \"online\"],\n                    \"WeightedKeywords\":\n                    [\n                        { \"Keyword\": \"certificate/certificates/cert/certs/certification/certifications\", \"Weight\": 2 }\n                    ]\n                }\n            ]\n        }\n    ]\n}";
   return C;
 }();
 
@@ -131,7 +131,9 @@ var Chatbot =
 /** @class */
 function () {
   function Chatbot() {
-    this._ConfigLoaded = false;
+    this._IsConfigLoaded = false;
+    this._IsDisabled = false;
+    this._IsPageLoaded = false;
     window.addEventListener("load", this._OnPageLoaded);
   }
 
@@ -139,7 +141,7 @@ function () {
     // If the Chatbot instance exists, just return it./
     if (!!this._Instance) return this._Instance;
     this._Instance = new Chatbot();
-    this._Instance._ConfigLoaded = false;
+    this._Instance._IsConfigLoaded = false;
     this._Instance._NumIncorrectResponses = 0;
     UI.GetInstance(); // Cause the UI to initialize itself.
 
@@ -166,20 +168,15 @@ function () {
   };
 
   Chatbot.prototype.ReplyToMessage = function (userMessage) {
-    // Figure out how to respond to user's message.
+    this._LastUserMessage = userMessage; // Figure out how to respond to user's message.
+
     var messageKeywords = this._ParseMessageForKeywords(userMessage);
 
     var resource = this._SearchForResource(userMessage, messageKeywords); // If the resource could not be found.
 
 
     if (resource === null) {
-      this._NumIncorrectResponses++;
-
-      if (this._NumIncorrectResponses >= 3) {
-        this._SendMessage(this._Config.StumpedApologyMessage);
-
-        this._NumIncorrectResponses = 0;
-      } else this._SendMessage(this._Config.ApologyMessage);
+      this._DoCouldNotFindCorrectResourceProcess(this._LastUserMessage);
     } else // If the resource was found.
       {
         if (Resource.IsDataJustURL(resource)) {
@@ -189,16 +186,6 @@ function () {
         UI.GetInstance().EnableInput(false);
         UI.GetInstance().DisplayButtons(["Yes!", "No"], "Was this what you were looking for?", this._YesOrNoButtonsCallback);
       }
-  };
-
-  Chatbot.prototype._CalculateNumCharsInString = function (text, searchChar) {
-    var numChars = 0;
-
-    for (var i = 0; i < text.length; i++) {
-      if (text[i] === searchChar) numChars++;
-    }
-
-    return numChars;
   };
 
   Chatbot.prototype._ChangeTopic = function (topicName) {
@@ -240,40 +227,86 @@ function () {
     return null;
   };
 
+  Chatbot.prototype._DoCouldNotFindCorrectResourceProcess = function (originalUserMessage) {
+    var cleanedUserMessage = this._CleanUserMessage(originalUserMessage); // Try and show helpful tips to the user, if possible, but try not to be
+    // annoying about it.
+
+
+    this._TipsCountdown--;
+
+    if (this._TipsCountdown === 0) {
+      // If the user's message contains at least two question marks, separated
+      // by one or more of any character that isn't a question mark. This is
+      // to test whether or not the user may be asking more than one question
+      // at a time.
+      if (originalUserMessage.match(/\?[^\?][^\?].*\?/g) !== null) {
+        this._SendMessage("Tip: It looks like you may be asking more than one question; however, " + "I was only made to answer one question at a time, so I may be able to " + "better help you find what you're looking for if the message is in that format :)");
+      } else if (cleanedUserMessage.length < 9) {
+        this._SendMessage("Tip: It looks like there may not be enough information in your message " + "for me to go on - perhaps providing some more details about what " + "you're looking for may help me to find it for you :)");
+      } // The regular expression below matches any period char followed by something that isn't
+      // the words, "edu", "com", "gov", "org", or "net".
+      else if (cleanedUserMessage.length > 110 || originalUserMessage.match(/[\.\?\!](?!\b(?:edu|com|gov|org|net)\b)..*/g) !== null) {
+          this._SendMessage("Tip: It looks like there may be too much information in your message " + "for me to figure out what you're looking for - perhaps whittling down " + "your question / search terms to something more simple and direct may help " + "me to find it for you :)");
+        }
+
+      this._TipsCountdown = this._Config.TipsFrequency;
+    }
+
+    this._NumIncorrectResponses++;
+
+    if (this._NumIncorrectResponses >= 3) {
+      this._SendMessage(this._Config.StumpedApologyMessage);
+
+      this._NumIncorrectResponses = 0;
+    } else this._SendMessage(this._Config.ApologyMessage);
+  };
+
   Chatbot.prototype._Init = function () {
-    // Initialize the UI.
-    UI.GetInstance().Init();
+    UI.GetInstance().Init(); // Initialize the UI.
+
     this.BeginChooseTopic(this._Config.WelcomeMessage);
   };
 
   Chatbot.prototype._LoadConfigFile = function (configJson) {
-    this._ConfigLoaded = false;
-    this._Config = JSON.parse(configJson); // Make sure that all dashes within a resource's keyword (if any) are
-    // replaced by a space. This is done so that the _SearchForResource(...) method
-    // can save some processing time.
+    this._IsConfigLoaded = false;
 
-    for (var topicIndex = 0; topicIndex < this._Config.Topics.length; topicIndex++) {
-      var topic = this._Config.Topics[topicIndex];
+    try {
+      this._Config = JSON.parse(configJson); // Make sure that all dashes within a resource's keyword (if any) are
+      // replaced by a space. This is done so that the _SearchForResource(...) method
+      // can save some processing time.
 
-      for (var resIndex = 0; resIndex < topic.Resources.length; resIndex++) {
-        var res = topic.Resources[resIndex]; // Default-weight keywords.
+      for (var topicIndex = 0; topicIndex < this._Config.Topics.length; topicIndex++) {
+        var topic = this._Config.Topics[topicIndex];
 
-        for (var kwIndex = 0; kwIndex < res.Keywords.length; kwIndex++) {
-          res.Keywords[kwIndex] = res.Keywords[kwIndex].replace("-", " ");
-        } // Varying-weight keywords.
+        for (var resIndex = 0; resIndex < topic.Resources.length; resIndex++) {
+          var res = topic.Resources[resIndex]; // Default-weight keywords.
+
+          for (var kwIndex = 0; kwIndex < res.Keywords.length; kwIndex++) {
+            res.Keywords[kwIndex] = res.Keywords[kwIndex].replace("-", " ");
+          } // Varying-weight keywords.
 
 
-        if (res.WeightedKeywords !== undefined) {
-          for (var kwIndex = 0; kwIndex < res.WeightedKeywords.length; kwIndex++) {
-            res.WeightedKeywords[kwIndex].Keyword = res.WeightedKeywords[kwIndex].Keyword.replace("-", " ");
+          if (res.WeightedKeywords !== undefined) {
+            for (var kwIndex = 0; kwIndex < res.WeightedKeywords.length; kwIndex++) {
+              res.WeightedKeywords[kwIndex].Keyword = res.WeightedKeywords[kwIndex].Keyword.replace("-", " ");
+            }
           }
         }
-      }
-    } // Load the topics into a new TopicCyclicIterator.
+      } // Load the topics into a new TopicCyclicIterator.
 
 
-    this._TopicIterator = new TopicCyclicIterator(this._Config.Topics);
-    this._ConfigLoaded = true;
+      this._TopicIterator = new TopicCyclicIterator(this._Config.Topics);
+      this._TipsCountdown = this._Config.TipsFrequency;
+      this._IsConfigLoaded = true;
+    } catch (e) {
+      // An error occurred in loading the config file; disable the Chatbot,
+      // display an error message on the screen, and print the actual error
+      // that occured into the console.
+      this._IsDisabled = true; // Chatbot._OnPageLoaded(...) will check for _IsDisabled.
+
+      console.log("Error: _LoadConfigFile(...) failed to load the config file. Details:");
+      console.error(e);
+    }
   };
 
   Chatbot.prototype._OnChooseTopicTopicSelected = function (e) {
@@ -292,8 +325,20 @@ function () {
     // This can be done by waiting for the Chatbot instance to be instantiated
     // (if it hasn't been already), and then waiting for the configuration file to
     // be loaded.
-    while (!!!Chatbot._Instance || !Chatbot._Instance._ConfigLoaded) {
-      // Wait 300ms and try again.
+    while (!!!Chatbot._Instance || !Chatbot._Instance._IsConfigLoaded) {
+      // If the Chatbot has been marked as 'disabled' due to an error, functionally disable
+      // the Chatbot and print an error message to the screen (via a MessageType.System message).
+      if (Chatbot._Instance._IsDisabled) {
+        UI.GetInstance().Init();
+        UI.GetInstance().EnableInput(false);
+        UI.GetInstance().DeleteAllMessages();
+
+        Chatbot._Instance._SendMessageAsType(MessageType.System, "We are sorry for the inconvenience, there seems to be an error within the application! " + "We are working on the problem, and will have the Chatbot back up and " + "running as soon as possible! In the meantime, however, you may visit our " + "website at https://wku.edu for more information about WKU housing, academics, " + "financial aid, and much more!");
+
+        return;
+      } // Wait 300ms and try again.
+
+
       setTimeout(function () {}, 300);
     } // Initialize the Chatbot.
 
@@ -361,13 +406,13 @@ function () {
           } else if (inputKeywords.Contains(resourceKeyword)) score++;
 
         goal++;
-      }); // Calculate the score for the varying-weight keywords.
+      }); // Calculate the score for the varying-weight keywords, if any.
 
       if (iteration.resource.WeightedKeywords !== undefined) {
         for (var i = 0; i < iteration.resource.WeightedKeywords.length; i++) {
           var weightedKeyword = iteration.resource.WeightedKeywords[i];
 
-          if (weightedKeyword.Keyword.indexOf(" / ")) // 'Or' operator, phrase sub-type.
+          if (weightedKeyword.Keyword.indexOf(" / ") !== -1) // 'Or' operator, phrase sub-type.
             {
               var split = weightedKeyword.Keyword.split(" / ");
 
@@ -385,7 +430,7 @@ function () {
             if (message.indexOf(weightedKeyword.Keyword) !== -1) {
               score += weightedKeyword.Weight;
             }
-          } else if (weightedKeyword.Keyword.indexOf("/")) // 'Or' operator, word sub-type.
+          } else if (weightedKeyword.Keyword.indexOf("/") !== -1) // 'Or' operator, word sub-type.
             {
               var split = weightedKeyword.Keyword.split("/");
 
@@ -423,10 +468,10 @@ function () {
     else if (Number.isNaN(highScore.score)) {
         console.log("highScore === NaN; returning null.");
         return null;
+      } else if (scores.length > 1 && highScore.score === scores[scores.length - 2].score) {
+        console.log("The top two scores were equal to one another; returning null.");
+        return null;
       }
-
-    console.log(scores);
-    console.log("Resource: \"" + highScore.resName + "\"\tScore: " + highScore.score);
 
     this._ResourceIterator.Reset();
 
@@ -462,13 +507,7 @@ function () {
       Chatbot._Instance._NumIncorrectResponses = 0;
     } else // Button name === "No".
       {
-        Chatbot._Instance._NumIncorrectResponses++;
-
-        if (Chatbot._Instance._NumIncorrectResponses >= 3) {
-          Chatbot._Instance._SendMessage(Chatbot._Instance._Config.StumpedApologyMessage);
-
-          Chatbot._Instance._NumIncorrectResponses = 0;
-        } else Chatbot._Instance._SendMessage(Chatbot._Instance._Config.IncorrectResponseApologyMessage);
+        Chatbot._Instance._DoCouldNotFindCorrectResourceProcess(Chatbot._Instance._LastUserMessage);
       }
   };
 
@@ -680,6 +719,11 @@ function () {
     return this._Instance;
   };
 
+  UI.prototype.DeleteAllMessages = function () {
+    this._MessageList.textContent = "";
+    this._LastMessageID = -1;
+  };
+
   UI.prototype.DeleteAllMessagesWithID = function (messageID) {
     // Go through the whole list of messages and search for one with the ID specified.
     for (var i = 0; i < this._MessageList.children.length; i++) {
@@ -753,7 +797,10 @@ function () {
 
   UI.prototype.EnableInput = function (enabled) {
     this._ChangeTopicButton.disabled = !enabled;
-    this._MessageBox.disabled = !enabled;
+    this._MessageBox.disabled = !enabled; // The MessageBox is in charge of enabling the Send button, so
+    // only allow disabling of the Send button through this method.
+
+    if (!enabled) this._SendButton.disabled = true;
   };
 
   UI.prototype.Init = function () {
@@ -849,7 +896,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52088" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51279" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -72,6 +72,7 @@ body .fullscreen > .appWindow > #messageList > .chatbotMessage {
   border-radius: 25px;
   font-size: 110%;
   font-family: sans-serif;
+  word-wrap: break-word;
   color: #f1f1f1;
   /* Links given by the Chatbot. */
 }
@@ -87,6 +88,7 @@ body .fullscreen > .appWindow > #messageList > .systemMessage {
   font-family: sans-serif;
   font-style: italic;
   text-align: center;
+  word-wrap: break-word;
   color: #555555;
 }
 body .fullscreen > .appWindow > #messageList > .userMessage {
@@ -99,6 +101,7 @@ body .fullscreen > .appWindow > #messageList > .userMessage {
   border-radius: 25px;
   font-size: 110%;
   font-family: sans-serif;
+  word-wrap: break-word;
   color: black;
 }
 body .fullscreen > .appWindow > #messageBox {

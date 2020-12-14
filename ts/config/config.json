@@ -1,9 +1,10 @@
 {
     "ApologyMessage": "I'm sorry, I wasn't able to find anything from what you typed. How about we try again?",
     "IncorrectResponseApologyMessage": "I'm sorry about that. How about we try again?",
-    "StumpedApologyMessage": "I'm sorry, I'm having trouble finding what you're looking for. You may still try and keep searching for this however. Alternatively, please feel free to email us with further questions at: wkuchatbotteam@wku.edu",
+    "StumpedApologyMessage": "I'm sorry, I'm having trouble finding what you're looking for; it is possible that I may not yet be able to help with finding this. You may still try and keep searching for this, however. Alternatively, please feel free to email us with further questions at: wkuchatbotteam@wku.edu",
     "SuccessMessage": "I'm glad I was able to be of help to you! May I help you with anything else?",
     "WelcomeMessage": "Hey there! What topic may I help you with today?",
+    "TipsFrequency": 2,
     "Topics":
     [
         {
@@ -88,9 +89,39 @@
             "Resources":
             [
                 {
-                    "Name": "Name",
-                    "Data": "Either a URL or some text.",
-                    "Keywords": []
+                    "Name": "How to apply for WKU housing",
+                    "Data": "https://wku.edu/housing/apply/index.php",
+                    "Keywords": ["information/info", "about/regarding", "how to", "apply/applying", "housing/room/rooms/hall/halls"]
+                },
+
+                {
+                    "Name": "How to apply for a private room",
+                    "Data": "A private room may be requested either through the Housing Portal (after a designated amount of time after the start of the semester) or - in the case that the requesting student has a documented disability - through working with the SARC (Student Accessibility Resource Center) office. If space is available, requests for private rooms will be approved on a first-come, first-serve basis, with one exception: a student with a documented disability may request housing accommodations (among other accommodations) from the WKU SARC (Student Accessbility Resource Center) office, and the SARC staff will work with WKU HRL (Housing and Residence Life) to try and secure a private room for the student, with that of a higher priority than of other students' requests for a private room. The resident of a private room agrees to pay the additional charges either before the semester begins or before the move is complete, unless the resident obtained the room through the SARC office, in which case there will be no extra charge for the resident. If you would like more information about the SARC office, please visit https://www.wku.edu/sarc/",
+                    "Keywords": ["how to", "apply/applying", "room/rooms/housing/hall/halls"],
+                    "WeightedKeywords":
+                    [
+                        { "Keyword": "private/solo", "Weight": 3 }
+                    ]
+                },
+
+                {
+                    "Name": "Residence hall rates",
+                    "Data": "https://wku.edu/housing/halls/rates.php",
+                    "Keywords": ["hall/halls/room/rooms/housing", "community/pod/suite/hotel"],
+                    "WeightedKeywords":
+                    [
+                        { "Keyword": "rates / rate / prices / price / cost / costs / charge / charges / how much", "Weight": 3 }
+                    ]
+                },
+
+                {
+                    "Name": "How much does a private room cost?",
+                    "Data": "A private room costs 1.25x the double-rate listed at https://wku.edu/housing/halls/rates.php , unless the student has a documented disability and would like the SARC (Student Accessibility Resource Center) to intervene on their behalf to try and secure the student a private room at no additional cost. If you would like more information about the SARC office, and how to request housing accommodations (among other accommodations) through them, please visit https://www.wku.edu/sarc/",
+                    "Keywords": ["hall/halls/room/rooms/housing", "community/pod/suite/hotel", "private"],
+                    "WeightedKeywords":
+                    [
+                        { "Keyword": "rates / rate / prices / price / cost / costs / charge / charges / how much", "Weight": 3 }
+                    ]
                 }
             ]
         },
@@ -170,9 +201,81 @@
             "Resources":
             [
                 {
-                    "Name": "Name",
-                    "Data": "Either a URL or some text.",
-                    "Keywords": []
+                    "Name": "How to schedule or cancel an advising appointment",
+                    "Data": "https://wku.edu/advising/advisingcalendar.php",
+                    "Keywords": ["schedule/scheduling/make/making/cancel/cancelling/reschedule/rescheduling/meet", "appointment/meeting", "advisor/advising"]
+                },
+
+                {
+                    "Name": "How to change my major/minor/concentration",
+                    "Data": "https://wku.edu/advising/change-of-major.php",
+                    "Keywords": ["change/changing/switch/switching/edit/editing/new/modify/modifying", "major/majors/minor/minors/concentration/concentrations", "form/document/request"]
+                },
+
+                {
+                    "Name": "Four-year degree paths",
+                    "Data": "To view potential four-year degree paths for your degree, please visit http://catalog.wku.edu/undergraduate/programs/ and select your major from the list shown on the website; then, click the 'Finish in Four' tab (it can be found beside the 'Overview' and 'Program Requirements' tabs)",
+                    "Keywords": ["path/paths/pathway/pathways/plan/plans", "degree/degrees", "4/four"]
+                },
+
+                {
+                    "Name": "What is 'Academic Standing'? (includes further information)",
+                    "Data": "https://wku.edu/advising/academicstanding.php",
+                    "Keywords": ["info/information", "what is / what's / work / works", "about/regarding"],
+                    "WeightedKeywords":
+                    [
+                        { "Keyword": "standing/warning/probation/dismissal", "Weight": 3 }
+                    ]
+                },
+
+                {
+                    "Name": "Information about repeating courses",
+                    "Data": "For more information about repeating courses (such as how many courses a student can repeat, and more), please visit https://wku.edu/advising/academicstanding.php and press the 'Repeating Courses' tab",
+                    "Keywords": ["info/information", "about/regarding"],
+                    "WeightedKeywords":
+                    [
+                        { "Keyword": "repeat/repeating/repeated/repeats", "Weight": 3 }
+                    ]
+                },
+
+                {
+                    "Name": "Information about the WKU grading and quality point system",
+                    "Data": "For more information about the WKU grading and quality point system, please visit https://wku.edu/advising/academicstanding.php and press the 'Grading and Quality Point System' tab",
+                    "Keywords": ["info/information", "what is / what's / work / works / gpa / grade point average", "about/regarding"],
+                    "WeightedKeywords":
+                    [
+                        { "Keyword": "grading / quality point / quality points / system / fn / au / nr / er / ng / ip", "Weight": 3 }
+                    ]
+                },
+
+                {
+                    "Name": "Information about academic renewal",
+                    "Data": "For more information about academic renewal (also known as academic bankruptcy), please visit https://wku.edu/advising/academicstanding.php and press the 'Academic Renewal' tab",
+                    "Keywords": ["info/information", "what is / what's / work / works / gpa / grade point average / transfer / petition", "about/regarding"],
+                    "WeightedKeywords":
+                    [
+                        { "Keyword": "renewal/bankruptcy/bankrupt", "Weight": 3 }
+                    ]
+                },
+
+                {
+                    "Name": "Information about the Colonnade program",
+                    "Data": "https://www.wku.edu/colonnade/index.php",
+                    "Keywords": ["info/information", "requirements/require/requires", "about/regarding"],
+                    "WeightedKeywords":
+                    [
+                        { "Keyword": "colonnade/colonade", "Weight": 3 }
+                    ]
+                },
+
+                {
+                    "Name": "WKU Undergraduate academic catalog",
+                    "Data": "http://catalog.wku.edu/undergraduate/",
+                    "Keywords": ["undergraduate"],
+                    "WeightedKeywords":
+                    [
+                        { "Keyword": "catalog / course list / courses list / class list / classes list", "Weight": 3 }
+                    ]
                 }
             ]
         },
@@ -224,9 +327,74 @@
             "Resources":
             [
                 {
-                    "Name": "Name",
-                    "Data": "Either a URL or some text.",
-                    "Keywords": []
+                    "Name": "What are web classes?",
+                    "Data": "Web classes are semester-based, online classes that follow the same schedule as face-to-face courses - they have specific start and end dates with terms beginning in the fall, winter, spring, and summer. The campus location is listed as 'web' in TopNet. Most web classes do not require any face-to-face meetings. However, the professor may require as many as two and still list the class as a web class. If any meetings are required, they will be listed on TopNet in the 'blue notes' just below the class section on the 'Schedule of Classes' page. If this is a concern for you, please contact WKU Online prior to registration at learn.online@wku.edu or 888-4WKUWEB. For more information, please visit https://www.wku.edu/online/classes/index.php",
+                    "Keywords": ["web / web based", "what are / information / info", "about/regarding"]
+                },
+
+                {
+                    "Name": "What are WKU On-Demand classes?",
+                    "Data": "On demand classes provide students the opportunity to earn college credit when and where it is convenient for them.  The campus location is listed as 'On Demand' in TopNet. There are more than 100 undergraduate and graduate flex-paced courses available completely online. Students have the option to accelerate course completion by finishing in as little as 7 weeks or take advantage of an extended time frame. For more information, please visit https://www.wku.edu/ondemand/index.php",
+                    "Keywords": ["demand", "what are / information / info", "about/regarding"]
+                },
+
+                {
+                    "Name": "How to apply to WKU",
+                    "Data": "Please visit https://www.wku.edu/admissions/ to learn how to apply (or you may use this link if you would like to go directly to the admissions application page: https://www.wku.edu/apply). Once your enrollment application is accepted, you will be able to register for classes! If you have any questions, please feel free to call us at 270-745-2551 (WKU Office of Admissions), or you may visit https://www.wku.edu/admissions/ask/index.php to send us an email",
+                    "Keywords": ["how/where", "apply/applying"]
+                },
+
+                {
+                    "Name": "How to register for web classes at WKU",
+                    "Data": "We think it's awesome that you're interested in our web classes! First, you will need to apply to WKU, if you haven't already done so: please visit https://www.wku.edu/admissions/ to learn how to apply (or you may use this link if you would like to go directly to the admissions application page: https://www.wku.edu/apply). Once your enrollment application is accepted (or if you have already been accepted to enroll at WKU), please visit https://www.wku.edu/online/registration.php to learn how to register for your classes. If you have any questions, please feel free to call us at 270-745-2551 (WKU Office of Admissions), or you may visit https://www.wku.edu/admissions/ask/index.php to send us an email or https://www.wku.edu/online/contact.php",
+                    "Keywords": ["web / web based", "register / registering / registration / sign up / signing up / enroll / enrolling"]
+                },
+
+                {
+                    "Name": "How to register for WKU On-Demand classes",
+                    "Data": "We think it's awesome that you're interested in our On-Demand classes! First, you will need to apply to WKU, if you haven't already done so: please visit https://www.wku.edu/admissions/ to learn how to apply (or you may use this link if you would like to go directly to the admissions application page: https://www.wku.edu/apply). Once your enrollment application is accepted (or if you have already been accepted to enroll at WKU), please visit https://www.wku.edu/ondemand/register.php to learn how to register for your On-Demand classes. If you have any questions, please feel free to call us at 270-745-2551 (WKU Office of Admissions) or 270-745-4158 (for help with or questions pertaining to WKU On-Demand), or you may visit https://www.wku.edu/admissions/ask/index.php to send us an email or https://www.wku.edu/ondemand/contact.php",
+                    "Keywords": ["demand", "register / registering / registration / sign up / signing up / enroll / enrolling"]
+                },
+                {
+                    "Name": "How to register for WKU On-Demand classes",
+                    "Data": "https://www.wku.edu/ondemand/register.php",
+                    "Keywords": ["demand", "register / registering / registration / sign up / signing up", ""]
+                },
+
+                {
+                    "Name": "List of online degrees offered at WKU",
+                    "Data": "https://www.wku.edu/online/degrees/index.php",
+                    "Keywords": ["list/all/total", "degree/degrees/program/programs", "offered/offers/offer/offering/available", "online"]
+                },
+
+                {
+                    "Name": "100% Online Undergraduate degrees offered at WKU",
+                    "Data": "https://www.wku.edu/online/degrees/undergrad.php",
+                    "Keywords": ["degree/degrees/program/programs", "offered/offers/offer/offering/available", "online"],
+                    "WeightedKeywords":
+                    [
+                        { "Keyword": "undergraduate / undergaduates / ugrad / ugrads / undergrad / undergrads / freshman / freshmen / sophomore / sophomores / junior / juniors / senior/ seniors / ug / ugs / first year / 1st year / second year / 2nd year / third year / 3rd year / fourth year / 4th year", "Weight": 2 }
+                    ]
+                },
+
+                {
+                    "Name": "Online Graduate (Master's/Doctorate's/etc.) programs offered at WKU",
+                    "Data": "https://www.wku.edu/online/degrees/grad.php",
+                    "Keywords": ["degree/degrees/program/programs", "offered/offers/offer/offering/available", "online"],
+                    "WeightedKeywords":
+                    [
+                        { "Keyword": "graduate / gaduates / grad / grads / upper level / master / masters / master's / doctorate / doctorates / doctorate's / doctoral", "Weight": 2 }
+                    ]
+                },
+
+                {
+                    "Name": "100% Online certificate programs offered at WKU",
+                    "Data": "https://www.wku.edu/online/degrees/certificates.php",
+                    "Keywords": ["degree/degrees/program/programs", "offered/offers/offer/offering/available", "online"],
+                    "WeightedKeywords":
+                    [
+                        { "Keyword": "certificate/certificates/cert/certs/certification/certifications", "Weight": 2 }
+                    ]
                 }
             ]
         }

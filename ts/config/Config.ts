@@ -5,5 +5,6 @@ class Config
     public SuccessMessage: string;
     public StumpedApologyMessage: string;
     public Topics: Topic[];
+    public TipsFrequency: number;
     public WelcomeMessage: string;
 }

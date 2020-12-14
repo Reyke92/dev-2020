@@ -3,10 +3,14 @@ class Chatbot
     private static _Instance: Chatbot;
 
     private _Config: Config;
-    private _ConfigLoaded: boolean = false;
     private _CurrentTopic: Topic;
+    private _IsConfigLoaded: boolean = false;
+    private _IsDisabled: boolean = false;
+    private _IsPageLoaded: boolean = false;
+    private _LastUserMessage: string;
     private _NumIncorrectResponses: number;
     private _ResourceIterator: ResourceCyclicIterator;
+    private _TipsCountdown: number;
     private _TopicIterator: TopicCyclicIterator;
 
     private constructor()
@@ -20,7 +24,7 @@ class Chatbot
         if (!!this._Instance) return this._Instance;
 
         this._Instance = new Chatbot();
-        this._Instance._ConfigLoaded = false;
+        this._Instance._IsConfigLoaded = false;
         this._Instance._NumIncorrectResponses = 0;
         UI.GetInstance(); // Cause the UI to initialize itself.
         this._Instance._LoadConfigFile(C.CONFIG_FILE_CONTENTS);
@@ -51,6 +55,8 @@ class Chatbot
 
     public ReplyToMessage(userMessage: string): void
     {
+        this._LastUserMessage = userMessage;
+        
         // Figure out how to respond to user's message.
         var messageKeywords: HashMap<number> = this._ParseMessageForKeywords(userMessage);
         var resource: Resource = this._SearchForResource(userMessage, messageKeywords);
@@ -58,14 +64,7 @@ class Chatbot
         // If the resource could not be found.
         if (resource === null)
         {
-            this._NumIncorrectResponses++;
-
-            if (this._NumIncorrectResponses >= 3)
-            {
-                this._SendMessage(this._Config.StumpedApologyMessage);
-                this._NumIncorrectResponses = 0;
-            }
-            else this._SendMessage(this._Config.ApologyMessage);
+            this._DoCouldNotFindCorrectResourceProcess(this._LastUserMessage);
         }
         else // If the resource was found.
         {
@@ -82,17 +81,6 @@ class Chatbot
                 this._YesOrNoButtonsCallback
             );
         }
-    }
-
-    private _CalculateNumCharsInString(text: string, searchChar: string): number
-    {
-        var numChars: number = 0;
-        for (var i = 0; i < text.length; i++)
-        {
-            if (text[i] === searchChar) numChars++;
-        }
-
-        return numChars;
     }
 
     private _ChangeTopic(topicName: string): void
@@ -141,49 +129,112 @@ class Chatbot
         return null;
     }
 
+    private _DoCouldNotFindCorrectResourceProcess(originalUserMessage: string)
+    {
+        var cleanedUserMessage: string = this._CleanUserMessage(originalUserMessage);
+        // Try and show helpful tips to the user, if possible, but try not to be
+        // annoying about it.
+        this._TipsCountdown--;
+        if (this._TipsCountdown === 0)
+        {
+            // If the user's message contains at least two question marks, separated
+            // by one or more of any character that isn't a question mark. This is
+            // to test whether or not the user may be asking more than one question
+            // at a time.
+            if (originalUserMessage.match(/\?[^\?][^\?].*\?/g) !== null)
+            {
+                this._SendMessage(
+                    "Tip: It looks like you may be asking more than one question; however, " +
+                    "I was only made to answer one question at a time, so I may be able to " +
+                    "better help you find what you're looking for if the message is in that format :)");
+            }
+            else if (cleanedUserMessage.length < 9)
+            {
+                this._SendMessage(
+                    "Tip: It looks like there may not be enough information in your message " +
+                    "for me to go on - perhaps providing some more details about what " +
+                    "you're looking for may help me to find it for you :)");
+            }
+            // The regular expression below matches any period char followed by something that isn't
+            // the words, "edu", "com", "gov", "org", or "net".
+            else if (cleanedUserMessage.length > 110 ||
+                     originalUserMessage.match(/[\.\?\!](?!\b(?:edu|com|gov|org|net)\b)..*/g) !== null)
+            {
+                this._SendMessage(
+                    "Tip: It looks like there may be too much information in your message " +
+                    "for me to figure out what you're looking for - perhaps whittling down " +
+                    "your question / search terms to something more simple and direct may help " +
+                    "me to find it for you :)");
+            }
+
+            this._TipsCountdown = this._Config.TipsFrequency;
+        }
+
+        this._NumIncorrectResponses++;
+        if (this._NumIncorrectResponses >= 3)
+        {
+            this._SendMessage(this._Config.StumpedApologyMessage);
+            this._NumIncorrectResponses = 0;
+        }
+        else this._SendMessage(this._Config.ApologyMessage);
+    }
+
     private _Init(): void
     {
-        // Initialize the UI.
-        UI.GetInstance().Init();
+        UI.GetInstance().Init(); // Initialize the UI.
         
         this.BeginChooseTopic(this._Config.WelcomeMessage);
     }
 
     private _LoadConfigFile(configJson: string): void
     {
-        this._ConfigLoaded = false;
-        this._Config = JSON.parse(configJson);
+        this._IsConfigLoaded = false;
 
-        // Make sure that all dashes within a resource's keyword (if any) are
-        // replaced by a space. This is done so that the _SearchForResource(...) method
-        // can save some processing time.
-        for (var topicIndex = 0; topicIndex < this._Config.Topics.length; topicIndex++)
+        try
         {
-            var topic: Topic = this._Config.Topics[topicIndex];
-            for (var resIndex = 0; resIndex < topic.Resources.length; resIndex++)
+            this._Config = JSON.parse(configJson);
+
+            // Make sure that all dashes within a resource's keyword (if any) are
+            // replaced by a space. This is done so that the _SearchForResource(...) method
+            // can save some processing time.
+            for (var topicIndex = 0; topicIndex < this._Config.Topics.length; topicIndex++)
             {
-                var res: Resource = topic.Resources[resIndex];
-
-                // Default-weight keywords.
-                for (var kwIndex = 0; kwIndex < res.Keywords.length; kwIndex++)
+                var topic: Topic = this._Config.Topics[topicIndex];
+                for (var resIndex = 0; resIndex < topic.Resources.length; resIndex++)
                 {
-                    res.Keywords[kwIndex] = res.Keywords[kwIndex].replace("-", " ");
-                }
+                    var res: Resource = topic.Resources[resIndex];
 
-                // Varying-weight keywords.
-                if (res.WeightedKeywords !== undefined)
-                {
-                    for (var kwIndex = 0; kwIndex < res.WeightedKeywords.length; kwIndex++)
+                    // Default-weight keywords.
+                    for (var kwIndex = 0; kwIndex < res.Keywords.length; kwIndex++)
                     {
-                        res.WeightedKeywords[kwIndex].Keyword = res.WeightedKeywords[kwIndex].Keyword.replace("-", " ");
+                        res.Keywords[kwIndex] = res.Keywords[kwIndex].replace("-", " ");
+                    }
+
+                    // Varying-weight keywords.
+                    if (res.WeightedKeywords !== undefined)
+                    {
+                        for (var kwIndex = 0; kwIndex < res.WeightedKeywords.length; kwIndex++)
+                        {
+                            res.WeightedKeywords[kwIndex].Keyword = res.WeightedKeywords[kwIndex].Keyword.replace("-", " ");
+                        }
                     }
                 }
             }
-        }
 
-        // Load the topics into a new TopicCyclicIterator.
-        this._TopicIterator = new TopicCyclicIterator(this._Config.Topics);
-        this._ConfigLoaded = true;
+            // Load the topics into a new TopicCyclicIterator.
+            this._TopicIterator = new TopicCyclicIterator(this._Config.Topics);
+            this._TipsCountdown = this._Config.TipsFrequency;
+            this._IsConfigLoaded = true;
+        }
+        catch (e)
+        {
+            // An error occurred in loading the config file; disable the Chatbot,
+            // display an error message on the screen, and print the actual error
+            // that occured into the console.
+            this._IsDisabled = true; // Chatbot._OnPageLoaded(...) will check for _IsDisabled.
+            console.log("Error: _LoadConfigFile(...) failed to load the config file. Details:");
+            console.error(e);
+        }
     }
 
     private _OnChooseTopicTopicSelected(this: HTMLButtonElement, e: Event): void
@@ -201,8 +252,25 @@ class Chatbot
         // This can be done by waiting for the Chatbot instance to be instantiated
         // (if it hasn't been already), and then waiting for the configuration file to
         // be loaded.
-        while (!!!Chatbot._Instance || !Chatbot._Instance._ConfigLoaded)
+        while (!!!Chatbot._Instance || !Chatbot._Instance._IsConfigLoaded)
         {
+            // If the Chatbot has been marked as 'disabled' due to an error, functionally disable
+            // the Chatbot and print an error message to the screen (via a MessageType.System message).
+            if (Chatbot._Instance._IsDisabled)
+            {
+                UI.GetInstance().Init();
+                UI.GetInstance().EnableInput(false);
+                UI.GetInstance().DeleteAllMessages();
+                Chatbot._Instance._SendMessageAsType(MessageType.System,
+                    "We are sorry for the inconvenience, there seems to be an error within the application! " +
+                    "We are working on the problem, and will have the Chatbot back up and " +
+                    "running as soon as possible! In the meantime, however, you may visit our " +
+                    "website at https://wku.edu for more information about WKU housing, academics, " +
+                    "financial aid, and much more!");
+
+                return;
+            }
+
             // Wait 300ms and try again.
             setTimeout(() => {}, 300);
         }
@@ -291,7 +359,7 @@ class Chatbot
                 goal++;
             });
 
-            // Calculate the score for the varying-weight keywords.
+            // Calculate the score for the varying-weight keywords, if any.
             if (iteration.resource.WeightedKeywords !== undefined)
             {
                 for (var i = 0; i < iteration.resource.WeightedKeywords.length; i++)
@@ -299,7 +367,7 @@ class Chatbot
                     var weightedKeyword: { Keyword: string, Weight: number } =
                         iteration.resource.WeightedKeywords[i];
                     
-                    if (weightedKeyword.Keyword.indexOf(" / ")) // 'Or' operator, phrase sub-type.
+                    if (weightedKeyword.Keyword.indexOf(" / ") !== -1) // 'Or' operator, phrase sub-type.
                     {
                         var split: string[] = weightedKeyword.Keyword.split(" / ");
                         
@@ -323,7 +391,7 @@ class Chatbot
                             score += weightedKeyword.Weight;
                         }
                     }
-                    else if (weightedKeyword.Keyword.indexOf("/")) // 'Or' operator, word sub-type.
+                    else if (weightedKeyword.Keyword.indexOf("/") !== -1) // 'Or' operator, word sub-type.
                     {
                         var split: string[] = weightedKeyword.Keyword.split("/");
                         
@@ -338,11 +406,11 @@ class Chatbot
                         }
                     }
                     else if (inputKeywords.Contains(weightedKeyword.Keyword)) score += weightedKeyword.Weight;
-                    
+
                     goal += weightedKeyword.Weight;
                 }
             }
-            
+
             scores.push({ score: score / goal, resName: iteration.resource.Name });
             iteration = this._ResourceIterator.Next();
         }
@@ -357,9 +425,10 @@ class Chatbot
 
         // If the highest score is NaN, this is likely due to an error in the config file; return null.
         else if (Number.isNaN(highScore.score)) { console.log("highScore === NaN; returning null."); return null; }
-
-        console.log(scores);
-        console.log("Resource: \"" + highScore.resName + "\"\tScore: " + highScore.score);
+        else if (scores.length > 1 && highScore.score === scores[scores.length - 2].score)
+        {
+            console.log("The top two scores were equal to one another; returning null."); return null;
+        }
         
         this._ResourceIterator.Reset();
         var iteration: { resource: Resource, hasCycled: boolean } = this._ResourceIterator.Next();
@@ -397,14 +466,7 @@ class Chatbot
         }
         else // Button name === "No".
         {
-            Chatbot._Instance._NumIncorrectResponses++;
-
-            if (Chatbot._Instance._NumIncorrectResponses >= 3)
-            {
-                Chatbot._Instance._SendMessage(Chatbot._Instance._Config.StumpedApologyMessage);
-                Chatbot._Instance._NumIncorrectResponses = 0;
-            }
-            else Chatbot._Instance._SendMessage(Chatbot._Instance._Config.IncorrectResponseApologyMessage);
+            Chatbot._Instance._DoCouldNotFindCorrectResourceProcess(Chatbot._Instance._LastUserMessage);
         }
     }
 }
